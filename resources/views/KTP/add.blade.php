@@ -188,8 +188,95 @@
                             </a> -->
                         </div>
                     </form>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#nama').keyup(function() 
+                            {
+                                var str = jQuery('#nama').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#nama').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#pekerjaan').keyup(function() 
+                            {
+                                var str = jQuery('#pekerjaan').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#pekerjaan').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                                        <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#tempat_lahir').keyup(function() 
+                            {
+                                var str = jQuery('#tempat_lahir').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#tempat_lahir').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#alamat').keyup(function() 
+                            {
+                                var str = jQuery('#alamat').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#alamat').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#asal_negara').keyup(function() 
+                            {
+                                var str = jQuery('#asal_negara').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#asal_negara').val(spart.join(" "));
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </main>
     </body>
+
 </html>
