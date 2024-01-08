@@ -45,29 +45,21 @@
                                         </span>
                                    @enderror
                             </div>
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Password</div>
-                                <input class="form-control @error('password') is-invalid @enderror" type="password" style="width: 100%; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" name="password" id="password" placeholder="Masukkan Password" value="" required>
-                                <!-- <div style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                                    <div style="width: 580px; height: 24px; padding-right: 383px; justify-content: flex-start; align-items: center; display: flex">
-                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Masukkan password anda</div>
-                                    </div>
-                                </div> -->
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <medium>{{ $message }}</medium>
-                                    </span>
-                                @enderror
-                            </div>
+                        </div>
+                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                            <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Password</div>
+                            <input class="form-control @error('password') is-invalid @enderror" type="password" style="width: 100%; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" name="password" id="password" placeholder="Masukkan Password" value="" required>
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <medium>{{ $message }}</medium>
+                                </span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary" style="align-self: stretch; padding: 16px; background: #394E91; border-radius: 10px; justify-content: center; align-items: center; display: inline-flex">
                             <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Daftar</div>
                         </button>
                     </form>
-                    <small style="align-self: stretch; justify-content: center; align-items: center; display: flex;gap: 4px;">Sudah punya akun? <a href="/login">Masuk</a></small>
-                <!-- <div style="align-self: stretch; padding: 16px; background: #394E91; border-radius: 10px; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Login</div>
-                </div> -->
+                    <small style="align-self: stretch; justify-content: center; align-items: center; font-family:'Inter', Sans-serif; display: flex;gap: 4px;">Sudah punya akun? <a href="/login">Masuk</a></small>
                 </div>
             </div>
         </div>

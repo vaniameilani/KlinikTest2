@@ -26,7 +26,7 @@ class KtpsController extends Controller
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
         ->select('ktps.nik', 'ktps.nama', 'bpjs.no_bpjs', 'lcs.no_kartu')
-        ->where('ktps.nik', 'like', '%'.$search.'%')
+        ->where('lcs.no_kartu', 'like', '%'.$search.'%')
         ->orwhere('ktps.nama', 'like', '%'.$search.'%')
         ->Paginate(10);
         
@@ -86,8 +86,8 @@ class KtpsController extends Controller
         $other = new Other;
         $other->nik_other = $request->nik;
         $other->save();
-        
-        return redirect('/')->with('status', 'Data berhasil ditambahkan');
+
+        return redirect('/')->with('success', 'Data berhasil ditambahkan');
     }
 
     // DETAIL
