@@ -16,11 +16,19 @@
                 width: auto; 
                 height: auto; 
             }
+
+            /* KENAPA KAMU NGGAK MAU MUNCUL  */
+            .bg-acc{
+                background-image: url('background-image.jpg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
         </style>
     </head>
 
     <body>
-    <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="bg-acc position-absolute top-50 start-50 translate-middle">
         <div style="width: 500px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: center; display: blox;">
             <div style="padding: 40px; background: #E8EAF2; border-radius: 10px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 24px;"> 
             
@@ -40,8 +48,8 @@
                 @endif
 
                 <div style="align-self: stretch; flex-direction: column; justify-content: center; align-items: center; display: flex; gap: 8px;">
-                    <div style="align-self: stretch; text-align: center; color: #394E91; font-size: 40px; font-family:'Inter', Sans-serif; font-weight: 700; line-height: 40px; word-wrap: break-word">Klinik Raycare</div>
-                    <div style="align-self: stretch; text-align: center; color: #5C6EA8; font-size: 20px; font-family:'Inter', Sans-serif; font-weight: 500; line-height: 24px; word-wrap: break-word">Born to Serve</div>
+                    <div style="align-self: stretch; text-align: center; color: #394E91; font-size: 40px; font-family:'Inter', Sans-serif; font-weight: 700; line-height: 40px; word-wrap: break-word">Yayasan Raycare Nusantara</div>
+                    <!-- <div style="align-self: stretch; text-align: center; color: #5C6EA8; font-size: 20px; font-family:'Inter', Sans-serif; font-weight: 500; line-height: 24px; word-wrap: break-word">Born to Serve</div> -->
                 </div>
                 <!-- <div style="align-self: stretch; height: 100%; border: 1px #DADDE5 solid"></div> -->
                 <div style="align-self: stretch; height: 100%; padding: 24px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">

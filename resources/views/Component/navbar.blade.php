@@ -12,6 +12,13 @@
         <style>
             body{ background-color: #F5F6FA; }
 
+            /* .hero{
+                background-image: url('../Home/hero-image.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            } */
+
             /* Text Styles */
             .body{
                 font-family: Inter;
@@ -88,7 +95,7 @@
         <header>       
             <div style="width: 100%; padding-left: 40px; padding-right: 40px; padding-top: 16px; padding-bottom: 16px; background: white; box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25); justify-content: space-between; align-items: center; display: inline-flex">
                 <a href="/" class="nav nav-link">
-                    <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Klinik Raycare</div>
+                    <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Yayasan Raycare Nusantara</div>
                 </a>
                 <div style="flex: 1 1 0; justify-content: center; align-items: center; display: flex">
                     <a href="/" class="nav-link menu">Dashboard</a>
