@@ -30,7 +30,18 @@ class KtpsController extends Controller
         ->orwhere('ktps.nama', 'like', '%'.$search.'%')
         ->Paginate(10);
         
-        return view('Home.index', compact('data'));
+        $countktp = DB::table('ktps')
+        ->select('ktps.nik')
+        ->get()
+        ->count();
+
+        $countlc = DB::table('lcs')
+        ->wherenotnull('lcs.no_kartu')
+        ->select('lcs.no_kartu')
+        ->get()
+        ->count();
+
+        return view('Home.index', compact('data', 'countktp', 'countlc'));
     }
 
     public function create()
