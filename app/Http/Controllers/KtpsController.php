@@ -52,7 +52,7 @@ class KtpsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required',
+            'nik' => 'required|unique:ktps,nik',
             'nama' => 'required',
             'jenis_kelamin' => 'required',
             'agama' => 'required',

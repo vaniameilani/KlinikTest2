@@ -68,8 +68,8 @@
                                 <label for="jenis_kelamin" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kelamin</label>
                                 <select class="form-select p-3 align-self-stretch" name="jenis_kelamin" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Perempuan" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Perempuan</option>
-                                    <option value="Laki-laki" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Laki-laki</option>
+                                    <option value="Perempuan" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                    <option value="Laki-laki" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                                 </select>
                                 @error('jenis_kelamin')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -80,11 +80,11 @@
                                 <label for="agama" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Agama</label>
                                 <select class="form-select p-3 align-self-stretch" id="agama" name="agama" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Islam" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Islam</option>
-                                    <option value="Kristen" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kristen</option>
-                                    <option value="Katolik" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Katolik</option>
-                                    <option value="Hindu" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Hindu</option>
-                                    <option value="Budha" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Budha</option>
+                                    <option value="Islam" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                    <option value="Kristen" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                    <option value="Katolik" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                    <option value="Hindu" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                    <option value="Budha" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Budha' ? 'selected' : '' }}>Budha</option>
                                 </select>
                                 @error('agama')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -136,8 +136,8 @@
                                 <label for="status_perkawinan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status Pernikahan</label>
                                 <select class="form-select p-3 align-self-stretch" id="status_perkawinan" name="status_perkawinan" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Kawin" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kawin</option>
-                                    <option value="Belum Kawin" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Belum Kawin</option>
+                                    <option value="Kawin" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('status_perkawinan') == 'Kawin' ? 'selected' : '' }}>Kawin</option>
+                                    <option value="Belum Kawin" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('status_perkawinan') == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
                                 </select>
                                 @error('status_perkawinan')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -149,8 +149,8 @@
                                     <label for="kewarganegaraan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kewarganegaraan</label>
                                     <select class="form-select p-3 align-self-stretch" id="kewarganegaraan" name="kewarganegaraan" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                         <option >Pilih salah satu</option>
-                                        <option value="WNI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">WNI</option>
-                                        <option value="WNA" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">WNA</option>
+                                        <option value="WNI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kewarganegaraan') == 'WNI' ? 'selected' : '' }}>WNI</option>
+                                        <option value="WNA" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kewarganegaraan') == 'WNA' ? 'selected' : '' }}>WNA</option>
                                     </select>
                                     @error('kewarganegaraan')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
