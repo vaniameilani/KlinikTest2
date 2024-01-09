@@ -25,7 +25,8 @@ class KtpsController extends Controller
         $data = DB::table('ktps')
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        ->select('ktps.nik', 'ktps.nama', 'bpjs.no_bpjs', 'lcs.no_kartu')
+        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu')
         ->where('lcs.no_kartu', 'like', '%'.$search.'%')
         ->orwhere('ktps.nama', 'like', '%'.$search.'%')
         ->Paginate(10);
@@ -111,6 +112,14 @@ class KtpsController extends Controller
         $listkk = DB::table('kks')
         ->where('kks.kk', '=', $kkselect)
         ->get();
+        
+        // $listkk = DB::table('kks')
+        // ->where('kks.kk', '=', $kkselect)
+        // ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
+        // ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
+        // ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
+        // ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'lcs.no_kartu')
+        // ->Paginate(10);
 
         $lc = DB::table('lcs')
         ->where('lcs.nik_lc', '=', $nik->nik)
@@ -209,5 +218,12 @@ class KtpsController extends Controller
         return redirect()->route('detail-anggota', ['nik' => $nik]);
         // return redirect()->route('detail-anggota', $nik);
         // return redirect()->back();
+    }
+
+    // -------------------------------------
+    public function addkk(kk $kk)
+    {
+        $status = $kk->status;
+        return view('KK.add', compact('kk', 'status'));
     }
 }

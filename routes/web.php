@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/detail-anggota/{ktp}/edit/ktp', [KtpsController::class, 'edit']);
     Route::put('/update-anggota/{nik}', [KtpsController::class, 'update']);
 
+    // Route::get('/{nik}/tambah-kk', [KtpsController::class, 'addkk']);
+
     // KK -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{kk}/edit/kk', [KkController::class, 'edit']);
     Route::put('/update-anggota-kk/{nik}', [KkController::class, 'update']);
@@ -52,12 +54,14 @@ Route::middleware('auth')->group(function() {
     // BPJS -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{bpjs}/edit/bpjs', [BpjsController::class, 'edit']);
     Route::put('/update-anggota-bpjs/{nik}', [BpjsController::class, 'update']);
+    Route::get('/{bpjs}/tambah-bpjs', [BpjsController::class, 'addbpjs']);
+    Route::put('/save-anggota-bpjs/{bpjs}', [BpjsController::class, 'storebpjs']);
 
-    // BPJS -------------------------------------------------------------------------------
+    // OTHER -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{other}/edit/lainnya', [OtherController::class, 'edit']);
     Route::put('/update-anggota-lainnya/{nik}', [OtherController::class, 'update']);
 
-    // BPJS -------------------------------------------------------------------------------
+    // LC -------------------------------------------------------------------------------
     Route::get('/ubah-kartu/{lc}', [ChangeLcController::class, 'create']);
     Route::post('/ubah-kartu-lc/{nik}', [ChangeLcController::class, 'store']);
 });

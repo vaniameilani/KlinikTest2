@@ -88,6 +88,8 @@
 
             /* Button Aksi daftar KK */
             a.button-ghost:hover { background: #EEEFF4; }
+
+            a.add-btn:hover { background: #EEEFF4; }
         </style>
     </head>
 
