@@ -43,7 +43,26 @@ class KtpsController extends Controller
         ->get()
         ->count();
 
-        return view('Home.index', compact('data', 'countktp', 'countlc'));
+        $countnull = DB::table('ktps')
+        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
+        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
+        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
+        ->whereNull('kks.kk')
+        ->orwhereNull('bpjs.no_bpjs')
+        ->get()
+        ->count();
+
+        $datanull = DB::table('ktps')
+        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
+        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
+        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
+        ->whereNull('kks.kk')
+        ->orwhereNull('bpjs.no_bpjs')
+        ->get();
+
+        return view('Home.index', compact('data', 'countktp', 'countlc', 'countnull', 'datanull'));
     }
 
     public function create()
@@ -228,5 +247,53 @@ class KtpsController extends Controller
         // return redirect()->route('detail-anggota', $nik);
         // return redirect()->back();
     }
+    public function indexnull(Request $request)
+    {
+        $search = $request->search;
+        
+        // $ktps = Ktp::all();
+        // return view('Home.index', compact('ktps'));
 
+        $data = DB::table('ktps')
+        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
+        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
+        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
+        ->where('lcs.no_kartu', 'like', '%'.$search.'%')
+        ->orwhere('ktps.nama', 'like', '%'.$search.'%')
+        ->orderBy('lcs.id', 'DESC')
+        ->Paginate(10);
+        
+        $countktp = DB::table('ktps')
+        ->select('ktps.nik')
+        ->get()
+        ->count();
+
+        $countlc = DB::table('lcs')
+        ->wherenotnull('lcs.no_kartu')
+        ->select('lcs.no_kartu')
+        ->get()
+        ->count();
+
+        $countnull = DB::table('ktps')
+        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
+        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
+        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
+        ->whereNull('kks.kk')
+        ->orwhereNull('bpjs.no_bpjs')
+        ->get()
+        ->count();
+
+        $datanull = DB::table('ktps')
+        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
+        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
+        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
+        ->whereNull('kks.kk')
+        ->orwhereNull('bpjs.no_bpjs')
+        ->get();
+
+        return view('Home.indexnull', compact('data', 'countktp', 'countlc', 'countnull', 'datanull'));
+    }
 }

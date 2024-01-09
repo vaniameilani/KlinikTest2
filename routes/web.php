@@ -30,6 +30,7 @@ Route::middleware('guest')->group(function() {
 // HOME
 Route::middleware('auth')->group(function() {
     Route::get('/', [KtpsController::class, 'index'])->name('home');
+    Route::get('/nulldata', [KtpsController::class, 'indexnull']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/tambah-anggota', [KtpsController::class, 'create']);
