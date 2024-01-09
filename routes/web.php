@@ -50,14 +50,16 @@ Route::middleware('auth')->group(function() {
 
     // LC -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{lc}/edit/lc', [LcController::class, 'edit']);
-    Route::get('/detail-anggota/{lc}/add/lc', [LcController::class, 'add']);
+    Route::get('/detail-anggota/{lc}/add/lc', [LcController::class, 'add'])->name('add-lc');
+    Route::get('{lc}/tambah-lc', [LcController::class, 'add']);
     Route::put('/update-anggota-lc/{nik}', [LcController::class, 'update']);
+    Route::put('/update-lc/{nik}', [LcController::class, 'updatelc']);
 
     // BPJS -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{bpjs}/edit/bpjs', [BpjsController::class, 'edit'])->name('edit-bpjs');
     Route::put('/update-anggota-bpjs/{nik}', [BpjsController::class, 'update']);
     Route::get('/{bpjs}/tambah-bpjs', [BpjsController::class, 'addbpjs']);
-    Route::put('/save-anggota-bpjs/{bpjs}', [BpjsController::class, 'storebpjs']);
+    // Route::put('/save-anggota-bpjs/{bpjs}', [BpjsController::class, 'storebpjs']);
     Route::get('/{bpjs}/tambah-bpjs', [BpjsController::class, 'edit']);
     Route::put('/update-bpjs/{nik}', [BpjsController::class, 'updatebpjs']);
 

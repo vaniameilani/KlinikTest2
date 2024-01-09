@@ -29,6 +29,7 @@ class KtpsController extends Controller
         ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
         ->where('lcs.no_kartu', 'like', '%'.$search.'%')
         ->orwhere('ktps.nama', 'like', '%'.$search.'%')
+        ->orderBy('lcs.id', 'DESC')
         ->Paginate(10);
         
         $countktp = DB::table('ktps')
@@ -117,7 +118,7 @@ class KtpsController extends Controller
         ->join('bpjs', 'kks.nik_kk', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'kks.nik_kk', '=', 'lcs.nik_lc')
         ->join('ktps', 'kks.nik_kk', '=', 'ktps.nik')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'bpjs.id')
         ->where('kks.kk', '=', $kkselect)
         ->get();
         // $listkk = DB::table('kks')
@@ -228,10 +229,4 @@ class KtpsController extends Controller
         // return redirect()->back();
     }
 
-    // -------------------------------------
-    public function addkk(kk $kk)
-    {
-        $status = $kk->status;
-        return view('KK.add', compact('kk', 'status'));
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lc;
 use App\Models\ChangeLc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LcController extends Controller
 {
@@ -12,7 +13,16 @@ class LcController extends Controller
     {
         $cardtype = $lc->jenis_kartu;
         $datasource = $lc->sumber_data;
-        return view('LC.add', compact('lc', 'cardtype', 'datasource'));
+
+        $nikselect = DB::table('lcs')
+        ->where('lcs.id', '=', $lc->id)
+        ->select('nik_lc');
+
+        $nama = DB::table('ktps')
+        ->where('ktps.nik', '=', $nikselect)
+        ->get();
+
+        return view('LC.add', compact('lc', 'cardtype', 'datasource', 'nama'));
     }
 
     public function edit(Lc $lc)
@@ -50,5 +60,35 @@ class LcController extends Controller
         $changelc->save();
 
         return redirect()->route('detail-anggota', ['nik' => $nik]);
+    }
+
+    public function updatelc(Request $request, $nik)
+    {
+        $request->validate([
+            'id',
+            'no_kartu' => 'required',
+            'jenis_kartu',
+            'tanggal_pembuatan',
+            'sumber_data' => 'required',
+            'nama_koor' => 'required',
+        ]);
+
+        Lc::where('nik_lc', $nik)
+        ->update([
+            'no_kartu' => $request->no_kartu,
+            'jenis_kartu' => $request->jenis_kartu,
+            'tanggal_pembuatan' => $request->tanggal_pembuatan,
+            'sumber_data' => $request->sumber_data,
+            'nama_koor' => $request->nama_koor,
+            'scan_lc' => $request->scan_lc
+        ]);
+
+        $changelc = new Changelc;
+        $changelc->no_kartu = $request->no_kartu;
+        $changelc->jenis_kartu = $request->jenis_kartu;
+        $changelc->tanggal_upgrade = $request->tanggal_pembuatan;
+        $changelc->save();
+
+        return redirect()->route('home');
     }
 }

@@ -57,27 +57,27 @@ class BpjsController extends Controller
         return redirect()->route('home');
     }
 
-    public function addbpjs(Bpjs $bpjs)
-    {
-        $cardtype = $bpjs->jenis_bpjs;
-        return view('BPJS.edit', compact('bpjs', 'cardtype'));
-    }
+    // public function addbpjs(Bpjs $bpjs)
+    // {
+    //     $cardtype = $bpjs->jenis_bpjs;
+    //     return view('BPJS.edit', compact('bpjs', 'cardtype'));
+    // }
 
-    public function storebpjs(Request $request, $nik)
-    {
-        $request->validate([
-            'id',
-            'nik_bpjs',
-            'no_bpjs' => 'required',
-            'jenis_bpjs' => 'required'
-        ]);
+    // public function storebpjs(Request $request, $nik)
+    // {
+    //     $request->validate([
+    //         'id',
+    //         'nik_bpjs',
+    //         'no_bpjs' => 'required',
+    //         'jenis_bpjs' => 'required'
+    //     ]);
 
-        Bpjs::where('nik_bpjs', $nik)
-        ->update([
-            'no_bpjs' => $request->no_bpjs,
-            'jenis_bpjs' => $request->jenis_bpjs
-        ]);
+    //     Bpjs::where('nik_bpjs', $nik)
+    //     ->update([
+    //         'no_bpjs' => $request->no_bpjs,
+    //         'jenis_bpjs' => $request->jenis_bpjs
+    //     ]);
 
-        return redirect('/');
-    }
+    //     return redirect('/');
+    // }
 }
