@@ -113,6 +113,13 @@ class KtpsController extends Controller
         ->where('kks.kk', '=', $kkselect)
         ->get();
         
+        $listdata = DB::table('kks')
+        ->join('bpjs', 'kks.nik_kk', '=', 'bpjs.nik_bpjs')
+        ->join('lcs', 'kks.nik_kk', '=', 'lcs.nik_lc')
+        ->join('ktps', 'kks.nik_kk', '=', 'ktps.nik')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu')
+        ->where('kks.kk', '=', $kkselect)
+        ->get();
         // $listkk = DB::table('kks')
         // ->where('kks.kk', '=', $kkselect)
         // ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
@@ -155,6 +162,7 @@ class KtpsController extends Controller
             'other' => $other,
             'listkk' => $listkk,
             'changelc' => $changelc,
+            'listdata' => $listdata,
             'lcselect' => $lcselect
         ]);
         
