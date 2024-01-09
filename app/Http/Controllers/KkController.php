@@ -35,8 +35,31 @@ class KkController extends Controller
             'status' => $request->status,
             'scan_kk' => $request->scan_kk
         ]);
-       
+
         return redirect()->route('detail-anggota', ['nik' => $nik]);
+
+    }
+
+    public function updatekk(Request $request, $nik)
+    {
+        $request->validate([
+            'id',
+            'nik_kk',
+            'kk' => 'required',
+            'dokumen_kk' => 'required',
+            'status' => 'required',
+        ]);
+
+        kk::where('nik_kk', $nik)
+        ->update([
+            'kk' => $request->kk,
+            'dokumen_kk' => $request->dokumen_kk,
+            'status' => $request->status,
+            'scan_kk' => $request->scan_kk
+        ]);
+
+        return redirect()->route('home');
+        
     }
 
     public function create(Request $request, $kk)

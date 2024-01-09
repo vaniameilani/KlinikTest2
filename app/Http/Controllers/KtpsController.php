@@ -26,7 +26,7 @@ class KtpsController extends Controller
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
         ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
         ->where('lcs.no_kartu', 'like', '%'.$search.'%')
         ->orwhere('ktps.nama', 'like', '%'.$search.'%')
         ->Paginate(10);

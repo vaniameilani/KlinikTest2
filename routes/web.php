@@ -41,10 +41,12 @@ Route::middleware('auth')->group(function() {
     // Route::get('/{nik}/tambah-kk', [KtpsController::class, 'addkk']);
 
     // KK -------------------------------------------------------------------------------
-    Route::get('/detail-anggota/{kk}/edit/kk', [KkController::class, 'edit']);
+    Route::get('/detail-anggota/{kk}/edit/kk', [KkController::class, 'edit'])->name('edit-kk');
     Route::put('/update-anggota-kk/{nik}', [KkController::class, 'update']);
     Route::get('/tambah-anggota-kk/{kk}', [KkController::class, 'create']);
     Route::post('/ktp-kk/{nik}', [KkController::class, 'store']);
+    Route::get('/{kk}/tambah-kk', [KkController::class, 'edit']);
+    Route::put('/update-kk/{nik}', [KkController::class, 'updatekk']);
 
     // LC -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{lc}/edit/lc', [LcController::class, 'edit']);
@@ -52,10 +54,12 @@ Route::middleware('auth')->group(function() {
     Route::put('/update-anggota-lc/{nik}', [LcController::class, 'update']);
 
     // BPJS -------------------------------------------------------------------------------
-    Route::get('/detail-anggota/{bpjs}/edit/bpjs', [BpjsController::class, 'edit']);
+    Route::get('/detail-anggota/{bpjs}/edit/bpjs', [BpjsController::class, 'edit'])->name('edit-bpjs');
     Route::put('/update-anggota-bpjs/{nik}', [BpjsController::class, 'update']);
     Route::get('/{bpjs}/tambah-bpjs', [BpjsController::class, 'addbpjs']);
     Route::put('/save-anggota-bpjs/{bpjs}', [BpjsController::class, 'storebpjs']);
+    Route::get('/{bpjs}/tambah-bpjs', [BpjsController::class, 'edit']);
+    Route::put('/update-bpjs/{nik}', [BpjsController::class, 'updatebpjs']);
 
     // OTHER -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{other}/edit/lainnya', [OtherController::class, 'edit']);
