@@ -21,9 +21,6 @@ class KtpsController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-        
-        // $ktps = Ktp::all();
-        // return view('Home.index', compact('ktps'));
 
         $data = DB::table('ktps')
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
@@ -168,13 +165,6 @@ class KtpsController extends Controller
         ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'bpjs.id')
         ->where('kks.kk', '=', $kkselect)
         ->get();
-        // $listkk = DB::table('kks')
-        // ->where('kks.kk', '=', $kkselect)
-        // ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
-        // ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        // ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
-        // ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'lcs.no_kartu')
-        // ->Paginate(10);
 
         $lc = DB::table('lcs')
         ->where('lcs.nik_lc', '=', $nik->nik)
@@ -298,16 +288,12 @@ class KtpsController extends Controller
         ]);
         
         return redirect()->route('detail-anggota', ['nik' => $nik]);
-        // return redirect()->route('detail-anggota', $nik);
-        // return redirect()->back();
     }
+    
     public function indexnull(Request $request)
     {
         $search = $request->search;
-        
-        // $ktps = Ktp::all();
-        // return view('Home.index', compact('ktps'));
-
+    
         $data = DB::table('ktps')
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
