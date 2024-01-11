@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Ktp;
 use App\Models\Bpjs;
 use App\Models\ChangeLc;
+use App\Models\District;
 use App\Models\kk;
 use App\Models\Lc;
 use App\Models\Other;
+use App\Models\Province;
+use App\Models\Regency;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Support\Collection;
@@ -67,7 +70,20 @@ class KtpsController extends Controller
 
     public function create()
     {
-        return view('KTP.add');
+        $prov = Province::all();
+        return view('KTP.add', compact('prov'));
+    }
+
+    public function fatchRegency(Request $request)
+    {
+        $data['regencies'] = Regency::where('province_id', $request->province_id)->get();
+        return response()->json($data);
+    }
+
+    public function fatchDistrict(Request $request)
+    {
+        $data['districts'] = District::where('regency_id', $request->regency_id)->get();
+        return response()->json($data);
     }
 
     public function store(Request $request)
@@ -78,6 +94,12 @@ class KtpsController extends Controller
             'jenis_kelamin' => 'required',
             'agama' => 'required',
             'pekerjaan' => 'required',
+            'provinsi' => 'required',
+            'kota_kab' => 'required',
+            'kecamatan' => 'required',
+            'desa_kel' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
             'alamat' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -93,6 +115,12 @@ class KtpsController extends Controller
         $ktp->jenis_kelamin = $request->jenis_kelamin;
         $ktp->agama = $request->agama;
         $ktp->pekerjaan = $request->pekerjaan;
+        $ktp->provinsi = $request->provinsi;
+        $ktp->kota_kab = $request->kota_kab;
+        $ktp->kecamatan = $request->kecamatan;
+        $ktp->desa_kel = $request->desa_kel;
+        $ktp->rt = $request->rt;
+        $ktp->rw = $request->rw;
         $ktp->alamat = $request->alamat;
         $ktp->tempat_lahir = $request->tempat_lahir;
         $ktp->tanggal_lahir = $request->tanggal_lahir;
@@ -173,6 +201,18 @@ class KtpsController extends Controller
         ->orderBy('tanggal_upgrade', 'desc')
         ->paginate(3);
 
+        $prov = DB::table('provinces')
+        ->where('provinces.id', '=', $nik->provinsi)
+        ->get();
+
+        $rgc = DB::table('regencies')
+        ->where('regencies.id', '=', $nik->kota_kab)
+        ->get();
+
+        $dist = DB::table('districts')
+        ->where('districts.id', '=', $nik->kecamatan)
+        ->get();
+
         return view('Member.detail', [
             'kk' => $kk,
             'ktp' => $nik,
@@ -183,7 +223,10 @@ class KtpsController extends Controller
             'listkk' => $listkk,
             'changelc' => $changelc,
             'listdata' => $listdata,
-            'lcselect' => $lcselect
+            'lcselect' => $lcselect,
+            'prov' => $prov,
+            'rgc' => $rgc,
+            'dist' => $dist
         ]);
         
         // $ktp = Ktp::find($nik);
@@ -197,10 +240,14 @@ class KtpsController extends Controller
     {
         // dd($gender);
         $gender = $ktp->jenis_kelamin;
+        $prov = $ktp->provinsi;
+        $kota_kab = $ktp->kota_kab;
+        $kec = $ktp->kecamatan;
+        $desa_kel = $ktp->desa_kel;
         $marriage = $ktp->status_perkawinan;
         $agama = $ktp->agama;
         $citizen = $ktp->kewarganegaraan;
-        return view('KTP.edit', compact('ktp', 'gender', 'marriage', 'agama', 'citizen'));
+        return view('KTP.edit', compact('ktp', 'gender', 'prov', 'kota_kab', 'kec', 'desa_kel', 'marriage', 'agama', 'citizen'));
     }
 
     public function update(Request $request, $nik)
@@ -212,17 +259,18 @@ class KtpsController extends Controller
             'jenis_kelamin' => 'required',
             'agama' => 'required',
             'pekerjaan' => 'required',
+            'provinsi' => 'required',
+            'kota_kab' => 'required',
+            'kecamatan' => 'required',
+            'desa_kel' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
             'alamat' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'status_perkawinan' => 'required',
             'kewarganegaraan' => 'required',
             'asal_negara' => 'required',
-            // 'nik_kk' => 'required',
-            // 'nik_lc' => 'required',
-            // 'nik_bpjs' => 'required',
-            // 'nik_other' => 'required',
-            // 'scan_ktp' => 'required'
         ]);
         Ktp::where('nik', $nik)
         ->update([
@@ -230,6 +278,12 @@ class KtpsController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'agama' => $request->agama,
             'pekerjaan' => $request->pekerjaan,
+            'provinsi' => $request->provinsi,
+            'kota_kab' => $request->kota_kab,
+            'kecamatan' => $request->kecamatan,
+            'desa_kel' => $request->desa_kel,
+            'rt' => $request->rt,
+            'rw' => $request->rw,
             'alamat' => $request->alamat,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,

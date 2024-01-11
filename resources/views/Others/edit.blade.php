@@ -54,7 +54,7 @@
                                 <label for="disabilitas" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Penyandang Disabilitas</label>
                                 <select class="form-select p-3 align-self-stretch" id="disabilitas" name="disabilitas" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Iya, memiliki disabilitas" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $disabilitas == 'Iya, memiliki disabilitas' ? 'selected' : '' }}> Iya, memiliki disabilitas </option>
+                                    <option value="Iya" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $disabilitas == 'Iya' ? 'selected' : '' }}> Iya </option>
                                     <option value="Tidak" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $disabilitas == 'Tidak' ? 'selected' : '' }}>Tidak</option>
                                 </select>
                                 @error('disabilitas')
@@ -66,29 +66,32 @@
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                             <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Informasi TPS</div>
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
-                                <!-- <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status</div>
-                                    <select class="form-select p-3 align-self-stretch" style="border-radius: 5px; border: 1px #DADDE5 solid;">
-                                        <option selected style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Pilih salah satu</option>
-                                        <option value="1" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Gaple</option>
-                                        <option value="2" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Bazar</option>
-                                        <option value="3" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Rekomendasi</option>
+                                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                    <label for="no_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor TPS</label>
+                                    <select class="form-select p-3 align-self-stretch" name="no_tps" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                        <option >Pilih salah satu</option>
+                                        @foreach ( $tps as $row )
+                                        <option value="{{ $row->id }}">{{ $row->no_tps }}</option>
+                                        @endforeach
                                     </select>
-                                </div> -->
-                                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                                    @error('no_tps')
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <!-- <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                     <label for="no_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">TPS</label>
                                     <input type="text" class="form-control @error('no_tps') is-invalid @enderror" id="no_tps" placeholder="Masukkan Nomor TPS Anggota" name="no_tps" value="{{ $other->no_tps }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     @error('no_tps')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
-                                </div>
+                                </div> -->
                                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                     <label for="alamat_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat Lengkap TPS</label>
                                     <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
-                                        <input type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Masukkan Alamat TPS Lengkap" name="alamat_tps" value="{{ $other->alamat_tps }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
-                                        <div style="padding-right: 110px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                        <input type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Masukkan Alamat TPS Lengkap" name="alamat_tps" value="{{ $row->alamat_tps }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                        <!-- <div style="padding-right: 110px; justify-content: flex-start; align-items: center; display: inline-flex">
                                             <div style="text-align: justify; color: #757575; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Isi secara lengkap mulai dari nama jalan/desa hingga kode pos</div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     @error('alamat_tps')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>

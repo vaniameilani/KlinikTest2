@@ -47,16 +47,15 @@
                         @csrf
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex; gap: 24px;">
                             <!-- NIK -->
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                 <label for="nik" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">NIK</label>
                                 <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" placeholder="Masukkan NIK Anggota" name="nik" value="{{ old('nik') }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                 @error('nik')
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-                                <!-- <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama</div>
-                                <input type="text" id="nama-pengguna" placeholder="John Doe" style="color: #1D1B20; align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex"> -->
+                            <!-- Nama -->
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                 <label for="nama" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama</label>
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nama Anggota" name="nama" value="{{ old('nama')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                 @error('nama')
@@ -64,47 +63,117 @@
                                 @enderror
                             </div>
                             <!-- Jenis kelamin pengguna -->
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                 <label for="jenis_kelamin" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kelamin</label>
-                                <select class="form-select p-3 align-self-stretch" name="jenis_kelamin" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                <select class="form-select p-3 align-self-stretch" name="jenis_kelamin" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Perempuan" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                    <option value="Laki-laki" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="LAKI-LAKI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('jenis_kelamin') == 'LAKI-LAKI' ? 'selected' : '' }}>LAKI-LAKI</option>
+                                    <option value="PEREMPUAN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('jenis_kelamin') == 'PEREMPUAN' ? 'selected' : '' }}>PEREMPUAN</option>
                                 </select>
                                 @error('jenis_kelamin')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>
                             <!-- Agama -->
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                 <label for="agama" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Agama</label>
-                                <select class="form-select p-3 align-self-stretch" id="agama" name="agama" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                <select class="form-select p-3 align-self-stretch" id="agama" name="agama" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                     <option >Pilih salah satu</option>
                                     <option value="Islam" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
                                     <option value="Kristen" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
                                     <option value="Katolik" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
                                     <option value="Hindu" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
                                     <option value="Budha" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Budha' ? 'selected' : '' }}>Budha</option>
+                                    <option value="Kong Hu Chu" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('agama') == 'Kong Hu Chu' ? 'selected' : '' }}>Kong Hu Chu</option>
                                 </select>
                                 @error('agama')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>
                             <!-- Pekerjaan -->
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                 <label for="pekerjaan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Pekerjaan</label>
                                 <input type="text" class="form-control @error('pekerjaan') is-invalid @enderror" id="pekerjaan" placeholder="Masukkan Pekerjaan Anggota" name="pekerjaan" value="{{ old('pekerjaan')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                 @error('pekerjaan')
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-                                <label for="alamat" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat Lengkap</label>
+                            <!-- Provinsi -->
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                <label for="provinsi" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Provinsi</label>
+                                <select class="form-select p-3 align-self-stretch" id="provinsi" name="provinsi" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                    <option >Pilih salah satu</option>
+                                    @foreach($prov as $data)
+                                        <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}">{{ $data->name }}</option>
+                                    @endforeach
+                                    <!-- <option value="Kepulauan Bangka Belitung" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('provinsi') == 'Kepulauan Bangka Belitung' ? 'selected' : '' }}>Kepulauan Bangka Belitung</option>
+                                    <option value="Jawa Barat" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('provinsi') == 'Jawa Barat' ? 'selected' : '' }}>Jawa Barat</option> -->
+                                </select>
+                                @error('provinsi')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                            <!-- Kota/Kabupaten & Kecamatan -->
+                            <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                    <label for="kota_kab" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kota/Kabupaten</label>
+                                    <select class="form-select p-3 align-self-stretch" id="kota_kab" name="kota_kab" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                        <!-- <option >Pilih salah satu</option>
+                                        <option value="BELITUNG" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kota_kab') == 'BELITUNG' ? 'selected' : '' }}>BELITUNG</option>
+                                        <option value="BELITUNG TIMUR" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kota_kab') == 'BELITUNG TIMUR' ? 'selected' : '' }}>BELITUNG TIMUR</option> -->
+                                    </select>
+                                    @error('kota_kab')
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                    <label for="kecamatan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kecamatan</label>
+                                    <select class="form-select p-3 align-self-stretch" id="kecamatan" name="kecamatan" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                        <!-- <option >Pilih salah satu</option>
+                                        <option value="MEMBALONG" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kecamatan') == 'MEMBALONG' ? 'selected' : '' }}>MEMBALONG</option>
+                                        <option value="SELAT NASIK" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kecamatan') == 'SELAT NASIK' ? 'selected' : '' }}>SELAT NASIK</option> -->
+                                    </select>
+                                    @error('kecamatan')
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Desa/Kelurahan, RT, RW -->
+                            <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                    <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
+                                    <select class="form-select p-3 align-self-stretch" id="desa_kel" name="desa_kel" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                        <option >Pilih salah satu</option>
+                                        <option value="BANTAN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('desa_kel') == 'BANTAN' ? 'selected' : '' }}>BANTAN</option>
+                                        <option value="MEMBALONG" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('desa_kel') == 'MEMBALONG' ? 'selected' : '' }}>MEMBALONG</option>
+                                    </select>
+                                    @error('desa_kel')
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div style="flex: 1 0 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                    <label for="rt" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">RT</label>
+                                    <input type="text" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="Masukkan Nomor RT" name="rt" value="{{ old('rt')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                    @error('rt')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div style="flex: 1 0 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                    <label for="rw" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">RW</label>
+                                    <input type="text" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="Masukkan Nomor RW" name="rw" value="{{ old('rw')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-staw; align-items: center; display: inline-flex" required>
+                                    @error('rw')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Alamat -->
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                <label for="alamat" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat</label>
                                 <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
-                                    <input type="textarea" class="form-control @error('alamat') is-invalid @enderror" id="alamat" placeholder="Masukkan Alamat Lengkap Anggota" name="alamat" value="{{ old('alamat')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
-                                    <div style="padding-right: 110px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <input type="textarea" class="form-control @error('alamat') is-invalid @enderror" id="alamat" placeholder="Masukkan Alamat Anggota" name="alamat" value="{{ old('alamat')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                    <!-- <div style="padding-right: 110px; justify-content: flex-start; align-items: center; display: inline-flex">
                                         <div style="text-align: justify; color: #757575; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Isi secara lengkap mulai dari nama jalan/desa hingga kode pos</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 @error('alamat')
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -112,18 +181,14 @@
                             </div>
                             <!-- Tempat dan tinggal lahir pengguna -->
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
-                                <div style="flex: 1 0 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-                                    <!-- <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tempat Lahir</div>
-                                    <input type="text" id="tempat-lahir" placeholder="Masukkan Tempat Lahir Pengguna" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex"> -->
+                                <div style="flex: 1 0 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="tempat_lahir" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tempat Lahir</label>
                                     <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" placeholder="Masukkan Tempat Lahir Anggota" name="tempat_lahir" value="{{ old('tempat_lahir')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     @error('tempat_lahir')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
-                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-                                    <!-- <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Lahir</div>
-                                    <input type="date" id="tanggal-lahir" placeholder="Masukkan Tanggal Lahir Pengguna" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex"> -->
+                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="tanggal_lahir" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Lahir</label>
                                     <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" placeholder="Masukkan Tanggal Lahir Anggota" name="tanggal_lahir" value="{{ old('tanggal_lahir')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     @error('tanggal_lahir')
@@ -132,12 +197,14 @@
                                 </div>
                             </div>
                             <!-- Status Nikah -->
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                 <label for="status_perkawinan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status Pernikahan</label>
-                                <select class="form-select p-3 align-self-stretch" id="status_perkawinan" name="status_perkawinan" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                <select class="form-select p-3 align-self-stretch" id="status_perkawinan" name="status_perkawinan" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Kawin" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('status_perkawinan') == 'Kawin' ? 'selected' : '' }}>Kawin</option>
-                                    <option value="Belum Kawin" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('status_perkawinan') == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
+                                    <option value="KAWIN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('status_perkawinan') == 'KAWIN' ? 'selected' : '' }}>KAWIN</option>
+                                    <option value="BELUM KAWIN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('status_perkawinan') == 'BELUM KAWIN' ? 'selected' : '' }}>BELUM KAWIN</option>
+                                    <option value="CERAI HIDUP" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('status_perkawinan') == 'CERAI HIDUP' ? 'selected' : '' }}>CERAI HIDUP</option>
+                                    <option value="CERAI MATI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('status_perkawinan') == 'CERAI MATI' ? 'selected' : '' }}>CERAI MATI</option>
                                 </select>
                                 @error('status_perkawinan')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -145,9 +212,9 @@
                             </div>
                             <!-- Warna Negara & Asal Negara -->
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
-                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="kewarganegaraan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kewarganegaraan</label>
-                                    <select class="form-select p-3 align-self-stretch" id="kewarganegaraan" name="kewarganegaraan" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                    <select class="form-select p-3 align-self-stretch" id="kewarganegaraan" name="kewarganegaraan" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                         <option >Pilih salah satu</option>
                                         <option value="WNI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kewarganegaraan') == 'WNI' ? 'selected' : '' }}>WNI</option>
                                         <option value="WNA" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kewarganegaraan') == 'WNA' ? 'selected' : '' }}>WNA</option>
@@ -156,7 +223,7 @@
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
-                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+                                <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="asal_negara" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Asal Negara</label>
                                     <input type="text" class="form-control @error('asal_negara') is-invalid @enderror" id="asal_negara" placeholder="Masukkan Tempat Lahir Anggota" name="asal_negara" value="{{ old('asal_negara')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     @error('asal_negara')
@@ -165,7 +232,7 @@
                                 </div>
                             </div>
                             <!-- Unggah foto KTP -->
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                 <!-- <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Unggah Foto KTP</div> -->
                                 <label class="form-label" for="scan_ktp" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Unggah Scan KTP</label>
                                 <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
@@ -183,9 +250,6 @@
                             <button type="submit" class="btn btn-primary mb-3" style="padding: 16px; border-radius: 10px; justify-content: center; align-items: center; display: flex">
                                 <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah</div>
                             </button>
-                            <!-- <a class="btn button-fill" style="padding: 16px; border-radius: 10px; justify-content: center; align-items: center; display: flex" href="#" role="button">
-                                <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
-                            </a> -->
                         </div>
                     </form>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -271,6 +335,46 @@
                                     spart[i] = j + spart[i].substr(1);
                                 }
                             jQuery('#asal_negara').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+                            jQuery('#provinsi').change(function(event){
+                                var idProv = this.value;
+                                jQuery('#kota_kab').html('');
+
+                                jQuery.ajax({
+                                    url: "/api/fetch-regencies",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {province_id: idProv,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#kota_kab').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.regencies, function(create, val){
+                                            jQuery('#kota_kab').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                        jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                    }
+                                })
+                            });
+
+                            jQuery('#kota_kab').change(function(event){
+                                var idDist = this.value;
+                                jQuery('#kecamatan').html('');
+
+                                jQuery.ajax({
+                                    url: "/api/fetch-districts",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {regency_id: idDist,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.districts, function(create, val){
+                                            jQuery('#kecamatan').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                    }
+                                })
                             });
                         });
                     </script>

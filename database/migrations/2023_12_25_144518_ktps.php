@@ -15,9 +15,16 @@ return new class extends Migration
             // $table->id();
             $table->string('nik')->primary()->unique();
             $table->string('nama');
+            // $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('jenis_kelamin');
             $table->string('agama');
             $table->string('pekerjaan');
+            $table->string('provinsi');
+            $table->string('kota_kab');
+            $table->string('kecamatan');
+            $table->string('desa_kel');
+            $table->string('rt');
+            $table->string('rw');
             $table->longText('alamat');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');

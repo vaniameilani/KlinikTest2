@@ -18,6 +18,9 @@
 
              /* button edit */
              a.button-line:hover { background: rgba(57, 78, 145, 0.15); }
+
+            a.button-fill { background: #394E91; color: white; }
+            a.button-fill:hover { background: #293A79; color: white;}
         </style>
     </head>
     <body>
@@ -95,23 +98,15 @@
                                 </div>
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat Lengkap</div>
+                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Pekerjaan</div>
                                     </div>
-                                    <div style="flex: 1 1 0; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->alamat }}</div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->pekerjaan }}</div>
                                 </div>
-                            </div>
-                            <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                         <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status Nikah</div>
                                     </div>
                                     <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->status_perkawinan }}</div>
-                                </div>
-                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
-                                    <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Pekerjaan</div>
-                                    </div>
-                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->pekerjaan }}</div>
                                 </div>
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
@@ -124,6 +119,44 @@
                                         <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Asal Negara</div>
                                     </div>
                                     <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->asal_negara }}</div>
+                                </div>
+                            </div>
+                            <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                    <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Provinsi</div>
+                                    </div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $prov[0]->name }}</div>
+                                </div>
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                    <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kota/Kabupaten</div>
+                                    </div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $rgc[0]->name }}</div>
+                                </div>
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                    <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kecamatan</div>
+                                    </div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $dist[0]->name }}</div>
+                                </div>
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                    <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</div>
+                                    </div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->desa_kel }}</div>
+                                </div>
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                    <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">RT / RW</div>
+                                    </div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->rt }} / {{ $ktp->rw }}</div>
+                                </div>
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                    <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                        <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat</div>
+                                    </div>
+                                    <div style="flex: 1 1 0; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->alamat }}</div>
                                 </div>
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
@@ -142,8 +175,8 @@
                         <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                             <div style="width: 337px; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Kartu Keluarga</div>
                             @if ($listkk->count() == 0)
-                            <a class="btn button-line" href="{{$kk[0]->id}}/edit/kk" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
+                            <a class="btn button-fill" href="{{$kk[0]->id}}/edit/kk" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
                             </a>
                             @else
                             <a class="btn button-line" href="{{$kk[0]->id}}/edit/kk" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
@@ -190,12 +223,12 @@
                     <!-- LC -->
                     <div style="align-self: stretch; padding: 24px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                         <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
-                            <div style="width: 100%; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Loyalty Card (LC)</div>
+                            <div style="align-self: stretch; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Loyalty Card (LC)</div>
                             <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
                                 @if ($changelc->count() == 0)
-                                <a href="{{$lc[0]->id}}/add/lc" class="btn btn-primary mb-3" style="padding: 8px 16px; border-radius: 10px; justify-content: center; align-items: center; display: flex">
-                                    <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
-                                </a>
+                                <a class="btn button-fill" href="{{$lc[0]->id}}/add/lc" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                    <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
+                                </a>  
                                 @else    
                                 <a class="btn button-line" href="{{$lc[0]->id}}/edit/lc" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                     <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Edit Data</div>
@@ -362,8 +395,8 @@
                         <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                             <div style="width: 337px; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">BPJS</div>
                             @if ($bpjs[0]->no_bpjs == "")
-                            <a class="btn button-line" href="{{$bpjs[0]->id}}/edit/bpjs" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
+                            <a class="btn button-fill" href="{{$bpjs[0]->id}}/edit/bpjs" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
                             </a>  
                             @else
                             <a class="btn button-line" href="{{$bpjs[0]->id}}/edit/bpjs" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
@@ -392,8 +425,8 @@
                         <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                             <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Informasi Lainnya</div>
                             @if ($other[0]->no_hp == "")
-                            <a class="btn button-line" href="{{$other[0]->id}}/edit/lainnya" role="button" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
+                            <a class="btn button-fill" href="{{$other[0]->id}}/edit/lainnya" role="button" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
                             </a>
                             @else
                             <a class="btn button-line" href="{{$other[0]->id}}/edit/lainnya" role="button" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
@@ -425,21 +458,19 @@
                 </div>
 
                 <!-- DAFTAR KK -->
-                <div style="width: 100%; height: 100%; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; gap: 24px; display: inline-flex">
+                <div style="width: 100%; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; gap: 24px; display: inline-flex">
                     <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                         <div style="justify-content: center; align-items: center; display: flex">
                             <div style="text-align: justify; color: #1D1B20; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Daftar Keluarga</div>
                         </div>
                         @if ($listkk->count() == 0)
                         @else
-                        <div style="padding: 16px; background: #394E91; border-radius: 10px; justify-content: center; align-items: center; display: flex">
-                            <a class="btn button-line" href="/tambah-anggota-kk/{{ $kk[0]->kk }}" role="button" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                                <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota Keluarga</div>
-                            </a>
-                        </div>
+                        <a class="btn button-fill" href="/tambah-anggota-kk/{{ $kk[0]->kk }}" role="button" style="padding: 12px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                            <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota Keluarga</div>
+                        </a>
                         @endif
                     </div>
-                    <div style="align-self: stretch;border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                    <div style="align-self: stretch; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
                         <div style="align-self: stretch; padding-left: 20px; padding-right: 20px; padding-top: 16px; padding-bottom: 16px; background: #E8EAF2; border-top-left-radius: 5px; border-top-right-radius: 5px; justify-content: flex-start; align-items: center; display: inline-flex">
                             <div style="flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                 <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">NIK</div>

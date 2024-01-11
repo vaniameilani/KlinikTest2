@@ -3,15 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Other;
+use App\Models\TpsList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OtherController extends Controller
 {
     public function edit(Other $other)
     {
+        // $tps['data'] = DB::table('tps_lists')
+        // ->select('id', 'no_tps')
+        // ->get();
+        $tps = TpsList::all();
         $disabilitas = $other->disabilitas;
-        return view('Others.edit', compact('other', 'disabilitas'));
+        return view('Others.edit', compact('other', 'tps', 'disabilitas'));
+        // return view('Others.edit')->with("tps", $tps);
     }
+
+    // public function getAlamatTps($tps_id=0){
+    //     $empData['data'] = DB::table('tps_lists')
+    //     ->select('alamat_tps')
+    //     ->where('')
+    // }
 
     public function update(Request $request, $nik)
     {

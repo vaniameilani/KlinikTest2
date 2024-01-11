@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('others', function (Blueprint $table) {
+        Schema::create('provinces', function (Blueprint $table){
             $table->id();
-            $table->string('nik_other')->unique();
-            $table->string('no_hp')->nullable();
-            $table->string('no_tps')->nullable();
-            $table->longText('alamat_tps')->nullable();
-            $table->string('disabilitas')->nullable();
-            $table->timestamps();
+            $table->string('name');
         });
     }
 

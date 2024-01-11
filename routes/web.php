@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/tambah-anggota', [KtpsController::class, 'create']);
+    Route::post('api/fetch-regencies', [KtpsController::class, 'fatchRegency']);
+    Route::post('api/fetch-districts', [KtpsController::class, 'fatchDistrict']);
+
     Route::post('/ktps', [KtpsController::class, 'store']);
     Route::get('/detail-anggota/{nik}', [KtpsController::class, 'show'])->name('detail-anggota');
     Route::get('/detail-anggota/{ktp}/edit/ktp', [KtpsController::class, 'edit']);
