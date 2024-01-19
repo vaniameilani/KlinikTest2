@@ -287,7 +287,7 @@
                             });
                         });
                     </script>
-                                        <script>
+                    <script>
                         jQuery(document).ready(function() {
 	                        jQuery('#tempat_lahir').keyup(function() 
                             {

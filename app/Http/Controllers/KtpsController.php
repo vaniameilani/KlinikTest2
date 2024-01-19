@@ -191,17 +191,17 @@ class KtpsController extends Controller
         ->orderBy('tanggal_upgrade', 'desc')
         ->paginate(3);
 
-        $prov = DB::table('provinces')
-        ->where('provinces.id', '=', $nik->provinsi)
-        ->get();
+        // $prov = DB::table('provinces')
+        // ->where('provinces.id', '=', $nik->provinsi)
+        // ->get();
 
-        $rgc = DB::table('regencies')
-        ->where('regencies.id', '=', $nik->kota_kab)
-        ->get();
+        // $rgc = DB::table('regencies')
+        // ->where('regencies.id', '=', $nik->kota_kab)
+        // ->get();
 
-        $dist = DB::table('districts')
-        ->where('districts.id', '=', $nik->kecamatan)
-        ->get();
+        // $dist = DB::table('districts')
+        // ->where('districts.id', '=', $nik->kecamatan)
+        // ->get();
 
         return view('Member.detail', [
             'kk' => $kk,
@@ -214,16 +214,10 @@ class KtpsController extends Controller
             'changelc' => $changelc,
             'listdata' => $listdata,
             'lcselect' => $lcselect,
-            'prov' => $prov,
-            'rgc' => $rgc,
-            'dist' => $dist
+            // 'prov' => $prov,
+            // 'rgc' => $rgc,
+            // 'dist' => $dist
         ]);
-        
-        // $ktp = Ktp::find($nik);
-        // $nik_lc = $nik;
-        // return view('Member.detail', [
-        //     'ktp' => Ktp::find($nik)
-        // ]);
     }
 
     public function edit(Ktp $ktp)

@@ -126,19 +126,22 @@
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                         <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Provinsi</div>
                                     </div>
-                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $prov[0]->name }}</div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->provinsi }}</div> 
+                                   
                                 </div>
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                         <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kota/Kabupaten</div>
                                     </div>
-                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $rgc[0]->name }}</div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->kota_kab }}</div>
+                                   
                                 </div>
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                         <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kecamatan</div>
                                     </div>
-                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $dist[0]->name }}</div>
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $ktp->kecamatan }}</div>
+                                   
                                 </div>
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">

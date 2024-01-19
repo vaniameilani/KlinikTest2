@@ -210,6 +210,15 @@ a.button-ghost:hover { background: #EEEFF4; }
     break-word;
 }
 
+.table-body {
+    align-self: stretch; 
+    padding: 12px 16px; 
+    border-bottom: 1px rgba(217, 217, 217, 0.50) solid; 
+    justify-content: flex-start; 
+    align-items: center; 
+    display: inline-flex;
+}
+
 .table-row {
     display: flex;
     flex-direction: column;
@@ -222,4 +231,20 @@ a.button-ghost:hover { background: #EEEFF4; }
 .table-row-name {
     align-self: stretch; 
     color: #1D1B20; 
+}
+
+.table-row-empty {
+    flex: 1 1 0; 
+    align-self: stretch; 
+    justify-content: flex-start; 
+    align-items: center; 
+    display: inline-flex;
+}
+
+.table-button {
+    padding: 8px 20px;
+    border-radius: 10px; 
+    justify-content: center; 
+    align-items: center; 
+    display: inline-flex;
 }
