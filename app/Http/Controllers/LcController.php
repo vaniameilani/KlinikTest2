@@ -15,7 +15,7 @@ class LcController extends Controller
         $datasource = $lc->sumber_data;
 
         $nikselect = DB::table('lcs')
-        ->where('lcs.id', '=', $lc->id)
+        ->where('lcs.id_lc', '=', $lc->id_lc)
         ->select('nik_lc');
 
         $nama = DB::table('ktps')
@@ -35,7 +35,7 @@ class LcController extends Controller
     public function update(Request $request, $nik)
     {
         $request->validate([
-            'id',
+            'id_lc',
             'no_kartu' => 'required',
             'jenis_kartu',
             'tanggal_pembuatan',
@@ -65,7 +65,7 @@ class LcController extends Controller
     public function updatelc(Request $request, $nik)
     {
         $request->validate([
-            'id',
+            'id_lc',
             'no_kartu' => 'required',
             'jenis_kartu',
             'tanggal_pembuatan',

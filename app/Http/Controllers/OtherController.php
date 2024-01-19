@@ -29,7 +29,7 @@ class OtherController extends Controller
     public function update(Request $request, $nik)
     {
         $request->validate([
-            'id',
+            'id_other',
             'no_hp' => 'required',
             'no_tps' => 'required',
             'alamat_tps' => 'required',

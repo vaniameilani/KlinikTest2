@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kks', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_kk');
             $table->string('nik_kk')->unique();
             // $table->foreign('nkk')->refeik_rences('nik')->on('ktps');
             $table->string('kk')->nullable();

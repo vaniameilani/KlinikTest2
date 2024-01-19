@@ -21,7 +21,7 @@ class KkController extends Controller
     public function update(Request $request, $nik)
     {
         $request->validate([
-            'id',
+            'id_kk',
             'nik_kk',
             'kk' => 'required',
             'dokumen_kk' => 'required',
@@ -43,7 +43,7 @@ class KkController extends Controller
     public function updatekk(Request $request, $nik)
     {
         $request->validate([
-            'id',
+            'id_kk',
             'nik_kk',
             'kk' => 'required',
             'dokumen_kk' => 'required',

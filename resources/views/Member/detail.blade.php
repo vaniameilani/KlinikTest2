@@ -178,11 +178,11 @@
                         <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                             <div style="width: 337px; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Kartu Keluarga</div>
                             @if ($listkk->count() == 0)
-                            <a class="btn button-fill" href="{{$kk[0]->id}}/edit/kk" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                            <a class="btn button-fill" href="{{$kk[0]->id_kk}}/edit/kk" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                 <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
                             </a>
                             @else
-                            <a class="btn button-line" href="{{$kk[0]->id}}/edit/kk" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                            <a class="btn button-line" href="{{$kk[0]->id_kk}}/edit/kk" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                 <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Edit Data</div>
                             </a>
                             @endif
@@ -229,11 +229,11 @@
                             <div style="align-self: stretch; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Loyalty Card (LC)</div>
                             <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
                                 @if ($changelc->count() == 0)
-                                <a class="btn button-fill" href="{{$lc[0]->id}}/add/lc" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                <a class="btn button-fill" href="{{$lc[0]->id_lc}}/add/lc" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                     <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
                                 </a>  
                                 @else    
-                                <a class="btn button-line" href="{{$lc[0]->id}}/edit/lc" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                <a class="btn button-line" href="{{$lc[0]->id_lc}}/edit/lc" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                     <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Edit Data</div>
                                 </a>
                                 @endif
@@ -346,7 +346,7 @@
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
                             <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                                 <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Riwayat Ganti Kartu</div>
-                                <a class="btn button-line" href="/ubah-kartu/{{$lc[0]->id}}" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                <a class="btn button-line" href="/ubah-kartu/{{$lc[0]->id_lc}}" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                     <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Ganti Kartu</div>
                                 </a>  
                             </div>
@@ -398,11 +398,11 @@
                         <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                             <div style="width: 337px; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">BPJS</div>
                             @if ($bpjs[0]->no_bpjs == "")
-                            <a class="btn button-fill" href="{{$bpjs[0]->id}}/edit/bpjs" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                            <a class="btn button-fill" href="{{$bpjs[0]->id_bpjs}}/edit/bpjs" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                 <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
                             </a>  
                             @else
-                            <a class="btn button-line" href="{{$bpjs[0]->id}}/edit/bpjs" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                            <a class="btn button-line" href="{{$bpjs[0]->id_bpjs}}/edit/bpjs" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                 <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Edit Data</div>
                             </a>
                             @endif  
@@ -428,11 +428,11 @@
                         <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                             <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Informasi Lainnya</div>
                             @if ($other[0]->no_hp == "")
-                            <a class="btn button-fill" href="{{$other[0]->id}}/edit/lainnya" role="button" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                            <a class="btn button-fill" href="{{$other[0]->id_other}}/edit/lainnya" role="button" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                 <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>
                             </a>
                             @else
-                            <a class="btn button-line" href="{{$other[0]->id}}/edit/lainnya" role="button" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                            <a class="btn button-line" href="{{$other[0]->id_other}}/edit/lainnya" role="button" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                 <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Edit Data</div>
                             </a>
                             @endif

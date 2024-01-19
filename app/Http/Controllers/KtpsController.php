@@ -27,7 +27,6 @@ class KtpsController extends Controller
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
         ->join('kks', 'ktps.nik', '=', 'kks.nik_kk');
 
-        
         $countktp = $collect
         ->count('ktps.nik');
 
@@ -50,10 +49,10 @@ class KtpsController extends Controller
         };
 
         $data = $collect
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
         ->where('lcs.no_kartu', 'like', '%'.$search.'%')
         ->orwhere('ktps.nama', 'like', '%'.$search.'%')
-        ->orderBy('lcs.id', 'DESC')
+        ->orderBy('lcs.id_lc', 'DESC')
         ->Paginate(10);
         
         return view('Home.index', compact('data', 'countktp', 'countlc', 'countnull'));
@@ -100,15 +99,27 @@ class KtpsController extends Controller
             // 'scan_ktp' => 'required',
         ]);
 
+        $ssprovinsi = DB::table('provinces')
+        ->where('provinces.id', '=', $request->provinsi)
+        ->value('provinces.name');
+
+        $sskotakab = DB::table('regencies')
+        ->where('regencies.id', '=', $request->kota_kab)
+        ->value('regencies.name');
+
+        $sskecamatan = DB::table('districts')
+        ->where('districts.id', '=', $request->kecamatan)
+        ->value('districts.name');
+
         $ktp = new Ktp;
         $ktp->nik = $request->nik;
         $ktp->nama = $request->nama;
         $ktp->jenis_kelamin = $request->jenis_kelamin;
         $ktp->agama = $request->agama;
         $ktp->pekerjaan = $request->pekerjaan;
-        $ktp->provinsi = $request->provinsi;
-        $ktp->kota_kab = $request->kota_kab;
-        $ktp->kecamatan = $request->kecamatan;
+        $ktp->provinsi = $ssprovinsi;
+        $ktp->kota_kab = $sskotakab;
+        $ktp->kecamatan = $sskecamatan;
         $ktp->desa_kel = $request->desa_kel;
         $ktp->rt = $request->rt;
         $ktp->rw = $request->rw;
@@ -156,7 +167,7 @@ class KtpsController extends Controller
         ->join('bpjs', 'kks.nik_kk', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'kks.nik_kk', '=', 'lcs.nik_lc')
         ->join('ktps', 'kks.nik_kk', '=', 'ktps.nik')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'bpjs.id')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'bpjs.id_bpjs')
         ->where('kks.kk', '=', $kkselect)
         ->get();
 
@@ -285,7 +296,7 @@ class KtpsController extends Controller
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
         ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
         ->whereNull('kks.kk')
         ->orwhereNull('bpjs.no_bpjs')
         ->get();

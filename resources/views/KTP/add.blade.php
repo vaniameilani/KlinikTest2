@@ -225,7 +225,7 @@
                                 </div>
                                 <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="asal_negara" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Asal Negara</label>
-                                    <input type="text" class="form-control @error('asal_negara') is-invalid @enderror" id="asal_negara" placeholder="Masukkan Tempat Lahir Anggota" name="asal_negara" value="{{ old('asal_negara')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                    <input type="text" class="form-control @error('asal_negara') is-invalid @enderror" id="asal_negara" placeholder="Masukkan Asal Negara Anggota" name="asal_negara" value="{{ old('asal_negara')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     @error('asal_negara')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror

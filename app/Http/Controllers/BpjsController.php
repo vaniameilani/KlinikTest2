@@ -13,7 +13,7 @@ class BpjsController extends Controller
         $cardtype = $bpjs->jenis_bpjs;
 
         $nikselect = DB::table('bpjs')
-        ->where('bpjs.id', '=', $bpjs->id)
+        ->where('bpjs.id_bpjs', '=', $bpjs->id_bpjs)
         ->select('nik_bpjs');
 
         $nama = DB::table('ktps')
@@ -43,7 +43,7 @@ class BpjsController extends Controller
     public function updatebpjs(Request $request, $nik)
     {
         $request->validate([
-            'id',
+            'id_bpjs',
             'no_bpjs' => 'required',
             'jenis_bpjs' => 'required'
         ]);
@@ -56,28 +56,4 @@ class BpjsController extends Controller
 
         return redirect()->route('home');
     }
-
-    // public function addbpjs(Bpjs $bpjs)
-    // {
-    //     $cardtype = $bpjs->jenis_bpjs;
-    //     return view('BPJS.edit', compact('bpjs', 'cardtype'));
-    // }
-
-    // public function storebpjs(Request $request, $nik)
-    // {
-    //     $request->validate([
-    //         'id',
-    //         'nik_bpjs',
-    //         'no_bpjs' => 'required',
-    //         'jenis_bpjs' => 'required'
-    //     ]);
-
-    //     Bpjs::where('nik_bpjs', $nik)
-    //     ->update([
-    //         'no_bpjs' => $request->no_bpjs,
-    //         'jenis_bpjs' => $request->jenis_bpjs
-    //     ]);
-
-    //     return redirect('/');
-    // }
 }
