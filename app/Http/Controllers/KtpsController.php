@@ -22,47 +22,41 @@ class KtpsController extends Controller
     {
         $search = $request->search;
 
-        $data = DB::table('ktps')
+        $collect = DB::table('ktps')
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
+        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk');
+
+        
+        $countktp = $collect
+        ->count('ktps.nik');
+
+        $countlc = $collect
+        ->wherenotnull('lcs.no_kartu')
+        ->count('lcs.no_kartu');
+
+        $countnullkk = DB::table('kks')
+        ->whereNull('kks.kk')
+        ->count();
+
+        $countnullbpjs = DB::table('bpjs')
+        ->whereNull('bpjs.no_bpjs')
+        ->count();
+
+        if ((int)$countnullkk > (int)$countnullbpjs) {
+            $countnull = $countnullkk;
+        }else{
+            $countnull = $countnullbpjs;
+        };
+
+        $data = $collect
         ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
         ->where('lcs.no_kartu', 'like', '%'.$search.'%')
         ->orwhere('ktps.nama', 'like', '%'.$search.'%')
         ->orderBy('lcs.id', 'DESC')
         ->Paginate(10);
         
-        $countktp = DB::table('ktps')
-        ->select('ktps.nik')
-        ->get()
-        ->count();
-
-        $countlc = DB::table('lcs')
-        ->wherenotnull('lcs.no_kartu')
-        ->select('lcs.no_kartu')
-        ->get()
-        ->count();
-
-        $countnull = DB::table('ktps')
-        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
-        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
-        ->whereNull('kks.kk')
-        ->orwhereNull('bpjs.no_bpjs')
-        ->get()
-        ->count();
-
-        $datanull = DB::table('ktps')
-        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
-        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
-        ->whereNull('kks.kk')
-        ->orwhereNull('bpjs.no_bpjs')
-        ->get();
-
-        return view('Home.index', compact('data', 'countktp', 'countlc', 'countnull', 'datanull'));
+        return view('Home.index', compact('data', 'countktp', 'countlc', 'countnull'));
     }
 
     public function create()
@@ -284,40 +278,8 @@ class KtpsController extends Controller
         return redirect()->route('detail-anggota', ['nik' => $nik]);
     }
     
-    public function indexnull(Request $request)
+    public function indexnull()
     {
-        $search = $request->search;
-    
-        $data = DB::table('ktps')
-        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
-        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
-        ->where('lcs.no_kartu', 'like', '%'.$search.'%')
-        ->orwhere('ktps.nama', 'like', '%'.$search.'%')
-        ->orderBy('lcs.id', 'DESC')
-        ->Paginate(10);
-        
-        $countktp = DB::table('ktps')
-        ->select('ktps.nik')
-        ->get()
-        ->count();
-
-        $countlc = DB::table('lcs')
-        ->wherenotnull('lcs.no_kartu')
-        ->select('lcs.no_kartu')
-        ->get()
-        ->count();
-
-        $countnull = DB::table('ktps')
-        ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
-        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id')
-        ->whereNull('kks.kk')
-        ->orwhereNull('bpjs.no_bpjs')
-        ->get()
-        ->count();
 
         $datanull = DB::table('ktps')
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
@@ -328,6 +290,6 @@ class KtpsController extends Controller
         ->orwhereNull('bpjs.no_bpjs')
         ->get();
 
-        return view('Home.indexnull', compact('data', 'countktp', 'countlc', 'countnull', 'datanull'));
+        return view('Home.indexnull', compact('datanull'));
     }
 }
