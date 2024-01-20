@@ -106,8 +106,9 @@
                                 <label for="provinsi" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Provinsi</label>
                                 <select class="form-select p-3 align-self-stretch" id="provinsi" name="provinsi" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Kepulauan Bangka Belitung" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $prov == 'Kepualauan Bangka Belitung' ? 'selected' : '' }}>Kepulauan Bangka Belitung</option>
-                                    <option value="Jawa Barat" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $prov == 'Jawa Barat' ? 'selected' : '' }}>Jawa Barat</option>
+                                    @foreach($ssprov as $data)
+                                        <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $prov == $data->name ? 'selected' : '' }}>{{ $data->name }}</option>
+                                    @endforeach
                                 </select>
                                 @error('provinsi')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -118,9 +119,9 @@
                                 <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="kota_kab" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kota/Kabupaten</label>
                                     <select class="form-select p-3 align-self-stretch" id="kota_kab" name="kota_kab" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
-                                        <option >Pilih salah satu</option>
-                                        <option value="BELITUNG" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $kota_kab == 'BELITUNG' ? 'selected' : '' }}>BELITUNG</option>
-                                        <option value="BELITUNG TIMUR" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $kota_kab == 'BELITUNG TIMUR' ? 'selected' : '' }}>BELITUNG TIMUR</option>
+                                        @foreach($sskotakab as $data)
+                                            <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $kota_kab == $data->name ? 'selected' : '' }}>{{ $data->name }}</option>
+                                        @endforeach
                                     </select>
                                     @error('kota_kab')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -141,26 +142,28 @@
                             <!-- Desa/Kelurahan, RT, RW -->
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                                    <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
+                                    <!-- <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
                                     <select class="form-select p-3 align-self-stretch" id="desa_kel" name="desa_kel" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                         <option >Pilih salah satu</option>
                                         <option value="BANTAN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $desa_kel == 'BANTAN' ? 'selected' : '' }}>BANTAN</option>
                                         <option value="MEMBALONG" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $desa_kel == 'MEMBALONG' ? 'selected' : '' }}>MEMBALONG</option>
-                                    </select>
+                                    </select> -->
+                                    <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
+                                    <input type="text" class="form-control @error('desa_kel') is-invalid @enderror" id="desa_kel" placeholder="Masukkan Nama Desa/Keluarahan" name="desa_kel" value="{{ $ktp->desa_kel }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     @error('desa_kel')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
                                 <div style="flex: 1 0 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="rt" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">RT</label>
-                                    <input type="text" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="Masukkan Nomor RT" name="rt" value="{{ old('rt')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                    <input type="text" class="form-control @error('rt') is-invalid @enderror" id="rt" placeholder="Masukkan Nomor RT" name="rt" value="{{ $ktp->rt }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     @error('rt')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
                                 <div style="flex: 1 0 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="rw" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">RW</label>
-                                    <input type="text" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="Masukkan Nomor RW" name="rw" value="{{ old('rw')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-staw; align-items: center; display: inline-flex" required>
+                                    <input type="text" class="form-control @error('rw') is-invalid @enderror" id="rw" placeholder="Masukkan Nomor RW" name="rw" value="{{ $ktp->rw }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-staw; align-items: center; display: inline-flex" required>
                                     @error('rw')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
@@ -256,6 +259,132 @@
                             </a> -->
                         </div>
                     </form>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#nama').keyup(function() 
+                            {
+                                var str = jQuery('#nama').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#nama').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#pekerjaan').keyup(function() 
+                            {
+                                var str = jQuery('#pekerjaan').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#pekerjaan').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#tempat_lahir').keyup(function() 
+                            {
+                                var str = jQuery('#tempat_lahir').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#tempat_lahir').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#alamat').keyup(function() 
+                            {
+                                var str = jQuery('#alamat').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#alamat').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#asal_negara').keyup(function() 
+                            {
+                                var str = jQuery('#asal_negara').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#asal_negara').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
+                            jQuery('#provinsi').change(function(event){
+                                var idProv = this.value;
+                                jQuery('#kota_kab').html('');
+
+                                jQuery.ajax({
+                                    url: "/api/fetch-regencies",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {province_id: idProv,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#kota_kab').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.regencies, function(create, val){
+                                            jQuery('#kota_kab').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                        jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                    }
+                                })
+                            });
+
+                            jQuery('#kota_kab').change(function(event){
+                                var idDist = this.value;
+                                jQuery('#kecamatan').html('');
+
+                                jQuery.ajax({
+                                    url: "/api/fetch-districts",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {regency_id: idDist,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.districts, function(create, val){
+                                            jQuery('#kecamatan').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                    }
+                                })
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </main>

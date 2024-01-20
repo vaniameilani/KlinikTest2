@@ -121,6 +121,24 @@
                             </button>
                         </div>
                     </form>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#nama_koor').keyup(function() 
+                            {
+                                var str = jQuery('#nama_koor').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#nama_koor').val(spart.join(" "));
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </main>

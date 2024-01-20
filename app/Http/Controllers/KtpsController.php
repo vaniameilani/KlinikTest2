@@ -167,7 +167,7 @@ class KtpsController extends Controller
         ->join('bpjs', 'kks.nik_kk', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'kks.nik_kk', '=', 'lcs.nik_lc')
         ->join('ktps', 'kks.nik_kk', '=', 'ktps.nik')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'bpjs.id_bpjs')
+        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'bpjs.id_bpjs', 'lcs.id_lc')
         ->where('kks.kk', '=', $kkselect)
         ->get();
 
@@ -229,14 +229,19 @@ class KtpsController extends Controller
     {
         // dd($gender);
         $gender = $ktp->jenis_kelamin;
-        $prov = $ktp->provinsi;
-        $kota_kab = $ktp->kota_kab;
-        $kec = $ktp->kecamatan;
         $desa_kel = $ktp->desa_kel;
         $marriage = $ktp->status_perkawinan;
         $agama = $ktp->agama;
         $citizen = $ktp->kewarganegaraan;
-        return view('KTP.edit', compact('ktp', 'gender', 'prov', 'kota_kab', 'kec', 'desa_kel', 'marriage', 'agama', 'citizen'));
+        $prov = $ktp->provinsi;
+        $kota_kab = $ktp->kota_kab;
+        $kec = $ktp->kecamatan;
+        
+        $ssprov =  Province::all();
+        $sskotakab = Regency::all();
+        $sskec = District::all();
+
+        return view('KTP.edit', compact('ktp', 'gender', 'prov', 'kota_kab', 'kec', 'desa_kel', 'marriage', 'agama', 'citizen', 'ssprov', 'sskotakab', 'sskec'));
     }
 
     public function update(Request $request, $nik)
@@ -261,15 +266,28 @@ class KtpsController extends Controller
             'kewarganegaraan' => 'required',
             'asal_negara' => 'required',
         ]);
+
+        $ssprovinsi = DB::table('provinces')
+        ->where('provinces.id', '=', $request->provinsi)
+        ->value('provinces.name');
+
+        $sskotakab = DB::table('regencies')
+        ->where('regencies.id', '=', $request->kota_kab)
+        ->value('regencies.name');
+
+        $sskecamatan = DB::table('districts')
+        ->where('districts.id', '=', $request->kecamatan)
+        ->value('districts.name');
+
         Ktp::where('nik', $nik)
         ->update([
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
             'agama' => $request->agama,
             'pekerjaan' => $request->pekerjaan,
-            'provinsi' => $request->provinsi,
-            'kota_kab' => $request->kota_kab,
-            'kecamatan' => $request->kecamatan,
+            'provinsi' => $ssprovinsi,
+            'kota_kab' => $sskotakab,
+            'kecamatan' => $sskecamatan,
             'desa_kel' => $request->desa_kel,
             'rt' => $request->rt,
             'rw' => $request->rw,
