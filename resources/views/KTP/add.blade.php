@@ -291,6 +291,23 @@
                     </script>
                     <script>
                         jQuery(document).ready(function() {
+	                        jQuery('#desa_kel').keyup(function() 
+                            {
+                                var str = jQuery('#desa_kel').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#desa_kel').val(spart.join(" "));
+                            });
+                        });
+                    </script>
+                    <script>
+                        jQuery(document).ready(function() {
 	                        jQuery('#tempat_lahir').keyup(function() 
                             {
                                 var str = jQuery('#tempat_lahir').val();

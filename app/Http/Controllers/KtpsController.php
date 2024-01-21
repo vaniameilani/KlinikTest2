@@ -28,10 +28,10 @@ class KtpsController extends Controller
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
         ->join('kks', 'ktps.nik', '=', 'kks.nik_kk');
 
-        $countktp = $collect
+        $countktp = DB::table('ktps')
         ->count('ktps.nik');
 
-        $countlc = $collect
+        $countlc = DB::table('lcs')
         ->wherenotnull('lcs.no_kartu')
         ->count('lcs.no_kartu');
 
@@ -48,13 +48,27 @@ class KtpsController extends Controller
         }else{
             $countnull = $countnullbpjs;
         };
+        
+        if(is_numeric($search)){
+            $data = $collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->where('lcs.no_kartu', 'like', '%'.$search.'%')
+            ->orderBy('lcs.id_lc', 'DESC')
+            ->Paginate(10);
 
-        $data = $collect
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
-        ->where('lcs.no_kartu', 'like', '%'.$search.'%')
-        ->orwhere('ktps.nama', 'like', '%'.$search.'%')
-        ->orderBy('lcs.id_lc', 'DESC')
-        ->Paginate(10);
+        }elseif(ctype_alpha($search)){
+            $data = $collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->where('ktps.nama', 'like', '%'.$search.'%')
+            ->orderBy('lcs.id_lc', 'DESC')
+            ->Paginate(10);
+        }else{        
+            $data = $collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->orderBy('lcs.id_lc', 'DESC')
+            ->Paginate(10);
+        };
+
         
         return view('Home.index', compact('data', 'countktp', 'countlc', 'countnull'));
     }
@@ -336,15 +350,31 @@ class KtpsController extends Controller
     
     public function indexnull()
     {
-
-        $datanull = DB::table('ktps')
+        $collect = DB::table('ktps')
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
-        ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+        ->join('kks', 'ktps.nik', '=', 'kks.nik_kk');
+
+        $datanullkk = DB::table('kks')
         ->whereNull('kks.kk')
-        ->orwhereNull('bpjs.no_bpjs')
-        ->get();
+        ->count();
+
+        $datanullbpjs = DB::table('bpjs')
+        ->whereNull('bpjs.no_bpjs')
+        ->count();
+
+        if((int)$datanullkk > (int)$datanullbpjs){
+            $datanull = $collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->whereNull('kks.kk')
+            ->paginate(25);
+        }else{
+            $datanull = $collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->whereNull('bpjs.no_bpjs')
+            ->paginate(25);
+        }
+       
 
         return view('Home.indexnull', compact('datanull'));
     }
