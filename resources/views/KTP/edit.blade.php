@@ -142,12 +142,6 @@
                             <!-- Desa/Kelurahan, RT, RW -->
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                                    <!-- <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
-                                    <select class="form-select p-3 align-self-stretch" id="desa_kel" name="desa_kel" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
-                                        @foreach($ssdesakel as $data)
-                                            <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $desa_kel == $data->name ? 'selected' : '' }}>{{ $data->name }}</option>
-                                        @endforeach
-                                    </select> -->
                                     <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
                                     <input type="text" class="form-control @error('desa_kel') is-invalid @enderror" id="desa_kel" placeholder="Masukkan Nama Desa/Keluarahan" name="desa_kel" value="{{ $ktp->desa_kel }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     @error('desa_kel')

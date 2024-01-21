@@ -250,8 +250,18 @@ class KtpsController extends Controller
         $desa_kel = $ktp->desa_kel;
         
         $ssprov =  Province::all();
-        $sskotakab = Regency::all();
-        $sskec = District::all();
+        $selectprov = DB::table('provinces')
+        ->where('provinces.name', '=', $prov)
+        ->value('id');
+        $sskotakab = DB::table('regencies')
+        ->where('regencies.province_id', '=', $selectprov)
+        ->get();
+        $selectkotakab = DB::table('regencies')
+        ->where('regencies.name', '=', $kota_kab)
+        ->value('id');
+        $sskec = DB::table('districts')
+        ->where('districts.regency_id', '=', $selectkotakab)
+        ->get();
         // $ssdesakel = Village::all();
 
         return view('KTP.edit', compact('ktp', 'gender', 'prov', 'kota_kab', 'kec', 'desa_kel', 'marriage', 'agama', 'citizen', 'ssprov', 'sskotakab', 'sskec'));
