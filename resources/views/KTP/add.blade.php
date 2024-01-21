@@ -101,7 +101,7 @@
                             <!-- Provinsi -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                 <label for="provinsi" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Provinsi</label>
-                                <select class="form-select p-3 align-self-stretch" id="provinsi" name="provinsi" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                <select class="form-select p-3 self-stretch" id="provinsi" name="provinsi" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                     <option >Pilih salah satu</option>
                                     @foreach($prov as $data)
                                         <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}">{{ $data->name }}</option>
@@ -128,7 +128,7 @@
                                 </div>
                                 <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="kecamatan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kecamatan</label>
-                                    <select class="form-select p-3 align-self-stretch" id="kecamatan" name="kecamatan" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                    <select class="form-select p-3" id="kecamatan" name="kecamatan" style="align-self: stretch; border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                         <!-- <option >Pilih salah satu</option>
                                         <option value="MEMBALONG" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kecamatan') == 'MEMBALONG' ? 'selected' : '' }}>MEMBALONG</option>
                                         <option value="SELAT NASIK" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('kecamatan') == 'SELAT NASIK' ? 'selected' : '' }}>SELAT NASIK</option> -->
@@ -308,23 +308,6 @@
                     </script>
                     <script>
                         jQuery(document).ready(function() {
-	                        jQuery('#desa_kel').keyup(function() 
-                            {
-                                var str = jQuery('#desa_kel').val();
-                            
-                                
-                                var spart = str.split(" ");
-                                for ( var i = 0; i < spart.length; i++ )
-                                {
-                                    var j = spart[i].charAt(0).toUpperCase();
-                                    spart[i] = j + spart[i].substr(1);
-                                }
-                            jQuery('#desa_kel').val(spart.join(" "));
-                            });
-                        });
-                    </script>
-                    <script>
-                        jQuery(document).ready(function() {
 	                        jQuery('#alamat').keyup(function() 
                             {
                                 var str = jQuery('#alamat').val();
@@ -369,7 +352,7 @@
                                     dataType: 'json',
                                     data: {province_id: idProv,_token:"{{ csrf_token() }}"},
                                     success:function(response){
-                                        jQuery('#kota_kab').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery('#kota_kab').html('<option style="align-self:stretch; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
                                         jQuery.each(response.regencies, function(create, val){
                                             jQuery('#kota_kab').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
                                         });
@@ -379,14 +362,14 @@
                             });
 
                             jQuery('#kota_kab').change(function(event){
-                                var idDist = this.value;
+                                var idReg = this.value;
                                 jQuery('#kecamatan').html('');
 
                                 jQuery.ajax({
                                     url: "/api/fetch-districts",
                                     type: 'POST',
                                     dataType: 'json',
-                                    data: {regency_id: idDist,_token:"{{ csrf_token() }}"},
+                                    data: {regency_id: idReg,_token:"{{ csrf_token() }}"},
                                     success:function(response){
                                         jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
                                         jQuery.each(response.districts, function(create, val){

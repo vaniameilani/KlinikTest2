@@ -78,20 +78,10 @@
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
-                                <!-- <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-                                    <label for="no_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">TPS</label>
-                                    <input type="text" class="form-control @error('no_tps') is-invalid @enderror" id="no_tps" placeholder="Masukkan Nomor TPS Anggota" name="no_tps" value="{{ $other->no_tps }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
-                                    @error('no_tps')
-                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
-                                    @enderror
-                                </div> -->
                                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                     <label for="alamat_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat Lengkap TPS</label>
                                     <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
                                         <input type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Masukkan Alamat TPS Lengkap" name="alamat_tps" value="{{ $row->alamat_tps }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
-                                        <!-- <div style="padding-right: 110px; justify-content: flex-start; align-items: center; display: inline-flex">
-                                            <div style="text-align: justify; color: #757575; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Isi secara lengkap mulai dari nama jalan/desa hingga kode pos</div>
-                                        </div> -->
                                     </div>
                                     @error('alamat_tps')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>

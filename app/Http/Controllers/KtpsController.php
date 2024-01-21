@@ -11,6 +11,7 @@ use App\Models\Lc;
 use App\Models\Other;
 use App\Models\Province;
 use App\Models\Regency;
+use App\Models\Village;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Support\Collection;
@@ -76,6 +77,12 @@ class KtpsController extends Controller
         return response()->json($data);
     }
 
+    // public function fatchVillage(Request $request)
+    // {
+    //     $data['villages'] = Village::where('district_id', $request->district_id)->get();
+    //     return response()->json($data);
+    // }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -110,6 +117,10 @@ class KtpsController extends Controller
         $sskecamatan = DB::table('districts')
         ->where('districts.id', '=', $request->kecamatan)
         ->value('districts.name');
+
+        // $ssdesakel = DB::table('villages')
+        // ->where('villages.id', '=', $request->desa_kel)
+        // ->value('villages.name');
 
         $ktp = new Ktp;
         $ktp->nik = $request->nik;
@@ -236,10 +247,12 @@ class KtpsController extends Controller
         $prov = $ktp->provinsi;
         $kota_kab = $ktp->kota_kab;
         $kec = $ktp->kecamatan;
+        $desa_kel = $ktp->desa_kel;
         
         $ssprov =  Province::all();
         $sskotakab = Regency::all();
         $sskec = District::all();
+        // $ssdesakel = Village::all();
 
         return view('KTP.edit', compact('ktp', 'gender', 'prov', 'kota_kab', 'kec', 'desa_kel', 'marriage', 'agama', 'citizen', 'ssprov', 'sskotakab', 'sskec'));
     }
@@ -278,6 +291,10 @@ class KtpsController extends Controller
         $sskecamatan = DB::table('districts')
         ->where('districts.id', '=', $request->kecamatan)
         ->value('districts.name');
+        
+        // $ssdesakel = DB::table('villages')
+        // ->where('villages.id', '=', $request->desa_kel)
+        // ->value('villages.name');
 
         Ktp::where('nik', $nik)
         ->update([

@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Other extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_other';
     protected $fillable = ['nik_other', 'no_hp', 'no_tps', 'alamat_tps', 'disabilitas'];
 }

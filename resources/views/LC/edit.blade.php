@@ -71,7 +71,7 @@
                                 @enderror
                             </div>
                             <!-- Jenis LC -->
-                            <!-- <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="jenis_kartu" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kartu</label>
                                 <select class="form-select p-3 align-self-stretch" value="{{ $lc->jenis_kartu }}" id="jenis_kartu" name="jenis_kartu" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option >Pilih salah satu</option>
@@ -85,7 +85,7 @@
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div> -->
-                            <!-- Nomor Kartu -->
+                            <!-- Nomor Kartu
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="no_kartu" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor Kartu</label>
                                 <input type="text" class="form-control @error('no_kartu') is-invalid @enderror" id="no_kartu" placeholder="Masukkan Nama Koor" name="no_kartu" value="{{ $lc->no_kartu }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>

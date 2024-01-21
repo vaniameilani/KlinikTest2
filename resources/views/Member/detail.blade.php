@@ -176,7 +176,7 @@
                     <!-- KK -->
                     <div style="align-self: stretch; padding: 24px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                         <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
-                            <div style="width: 337px; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Kartu Keluarga</div>
+                            <div style="align-self: stretch; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Kartu Keluarga</div>
                             @if ($listkk->count() == 0)
                             <a class="btn button-fill" href="{{$kk[0]->id_kk}}/edit/kk" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                 <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Data</div>

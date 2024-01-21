@@ -5,10 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kk extends Model
+class Village extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id_kk';
-    protected $fillable = ['nik_kk', 'kk', 'dokumen_kk', 'status', 'nama', 'scan_kk'];
-
+    protected $fillable = ['district_id','name'];
 }

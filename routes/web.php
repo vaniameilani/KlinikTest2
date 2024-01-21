@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/tambah-anggota', [KtpsController::class, 'create']);
     Route::post('api/fetch-regencies', [KtpsController::class, 'fatchRegency']);
     Route::post('api/fetch-districts', [KtpsController::class, 'fatchDistrict']);
+    Route::post('api/fetch-villages', [KtpsController::class, 'fatchVillage']);
 
     Route::post('/ktps', [KtpsController::class, 'store']);
     Route::get('/detail-anggota/{nik}', [KtpsController::class, 'show'])->name('detail-anggota');
