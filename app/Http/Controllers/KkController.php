@@ -62,6 +62,47 @@ class KkController extends Controller
         
     }
 
+    
+    // For /nulldata page
+    public function editnull(kk $kk)
+    {
+        $status = $kk->status;
+        return view('KK.edit-null', compact('kk', 'status'));
+    }
+
+    public function updatenull(Request $request, $nik)
+    {
+        $request->validate([
+            'id_kk',
+            'nik_kk',
+            'kk' => 'required',
+            'dokumen_kk' => 'required',
+            'status' => 'required',
+        ]);
+
+        kk::where('nik_kk', $nik)
+        ->update([
+            'kk' => $request->kk,
+            'dokumen_kk' => $request->dokumen_kk,
+            'status' => $request->status,
+            'scan_kk' => $request->scan_kk
+        ]);
+
+        return redirect('/nulldata');
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+    // cek apakah digunakan atau nggak 2 functions dibawah ini
     public function create(Request $request, $kk)
     {
         $kk = DB::table('kks')

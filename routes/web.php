@@ -30,14 +30,17 @@ Route::middleware('guest')->group(function() {
 // HOME
 Route::middleware('auth')->group(function() {
     Route::get('/', [KtpsController::class, 'index'])->name('home');
+    // bawah -> halaman daftar anggota yang belum lengkap
     Route::get('/nulldata', [KtpsController::class, 'indexnull']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+    // TAMBAH KTP/ANGGOTA ----------------------------------------------------------------------------
     Route::get('/tambah-anggota', [KtpsController::class, 'create']);
     Route::post('api/fetch-regencies', [KtpsController::class, 'fatchRegency']);
     Route::post('api/fetch-districts', [KtpsController::class, 'fatchDistrict']);
     Route::post('api/fetch-villages', [KtpsController::class, 'fatchVillage']);
 
+    // EDIT KTP ---------------------------------------------------------------------------------------
     Route::post('/ktps', [KtpsController::class, 'store']);
     Route::get('/detail-anggota/{nik}', [KtpsController::class, 'show'])->name('detail-anggota');
     Route::get('/detail-anggota/{ktp}/edit/ktp', [KtpsController::class, 'edit']);
@@ -50,6 +53,10 @@ Route::middleware('auth')->group(function() {
     Route::post('/ktp-kk/{nik}', [KkController::class, 'store']);
     Route::get('/{kk}/tambah-kk', [KkController::class, 'edit']);
     Route::put('/update-kk/{nik}', [KkController::class, 'updatekk']);
+    
+    // for indexnull
+    Route::get('{kk}/tambah-data/kk', [KkController::class, 'editnull']);
+    Route::put('/update-data/kk/{nik}', [KkController::class, 'updatenull']);
 
     // LC -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{lc}/edit/lc', [LcController::class, 'edit']);
@@ -58,13 +65,20 @@ Route::middleware('auth')->group(function() {
     Route::put('/update-anggota-lc/{nik}', [LcController::class, 'update']);
     Route::put('/update-lc/{nik}', [LcController::class, 'updatelc']);
 
+    // for nulldata
+    Route::get('{lc}/tambah-data/lc', [LcController::class, 'addnull']);
+    Route::put('/update-data/lc/{nik}', [LcController::class, 'updatenull']);
+
     // BPJS -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{bpjs}/edit/bpjs', [BpjsController::class, 'edit'])->name('edit-bpjs');
     Route::put('/update-anggota-bpjs/{nik}', [BpjsController::class, 'update']);
-    Route::get('/{bpjs}/tambah-bpjs', [BpjsController::class, 'addbpjs']);
-    // Route::put('/save-anggota-bpjs/{bpjs}', [BpjsController::class, 'storebpjs']);
+    // Route::get('/{bpjs}/tambah-bpjs', [BpjsController::class, 'addbpjs']);
     Route::get('/{bpjs}/tambah-bpjs', [BpjsController::class, 'edit']);
     Route::put('/update-bpjs/{nik}', [BpjsController::class, 'updatebpjs']);
+
+    // for indexnull
+    Route::get('/{bpjs}/tambah-data/bpjs', [BpjsController::class, 'editnull']);
+    Route::put('/update-data/bpjs/{nik}', [BpjsController::class, 'updatenull']);
 
     // OTHER -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{other}/edit/lainnya', [OtherController::class, 'edit']);

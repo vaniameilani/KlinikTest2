@@ -253,12 +253,15 @@ class KtpsController extends Controller
         $selectprov = DB::table('provinces')
         ->where('provinces.name', '=', $prov)
         ->value('id');
+
         $sskotakab = DB::table('regencies')
         ->where('regencies.province_id', '=', $selectprov)
         ->get();
+
         $selectkotakab = DB::table('regencies')
         ->where('regencies.name', '=', $kota_kab)
         ->value('id');
+        
         $sskec = DB::table('districts')
         ->where('districts.regency_id', '=', $selectkotakab)
         ->get();

@@ -18,7 +18,7 @@ class ChangeLcController extends Controller
         // ->select('lcs.no_kartu');
 
         $data = DB::table('lcs')
-        ->where('lcs.id', $lc)
+        ->where('lcs.id_lc', $lc)
         ->get();
 
         $nama = DB::table('lcs')

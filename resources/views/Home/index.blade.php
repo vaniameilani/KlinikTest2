@@ -76,32 +76,35 @@
                     <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
                         <form action="/" method='GET' class="form-search">
                             <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
-                            <a class="btn button-fill" type="submit" style="padding: 16px 24px; border-radius: 10px; justify-content: center; align-items: center; display: flex">
+                            <button class="btn button-fill" type="submit" style="padding: 16px 24px; border-radius: 10px; justify-content: center; align-items: center; display: flex">
                                 <div class="b-bold self-stretch" style="word-wrap: break-word;">Cari Anggota</div>
-                            </a>
+                            </button>
+                            <!-- <a class="btn button-fill" role="button" type="submit" style="padding: 16px 24px; border-radius: 10px; justify-content: center; align-items: center; display: flex">
+                                <div class="b-bold self-stretch" style="word-wrap: break-word;">Cari Anggota</div>
+                            </a> -->
                         </form>  
                     </div>
                     <!-- END SEARCH -->
 
                     <div class="table">
                         <div class="table-head">
-                            <div class="table-head-row">
-                                <div class="h5 table-head-name">NIK</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">NIK</div>
                             </div>
-                            <div class="table-head-row">
-                                <div class="h5 table-head-name">Nama</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">Nama</div>
                             </div>
-                            <div class="table-head-row">
-                                <div class="h5 table-head-name">KK</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">KK</div>
                             </div>
-                            <div class="table-head-row">
-                                <div class="h5 table-head-name">BPJS</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">BPJS</div>
                             </div>
-                            <div class="table-head-row">
-                                <div class="h5 table-head-name">LC</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">LC</div>
                             </div>
-                            <div class="table-head-row">
-                                <div class="h5 table-head-name ps-3">Aksi</div>
+                            <div class="table-header-cell table-header-btn">
+                                <div class="h5 header-name">Aksi</div>
                             </div>
                         </div>
                         @if ($data->count() == 0)
@@ -109,73 +112,70 @@
                         @else
                         @foreach ($data as $row)
                         <div class="table-body">
-                            <div class="table-row">
-                                <div class="table-row-name b-regular">{{ $row->nik }}</div>
+                             <!-- NIK -->
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">{{ $row->nik }}</div>
                             </div>
-                            <div class="table-row">
-                                <div class="table-row-name b-regular">{{ $row->nama }}</div>
+
+                            <!-- NAMA -->
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">{{ $row->nama }}</div>
                             </div>
+
+                            <!-- KK -->
                             @if ($row->kk == "")
-                            <!-- <div class="table-row">
-                                <div class="table-row-name b-regular"> - </div>
-                            </div> -->
-                            <a href="/{{ $row->id_kk }}/tambah-kk" class="btn add-btn table-row-empty" role="button">
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <a href="/{{ $row->id_kk }}/tambah-kk" class="btn add-btn table-body-btn empty-bg-cell" role="button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">tambah data</div>
+                                <div class="label body-name-btn">tambah data</div>
                             </a>
                             @else
-                            <div class="table-row">
-                                <div class="table-row-name b-regular">{{ $row->kk }}</div>
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->kk }}</div>
                             </div>
                             @endif
+
                             <!-- BPJS -->
                             @if ($row->no_bpjs == "")
-                            <a href="/{{ $row->id_bpjs }}/tambah-bpjs" class="btn add-btn table-row-empty" role="button">
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <a href="/{{ $row->id_bpjs }}/tambah-bpjs" class="btn add-btn table-body-btn empty-bg-cell" role="button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">tambah data</div>
+                                <div class="label body-name-btn">tambah data</div>
                             </a>
-                            <!-- <div class="table-row">
-                                <div class="table-row-name b-regular"> - </div>
-                            </div> -->
                             @else
-                            <div class="table-row">
-                                <div class="table-row-name b-regular">{{ $row->no_bpjs }}</div>
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->no_bpjs }}</div>
                             </div>
                             @endif
+
                             <!-- LC -->
                             @if ($row->no_kartu == "")
-                            <a href="/{{ $row->id_lc }}/tambah-lc" class="btn add-btn table-row-empty" role="button">
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <a href="/{{ $row->id_lc }}/tambah-lc" class="btn add-btn table-body-btn empty-bg-cell" role="button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">tambah data</div>
+                                <div class="label body-name-btn">tambah data</div>
                             </a>
-                            <!-- <div class="table-row">
-                                <div class="table-row-name b-regular"> - </div>
-                            </div> -->
                             @else
-                            <div class="table-row">
-                                <div class="table-row-name b-regular">{{ $row->no_kartu }}</div>
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->no_kartu }}</div>
                             </div>
                             @endif
+
                             <!-- AKSI -->
-                            <div class="table-row">
-                                <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn button-ghost table-button">
-                                    <div class="b-bold text-justify" style="color: #394E91; word-wrap: break-word">Detail</div>
+                            <div class="table-body-cell ps-4">
+                                <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn button-ghost body-btn-detail">
+                                    <div class="b-bold header-name">Detail</div>
                                 </a>
                             </div>
                         </div>
                         @endforeach
                         @endif
                     </div>
-
                     {{ $data->withQueryString()->links() }}
-                    
-                    
+                </div>
             </div>
         </div>
     </div>

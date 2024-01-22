@@ -91,4 +91,52 @@ class LcController extends Controller
 
         return redirect()->route('home');
     }
+
+    // for /nulldata
+    public function addnull(Lc $lc)
+    {
+        $cardtype = $lc->jenis_kartu;
+        $datasource = $lc->sumber_data;
+
+        $nikselect = DB::table('lcs')
+        ->where('lcs.id_lc', '=', $lc->id_lc)
+        ->select('nik_lc');
+
+        $nama = DB::table('ktps')
+        ->where('ktps.nik', '=', $nikselect)
+        ->get();
+
+        return view('LC.add-null', compact('lc', 'cardtype', 'datasource', 'nama'));
+    }
+
+    public function updatenull(Request $request, $nik)
+    {
+        $request->validate([
+            'id_lc',
+            'no_kartu' => 'required',
+            'jenis_kartu',
+            'tanggal_pembuatan',
+            'sumber_data' => 'required',
+            'nama_koor' => 'required',
+        ]);
+
+        Lc::where('nik_lc', $nik)
+        ->update([
+            'no_kartu' => $request->no_kartu,
+            'jenis_kartu' => $request->jenis_kartu,
+            'tanggal_pembuatan' => $request->tanggal_pembuatan,
+            'sumber_data' => $request->sumber_data,
+            'nama_koor' => $request->nama_koor,
+            'scan_lc' => $request->scan_lc
+        ]);
+
+        $changelc = new Changelc;
+        $changelc->no_kartu = $request->no_kartu;
+        $changelc->jenis_kartu = $request->jenis_kartu;
+        $changelc->tanggal_upgrade = $request->tanggal_pembuatan;
+        $changelc->save();
+
+        return redirect('/nulldata');
+    }
+
 }
