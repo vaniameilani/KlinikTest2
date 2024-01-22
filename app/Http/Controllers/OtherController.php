@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
 use App\Models\Other;
+use App\Models\Province;
+use App\Models\Regency;
 use App\Models\TpsList;
+use App\Models\TpsVillage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,10 +18,37 @@ class OtherController extends Controller
         // $tps['data'] = DB::table('tps_lists')
         // ->select('id', 'no_tps')
         // ->get();
-        $tps = TpsList::all();
+
+        $prov = Province::all();
         $disabilitas = $other->disabilitas;
-        return view('Others.edit', compact('other', 'tps', 'disabilitas'));
+
+        return view('Others.edit', compact('other', 'prov', 'disabilitas'));
+
         // return view('Others.edit')->with("tps", $tps);
+    }
+
+    public function fatchRegency(Request $request)
+    {
+        $data['regencies'] = Regency::where('province_id', $request->province_id)->get();
+        return response()->json($data);
+    }
+
+    public function fatchDistrict(Request $request)
+    {
+        $data['districts'] = District::where('regency_id', $request->regency_id)->get();
+        return response()->json($data);
+    }
+
+    public function fatchTpsVillage(Request $request)
+    {
+        $data['tps_villages'] = TpsVillage::where('district_id', $request->district_id)->get();
+        return response()->json($data);
+    }
+
+    public function fatchTps(Request $request)
+    {
+        $data['tps_lists'] = TpsList::where('village_id', $request->village_id)->get();
+        return response()->json($data);
     }
 
     // public function getAlamatTps($tps_id=0){

@@ -66,25 +66,72 @@
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                             <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Informasi TPS</div>
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                    <!-- PROVINSI -->
+                                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                        <label for="provinsi" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Provinsi</label>
+                                        <select class="form-select p-3 self-stretch" id="provinsi" name="provinsi" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                            <option >Pilih salah satu</option>
+                                            @foreach($prov as $data)
+                                                <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}">{{ $data->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('provinsi')
+                                            <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
+                                    </div>
+                                    <!-- KOTA/KABUPATEN -->
+                                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                        <label for="kota_kab" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kota/Kabupaten</label>
+                                        <select class="form-select p-3 align-self-stretch" id="kota_kab" name="kota_kab" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                            <!-- option kota/kabupaten -->
+                                        </select>
+                                        @error('kota_kab')
+                                            <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                    <!-- KECAMATAN -->
+                                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                        <label for="kecamatan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kecamatan</label>
+                                        <select class="form-select p-3" id="kecamatan" name="kecamatan" style="align-self: stretch; border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                            <!-- option -->
+                                        </select>
+                                        @error('kecamatan')
+                                            <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
+                                    </div>
+                                    <!-- DESA/KELURAHAN -->
+                                    <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                        <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kota/Kabupaten</label>
+                                        <select class="form-select p-3 align-self-stretch" id="desa_kel" name="desa_kel" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                            <!-- option desa/kelurahan -->
+                                        </select>
+                                        @error('desa_kel')
+                                            <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                     <label for="no_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor TPS</label>
-                                    <select class="form-select p-3 align-self-stretch" name="no_tps" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                    <select class="form-select p-3 self-stretch" id="no_tps" name="no_tps" onChange="getTps(this.value)" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                         <option >Pilih salah satu</option>
-                                        @foreach ( $tps as $row )
-                                        <option value="{{ $row->id }}">{{ $row->no_tps }}</option>
-                                        @endforeach
+                                        <!-- option -->
                                     </select>
                                     @error('no_tps')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
+
+                                <!-- alamat tps -->
                                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                     <label for="alamat_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat Lengkap TPS</label>
                                     <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
-                                        <input type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Masukkan Alamat TPS Lengkap" name="alamat_tps" value="{{ $row->alamat_tps }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                        <input type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Masukkan Alamat TPS Lengkap" value="" name="alamat_tps" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     </div>
                                     @error('alamat_tps')
-                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
                             </div>
@@ -95,6 +142,86 @@
                             </button>
                         </div>
                     </form>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script>
+                        jQuery(document).ready(function() {
+                            jQuery('#provinsi').change(function(event){
+                                var idProv = this.value;
+                                jQuery('#kota_kab').html('');
+                                jQuery.ajax({
+                                    url: "/api/fetch-tps-regencies",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {province_id: idProv,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#kota_kab').html('<option style="align-self:stretch; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.regencies, function(create, val){
+                                            jQuery('#kota_kab').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                        jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                    }
+                                })
+                            });
+
+                            jQuery('#kota_kab').change(function(event){
+                                var idReg = this.value;
+                                jQuery('#kecamatan').html('');
+                                jQuery.ajax({
+                                    url: "/api/fetch-tps-districts",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {regency_id: idReg,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.districts, function(create, val){
+                                            jQuery('#kecamatan').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                        jQuery('#desa_kel').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                    }
+                                })
+                            });
+
+                            jQuery('#kecamatan').change(function(event){
+                                var idDist = this.value;
+                                jQuery('#desa_kel').html('');
+                                jQuery.ajax({
+                                    url: "/api/fetch-tps-villages",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {district_id: idDist,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#desa_kel').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.tps_villages, function(create, val){
+                                            jQuery('#desa_kel').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                        jQuery('#no_tps').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                    }
+                                })
+                            });
+
+                            jQuery('#desa_kel').change(function(event){
+                                var idVillage = this.value;
+                                jQuery('#no_tps').html('');
+                                jQuery.ajax({
+                                    url: "/api/fetch-tps",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {village_id: idVillage,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#no_tps').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.tps_lists, function(create, val){
+                                            jQuery('#no_tps').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.no_tps+' </option>')
+                                        });
+                                    }
+                                })
+                            });
+                        });
+                    </script>
+                    <script>
+                        function getTps(value) {
+                            document.querySelector("#alamat_tps input").value = value;
+                        }
+                    </script>
                 </div>
             </div>
         </main>

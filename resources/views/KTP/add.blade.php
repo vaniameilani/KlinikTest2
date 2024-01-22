@@ -362,7 +362,6 @@
                             jQuery('#provinsi').change(function(event){
                                 var idProv = this.value;
                                 jQuery('#kota_kab').html('');
-
                                 jQuery.ajax({
                                     url: "/api/fetch-regencies",
                                     type: 'POST',
@@ -381,7 +380,6 @@
                             jQuery('#kota_kab').change(function(event){
                                 var idReg = this.value;
                                 jQuery('#kecamatan').html('');
-
                                 jQuery.ajax({
                                     url: "/api/fetch-districts",
                                     type: 'POST',

@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/tambah-anggota', [KtpsController::class, 'create']);
     Route::post('api/fetch-regencies', [KtpsController::class, 'fatchRegency']);
     Route::post('api/fetch-districts', [KtpsController::class, 'fatchDistrict']);
-    Route::post('api/fetch-villages', [KtpsController::class, 'fatchVillage']);
+    // Route::post('api/fetch-villages', [KtpsController::class, 'fatchVillage']);
 
     // EDIT KTP ---------------------------------------------------------------------------------------
     Route::post('/ktps', [KtpsController::class, 'store']);
@@ -83,6 +83,14 @@ Route::middleware('auth')->group(function() {
     // OTHER -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{other}/edit/lainnya', [OtherController::class, 'edit']);
     Route::put('/update-anggota-lainnya/{nik}', [OtherController::class, 'update']);
+
+    // Route::post('api/fetch-regencies', [KtpsController::class, 'fatchRegency']);
+    // Route::post('api/fetch-districts', [KtpsController::class, 'fatchDistrict']);
+
+    Route::post('api/fetch-tps-regencies', [OtherController::class, 'fatchRegency']);
+    Route::post('api/fetch-tps-districts', [OtherController::class, 'fatchDistrict']);
+    Route::post('api/fetch-tps-villages', [OtherController::class, 'fatchTpsVillage']);
+    Route::post('api/fetch-tps', [OtherController::class, 'fatchTps']);
 
     // LC -------------------------------------------------------------------------------
     Route::get('/ubah-kartu/{lc}', [ChangeLcController::class, 'create']);

@@ -443,19 +443,19 @@
                         </div>
                         <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
-                                <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Penyandang Disabilitas</div>
                                 </div>
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $other[0]->disabilitas }}</div>
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
-                                <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor TPS</div>
                                 </div>
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $other[0]->no_tps }}</div>
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
-                                <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat TPS</div>
                                 </div>
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $other[0]->alamat_tps }}</div>
