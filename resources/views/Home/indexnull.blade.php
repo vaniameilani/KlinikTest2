@@ -103,16 +103,7 @@
                     </div>
                     @endforeach
                 </div>
-                    <script>
-                        function myFunction() {
-                        var x = document.getElementById("myDIV");
-                        if (x.style.display === "none") {
-                            x.style.display = "flex";
-                        } else {
-                            x.style.display = "none";
-                        }
-                        }
-                    </script>
+                {{ $datanull->withQueryString()->links() }}
                 </div>   
             </div>
         </div>
