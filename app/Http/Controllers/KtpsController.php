@@ -49,17 +49,16 @@ class KtpsController extends Controller
             $countnull = $countnullbpjs;
         };
         
-        if(is_numeric($search)){
-            $data = $collect
-            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
-            ->where('lcs.no_kartu', 'like', '%'.$search.'%')
-            ->orderBy('lcs.id_lc', 'DESC')
-            ->Paginate(10);
-
-        }elseif(ctype_alpha($search)){
+        if(ctype_alpha($search)){
             $data = $collect
             ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
             ->where('ktps.nama', 'like', '%'.$search.'%')
+            ->orderBy('lcs.id_lc', 'DESC')
+            ->Paginate(10);
+        }elseif(ctype_alnum($search)){
+            $data = $collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->where('lcs.no_kartu', 'like', '%'.$search.'%')
             ->orderBy('lcs.id_lc', 'DESC')
             ->Paginate(10);
         }else{        

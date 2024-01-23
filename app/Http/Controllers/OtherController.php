@@ -19,10 +19,50 @@ class OtherController extends Controller
         // ->select('id', 'no_tps')
         // ->get();
 
-        $prov = Province::all();
+        $ktp = DB::table('ktps')
+        ->where('ktps.nik', '=', $other->nik_other);
+
+        $prov = $ktp->value('provinsi');
+        $kota_kab = $ktp->value('kota_kab');
+        $kec = $ktp->value('kecamatan');
+        $desa_kel = $ktp->value('desa_kel');
+        $tps = '0';
+        $ssprov = Province::all();
         $disabilitas = $other->disabilitas;
 
-        return view('Others.edit', compact('other', 'prov', 'disabilitas'));
+        $selectprov = DB::table('provinces')
+        ->where('provinces.name', '=', $prov)
+        ->value('id');
+
+        $sskotakab = DB::table('regencies')
+        ->where('regencies.province_id', '=', $selectprov)
+        ->get();
+
+        $selectkotakab = DB::table('regencies')
+        ->where('regencies.name', '=', $kota_kab)
+        ->value('id');
+        
+        $sskec = DB::table('districts')
+        ->where('districts.regency_id', '=', $selectkotakab)
+        ->get();
+
+        $selectkec = DB::table('districts')
+        ->where('districts.name', '=', $kec)
+        ->value('id');
+        
+        $ssdesa_kel = DB::table('tps_villages')
+        ->where('tps_villages.district_id', '=', $selectkec)
+        ->get();
+
+        $selectdesa_kel = DB::table('tps_villages')
+        ->where('tps_villages.name', '=', $desa_kel)
+        ->value('id');
+
+        $ssno_tps = DB::table('tps_lists')
+        ->where('tps_lists.village_id', '=', $selectdesa_kel)
+        ->get();
+
+        return view('Others.edit', compact('other', 'prov', 'kec', 'kota_kab', 'desa_kel', 'tps', 'ssprov', 'disabilitas', 'sskotakab', 'sskec', 'ssdesa_kel', 'ssno_tps'));
 
         // return view('Others.edit')->with("tps", $tps);
     }

@@ -71,9 +71,9 @@
                                     <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                         <label for="provinsi" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Provinsi</label>
                                         <select class="form-select p-3 self-stretch" id="provinsi" name="provinsi" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
-                                            <option >Pilih salah satu</option>
-                                            @foreach($prov as $data)
-                                                <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}">{{ $data->name }}</option>
+                                            <<option >Pilih salah satu</option>
+                                            @foreach($ssprov as $data)
+                                                <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $prov == $data->name ? 'selected' : '' }}>{{ $data->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('provinsi')
@@ -85,6 +85,9 @@
                                         <label for="kota_kab" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kota/Kabupaten</label>
                                         <select class="form-select p-3 align-self-stretch" id="kota_kab" name="kota_kab" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                             <!-- option kota/kabupaten -->
+                                            @foreach($sskotakab as $data)
+                                                <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $kota_kab == $data->name ? 'selected' : '' }}>{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                         @error('kota_kab')
                                             <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -97,6 +100,9 @@
                                         <label for="kecamatan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kecamatan</label>
                                         <select class="form-select p-3" id="kecamatan" name="kecamatan" style="align-self: stretch; border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                             <!-- option -->
+                                            @foreach($sskec as $data)
+                                                <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $kec == $data->name ? 'selected' : '' }}>{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                         @error('kecamatan')
                                             <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -104,9 +110,12 @@
                                     </div>
                                     <!-- DESA/KELURAHAN -->
                                     <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                                        <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Kota/Kabupaten</label>
+                                        <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
                                         <select class="form-select p-3 align-self-stretch" id="desa_kel" name="desa_kel" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                             <!-- option desa/kelurahan -->
+                                            @foreach($ssdesa_kel as $data)
+                                                <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $desa_kel == $data->name ? 'selected' : '' }}>{{ $data->name }}</option>
+                                            @endforeach
                                         </select>
                                         @error('desa_kel')
                                             <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -118,6 +127,9 @@
                                     <select class="form-select p-3 self-stretch" id="no_tps" name="no_tps" onChange="getTps(this.value)" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                         <option >Pilih salah satu</option>
                                         <!-- option -->
+                                            @foreach($ssno_tps as $data)
+                                                <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $tps == $data->no_tps ? 'selected' : '' }}>{{ $data->no_tps }}</option>
+                                            @endforeach
                                     </select>
                                     @error('no_tps')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -128,7 +140,7 @@
                                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                     <label for="alamat_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat Lengkap TPS</label>
                                     <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
-                                        <input type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Masukkan Alamat TPS Lengkap" value="" name="alamat_tps" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                        <input readonly type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Alamat TPS Lengkap" value="" name="alamat_tps" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                     </div>
                                     @error('alamat_tps')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -215,13 +227,28 @@
                                     }
                                 })
                             });
+                            jQuery('#no_tps').change(function(event){
+                                var idtps = this.value;
+                                jQuery('#alamat_tps').html('');
+                                jQuery.ajax({
+                                    url: "/api/fetch-tps",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {id: idtps,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        function getTps(value) {
+                                            document.querySelector("#alamat_tps input").value = value;
+                                        }
+                                    }
+                                })
+                            });
                         });
                     </script>
-                    <script>
+                    <!-- <script>
                         function getTps(value) {
                             document.querySelector("#alamat_tps input").value = value;
                         }
-                    </script>
+                    </script> -->
                 </div>
             </div>
         </main>
