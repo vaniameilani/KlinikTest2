@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tps_villages', function (Blueprint $table){
+        Schema::create('tps_addresses', function (Blueprint $table){
             $table->id();
-            $table->integer('district_id');
-            $table->string('name');
+            $table->integer('notps_id');
+            $table->string('alamat_tps');
             // $table->timestamps();
         });
     }

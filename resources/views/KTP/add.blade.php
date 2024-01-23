@@ -141,14 +141,14 @@
                             <!-- Desa/Kelurahan, RT, RW -->
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                                    <!-- <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
+                                    <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
                                     <select class="form-select p-3 align-self-stretch" id="desa_kel" name="desa_kel" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                         <option >Pilih salah satu</option>
-                                        <option value="BANTAN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('desa_kel') == 'BANTAN' ? 'selected' : '' }}>BANTAN</option>
-                                        <option value="MEMBALONG" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('desa_kel') == 'MEMBALONG' ? 'selected' : '' }}>MEMBALONG</option>
-                                    </select> -->
-                                    <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
-                                    <input type="text" class="form-control @error('desa_kel') is-invalid @enderror" id="desa_kel" placeholder="Masukkan Nama Desa/Kelurahan" name="desa_kel" value="{{ old('desa_kel')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                        <!-- <option value="BANTAN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('desa_kel') == 'BANTAN' ? 'selected' : '' }}>BANTAN</option>
+                                        <option value="MEMBALONG" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('desa_kel') == 'MEMBALONG' ? 'selected' : '' }}>MEMBALONG</option> -->
+                                    </select>
+                                    <!-- <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
+                                    <input type="text" class="form-control @error('desa_kel') is-invalid @enderror" id="desa_kel" placeholder="Masukkan Nama Desa/Kelurahan" name="desa_kel" value="{{ old('desa_kel')}}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required> -->
                                     @error('desa_kel')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
@@ -389,6 +389,24 @@
                                         jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
                                         jQuery.each(response.districts, function(create, val){
                                             jQuery('#kecamatan').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                        jQuery('#desa_kel').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                    }
+                                })
+                            });
+
+                            jQuery('#kecamatan').change(function(event){
+                                var idDist = this.value;
+                                jQuery('#desa_kel').html('');
+                                jQuery.ajax({
+                                    url: "/api/fetch-villages",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {district_id: idDist,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#desa_kel').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.villages, function(create, val){
+                                            jQuery('#desa_kel').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
                                         });
                                     }
                                 })

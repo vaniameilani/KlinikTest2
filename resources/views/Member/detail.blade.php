@@ -8,7 +8,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> 
         
         <!-- css -->
-        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/public/styles.css">
         <title>Klinik Raycare - Detail Anggota</title>
 
         <style>
@@ -165,9 +165,13 @@
                                     <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                         <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Lampiran KTP</div>
                                     </div>
+                                    @if ($ktp->scan_ktp == 0)
+                                    <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                    @else
                                     <a class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" href="#" role="button">
                                         <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">File KTP.pdf</div>
                                     </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -192,33 +196,53 @@
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor Kartu Keluarga</div>
                                 </div>
+                                @if ($kk[0]->kk == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $kk[0]->kk }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor Dokumen KK</div>
                                 </div>
+                                @if ($kk[0]->dokumen_kk == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $kk[0]->dokumen_kk }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama Anggota</div>
                                 </div>
+                                @if ($kk[0]->nama == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $kk[0]->nama }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status</div>
                                 </div>
+                                @if ($kk[0]->status == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $kk[0]->status }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Lampiran KK</div>
                                 </div>
+                                @if ($kk[0]->scan_kk == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <a class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" href="#" role="button">
                                     <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">File KK.pdf</div>
                                 </a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -317,9 +341,13 @@
                                         <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                             <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Lampiran Form Loyalty Card</div>
                                         </div>
+                                        @if ($lc[0]->scan_lc == 0)
+                                        <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                        @else
                                         <a class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" href="#" role="button">
                                             <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">File LC.pdf</div>
                                         </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -416,13 +444,21 @@
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor BPJS</div>
                                 </div>
+                                @if ($bpjs[0]->no_bpjs == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $bpjs[0]->no_bpjs }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kartu</div>
                                 </div>
+                                @if ($bpjs[0]->jenis_bpjs == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $bpjs[0]->jenis_bpjs }}</div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -444,21 +480,33 @@
                         <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                                    <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Penyandang Disabilitas</div>
+                                    <div style="align-self: stretch; text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Penyandang Disabilitas</div>
                                 </div>
+                                @if ($other[0]->disabilitas == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $other[0]->disabilitas }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor TPS</div>
                                 </div>
+                                @if ($other[0]->no_tps == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $other[0]->no_tps }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat TPS</div>
                                 </div>
+                                @if ($other[0]->alamat_tps == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $other[0]->alamat_tps }}</div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -477,88 +525,88 @@
                         </a>
                         @endif
                     </div>
-                    <div style="align-self: stretch; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                        <div style="align-self: stretch; padding-left: 20px; padding-right: 20px; padding-top: 16px; padding-bottom: 16px; background: #E8EAF2; border-top-left-radius: 5px; border-top-right-radius: 5px; justify-content: flex-start; align-items: center; display: inline-flex">
-                            <div style="flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">NIK</div>
+                    <div class="table">
+                        <div class="table-head">
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">NIK</div>
                             </div>
-                            <div style="flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Nama</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">Nama</div>
                             </div>
-                                <div style="flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">KK</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">KK</div>
                             </div>
-                            <div style="flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">BPJS</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">BPJS</div>
                             </div>
-                            <div style="flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">LC</div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">LC</div>
                             </div>
-                            <div style="flex: 1 1 0; align-self: stretch; padding-left: 16px; justify-content: flex-start; align-items: flex-start; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Aksi</div>
+                            <div class="table-header-cell table-header-btn">
+                                <div class="h5 header-name">Aksi</div>
                             </div>
                         </div>
                         @if ($listdata->count() == 0)
-                        <div class="text-center" style="align-self: stretch;">Data tidak ditemukan</div>
+                        <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Belum ada data</div>
                         @else
                         @foreach ($listdata as $row)
-                        <div style="align-self: stretch; padding-left: 20px; padding-right: 20px; padding-top: 16px; padding-bottom: 16px; border-bottom: 1px rgba(217, 217, 217, 0.50) solid; justify-content: flex-start; align-items: center; display: inline-flex">
+                        <div class="table-body">
                             <!-- NIK -->
-                            <div style="padding-left: 0px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->nik }}</div>
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">{{ $row->nik }}</div>
                             </div>
-                            
+
                             <!-- NAMA -->
-                            <div style="padding-left: 0px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->nama }}</div>
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">{{ $row->nama }}</div>
                             </div>
 
                             <!-- KK -->
                             @if ($row->kk == "")
-                            <a href="/{{ $row->id_kk }}/tambah-kk" class="btn add-btn" style="padding-left: 0px; flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: center; display: inline-flex" role="button">
+                            <a href="/{{ $row->id_kk }}/tambah-kk" class="btn add-btn table-body-btn empty-bg-cell" role="button">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">tambah data</div>
+                                <div class="label body-name-btn">tambah data</div>
                             </a>
                             @else
-                            <div style="padding-left: 0px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->kk }}</div>
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->kk }}</div>
                             </div>
                             @endif
 
                             <!-- BPJS -->
                             @if ($row->no_bpjs == "")
-                            <a href="{{$bpjs[0]->id_bpjs}}/edit/bpjs" class="btn add-btn" style="padding-left: 0px; flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: center; display: inline-flex" role="button">
+                            <a href="{{$bpjs[0]->id_bpjs}}/edit/bpjs" class="btn add-btn table-body-btn empty-bg-cell" role="button">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">tambah data</div>
+                                <div class="label body-name-btn">tambah data</div>
                             </a>
                             @else
-                            <div style="padding-left: 0px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->no_bpjs }}</div>
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->no_bpjs }}</div>
                             </div>
                             @endif
 
                             <!-- LC -->
                             @if ($row->no_kartu == "")
-                            <a href="/{{ $row->id_lc }}/tambah-lc" class="btn add-btn" style="padding-left: 0px; flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: center; display: inline-flex" role="button">
+                            <a href="/{{ $row->id_lc }}/tambah-lc" class="btn add-btn table-body-btn empty-bg-cell" role="button">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">tambah data</div>
+                                <div class="label body-name-btn">tambah data</div>
                             </a>
                             @else
-                            <div style="padding-left: 0px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->no_kartu }}</div>
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->no_kartu }}</div>
                             </div>
                             @endif
     
                             <!-- AKSI -->
-                            <div style="flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn button-ghost" style="padding: 16px; border-radius: 10px; justify-content: center; align-items: center; display: inline-flex">
-                                    <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; word-wrap: break-word">Detail</div>
+                            <div class="table-body-cell ps-4">
+                                <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn button-ghost body-btn-detail">
+                                    <div class="b-bold header-name">Detail</div>
                                 </a>
                             </div>
                         </div>

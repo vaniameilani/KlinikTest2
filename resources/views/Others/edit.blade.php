@@ -139,9 +139,14 @@
                                 <!-- alamat tps -->
                                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                     <label for="alamat_tps" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alamat Lengkap TPS</label>
-                                    <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
-                                        <input readonly type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Alamat TPS Lengkap" value="" name="alamat_tps" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
-                                    </div>
+                                    <!-- <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
+                                        <input readonly type="textarea" class="form-control @error('alamat_tps') is-invalid @enderror" id="alamat_tps" placeholder="Alamat TPS Lengkap" name="alamat_tps" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                    </div> -->
+                                    <select class="form-select p-3 align-self-stretch" id="alamat_tps" name="alamat_tps" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                        @foreach($ssalamat_tps as $data)
+                                            <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" > {{ $data->alamat_tps }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('alamat_tps')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
@@ -203,7 +208,7 @@
                                     data: {district_id: idDist,_token:"{{ csrf_token() }}"},
                                     success:function(response){
                                         jQuery('#desa_kel').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
-                                        jQuery.each(response.tps_villages, function(create, val){
+                                        jQuery.each(response.villages, function(create, val){
                                             jQuery('#desa_kel').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
                                         });
                                         jQuery('#no_tps').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
@@ -227,21 +232,38 @@
                                     }
                                 })
                             });
+
                             jQuery('#no_tps').change(function(event){
                                 var idtps = this.value;
                                 jQuery('#alamat_tps').html('');
                                 jQuery.ajax({
-                                    url: "/api/fetch-tps",
+                                    url: "/api/fetch-alamat-tps",
                                     type: 'POST',
                                     dataType: 'json',
-                                    data: {id: idtps,_token:"{{ csrf_token() }}"},
+                                    data: {notps_id: idtps,_token:"{{ csrf_token() }}"},
                                     success:function(response){
-                                        function getTps(value) {
-                                            document.querySelector("#alamat_tps input").value = value;
-                                        }
+                                        jQuery.each(response.tps_addresses, function(create, val){
+                                            jQuery('#alamat_tps').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.alamat_tps+' </option>')
+                                        });
                                     }
                                 })
                             });
+
+                            // jQuery('#no_tps').change(function(event){
+                            //     var idtps = this.value;
+                            //     jQuery('#alamat_tps').html('');
+                            //     jQuery.ajax({
+                            //         url: "/api/fetch-alamat-tps",
+                            //         type: 'POST',
+                            //         dataType: 'json',
+                            //         data: {notps_id: idtps,_token:"{{ csrf_token() }}"},
+                            //         success:function(response){
+                            //             function getTps(value) {
+                            //                 document.querySelector("#alamat_tps input").value = value;
+                            //             }
+                            //         }
+                            //     })
+                            // });
                         });
                     </script>
                     <!-- <script>

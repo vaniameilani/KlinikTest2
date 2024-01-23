@@ -6,8 +6,9 @@ use App\Models\District;
 use App\Models\Other;
 use App\Models\Province;
 use App\Models\Regency;
+use App\Models\TpsAddress;
 use App\Models\TpsList;
-use App\Models\TpsVillage;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,9 @@ class OtherController extends Controller
         $kota_kab = $ktp->value('kota_kab');
         $kec = $ktp->value('kecamatan');
         $desa_kel = $ktp->value('desa_kel');
-        $tps = '0';
+        $tps = $other->value('no_tps');
+        // $alamat_tps = $other->value('alamat_tps');
+
         $ssprov = Province::all();
         $disabilitas = $other->disabilitas;
 
@@ -50,19 +53,28 @@ class OtherController extends Controller
         ->where('districts.name', '=', $kec)
         ->value('id');
         
-        $ssdesa_kel = DB::table('tps_villages')
-        ->where('tps_villages.district_id', '=', $selectkec)
+        $ssdesa_kel = DB::table('villages')
+        ->where('villages.district_id', '=', $selectkec)
         ->get();
 
-        $selectdesa_kel = DB::table('tps_villages')
-        ->where('tps_villages.name', '=', $desa_kel)
+        $selectdesa_kel = DB::table('villages')
+        ->where('villages.name', '=', $desa_kel)
         ->value('id');
 
         $ssno_tps = DB::table('tps_lists')
         ->where('tps_lists.village_id', '=', $selectdesa_kel)
         ->get();
 
-        return view('Others.edit', compact('other', 'prov', 'kec', 'kota_kab', 'desa_kel', 'tps', 'ssprov', 'disabilitas', 'sskotakab', 'sskec', 'ssdesa_kel', 'ssno_tps'));
+        $selectno_tps = DB::table('tps_lists')
+        ->where('tps_lists.no_tps', '=', $tps)
+        ->value('id');
+
+        $ssalamat_tps = DB::table('tps_addresses')
+        ->where('tps_addresses.notps_id', '='. $selectno_tps)
+        ->get();
+
+
+        return view('Others.edit', compact('other', 'prov', 'kec', 'kota_kab', 'desa_kel', 'tps', 'ssprov', 'disabilitas', 'sskotakab', 'sskec', 'ssdesa_kel', 'ssno_tps', 'ssalamat_tps'));
 
         // return view('Others.edit')->with("tps", $tps);
     }
@@ -81,13 +93,19 @@ class OtherController extends Controller
 
     public function fatchTpsVillage(Request $request)
     {
-        $data['tps_villages'] = TpsVillage::where('district_id', $request->district_id)->get();
+        $data['villages'] = Village::where('district_id', $request->district_id)->get();
         return response()->json($data);
     }
 
     public function fatchTps(Request $request)
     {
         $data['tps_lists'] = TpsList::where('village_id', $request->village_id)->get();
+        return response()->json($data);
+    }
+
+    public function fatchAlamatTps(Request $request)
+    {
+        $data['tps_addresses'] = TpsAddress::where('notps_id', $request->notps_id)->get();
         return response()->json($data);
     }
 
@@ -107,11 +125,19 @@ class OtherController extends Controller
             'disabilitas' => 'required'
         ]);
 
+        $no_tps = DB::table('tps_lists')
+        ->where('tps_lists.id', '=', $request->no_tps)
+        ->value('tps_lists.no_tps');
+
+        $alamat_tps = DB::table('tps_addresses')
+        ->where('tps_addresses.id', '=', $request->alamat_tps)
+        ->value('tps_addresses.alamat_tps');
+
         Other::where('nik_other', $nik)
         ->update([
             'no_hp' => $request->no_hp,
-            'no_tps' => $request->no_tps,
-            'alamat_tps' => $request->alamat_tps,
+            'no_tps' => $no_tps,
+            'alamat_tps' => $alamat_tps,
             'disabilitas' => $request->disabilitas
         ]);
 

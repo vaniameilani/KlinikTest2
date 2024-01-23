@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         @if ($data->count() == 0)
-                        <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Data tidak ditemukan</div>
+                        <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Belum ada data</div>
                         @else
                         @foreach ($data as $row)
                         <div class="table-body">

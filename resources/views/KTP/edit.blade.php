@@ -64,14 +64,10 @@
                             <!-- Jenis kelamin pengguna -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="jenis_kelamin" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kelamin</label>
-                                <select class="form-select p-3 align-self-stretch" name="jenis_kelamin" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                <select class="form-select p-3 align-self-stretch" value="{{ $ktp->jenis_kelamin }}" name="jenis_kelamin" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option>Pilih salah satu</option>
-                                    <option value="Laki-laki" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $gender == 'Laki-laki' ? 'selected' : '' }}> 
-                                        Laki-laki
-                                    </option>
-                                    <option value="Perempuan" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $gender == 'Perempuan' ? 'selected' : '' }}>
-                                       Perempuan
-                                    </option>
+                                    <option value="LAKI-LAKI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $gender == 'LAKI-LAKI' ? 'selected' : '' }}>LAKI-LAKI</option>
+                                    <option value="PEREMPUAN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $gender == 'PEREMPUAN' ? 'selected' : '' }}>PEREMPUAN</option>
                                 </select>
                                 @error('jenis_kelamin')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -143,7 +139,13 @@
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                                     <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
-                                    <input type="text" class="form-control @error('desa_kel') is-invalid @enderror" id="desa_kel" placeholder="Masukkan Nama Desa/Keluarahan" name="desa_kel" value="{{ $ktp->desa_kel }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                    <select class="form-select p-3 align-self-stretch" id="desa_kel" name="desa_kel" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
+                                        @foreach($ssvillage as $data)
+                                            <option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="{{ $data->id }}" {{ $desa_kel == $data->name ? 'selected' : '' }}>{{ $data->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!-- <label for="desa_kel" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Desa/Kelurahan</label>
+                                    <input type="text" class="form-control @error('desa_kel') is-invalid @enderror" id="desa_kel" placeholder="Masukkan Nama Desa/Keluarahan" name="desa_kel" value="{{ $ktp->desa_kel }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required> -->
                                     @error('desa_kel')
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
@@ -199,10 +201,12 @@
                             <!-- Status Nikah -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="status_perkawinan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status Pernikahan</label>
-                                <select class="form-select p-3 align-self-stretch" id="status_perkawinan" name="status_perkawinan" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                <select class="form-select p-3 align-self-stretch" value="{{ $ktp->status_perkawinan }}" id="status_perkawinan" name="status_perkawinan" style="border-radius: 5px; border: 1px #DADDE5 solid; gap: 2px;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Kawin" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $marriage == 'Kawin' ? 'selected' : '' }}> Kawin </option>
-                                    <option value="Belum Kawin" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $marriage == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
+                                    <option value="KAWIN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $marriage == 'KAWIN' ? 'selected' : '' }}>KAWIN</option>
+                                    <option value="BELUM KAWIN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $marriage == 'BELUM KAWIN' ? 'selected' : '' }}>BELUM KAWIN</option>
+                                    <option value="CERAI HIDUP" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $marriage == 'CERAI HIDUP' ? 'selected' : '' }}>CERAI HIDUP</option>
+                                    <option value="CERAI MATI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $marriage == 'CERAI MATI' ? 'selected' : '' }}>CERAI MATI</option>
                                 </select>
                                 @error('status_perkawinan')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -344,7 +348,6 @@
                             jQuery('#provinsi').change(function(event){
                                 var idProv = this.value;
                                 jQuery('#kota_kab').html('');
-
                                 jQuery.ajax({
                                     url: "/api/fetch-regencies",
                                     type: 'POST',
@@ -361,18 +364,35 @@
                             });
 
                             jQuery('#kota_kab').change(function(event){
-                                var idDist = this.value;
+                                var idReg = this.value;
                                 jQuery('#kecamatan').html('');
-
                                 jQuery.ajax({
                                     url: "/api/fetch-districts",
                                     type: 'POST',
                                     dataType: 'json',
-                                    data: {regency_id: idDist,_token:"{{ csrf_token() }}"},
+                                    data: {regency_id: idReg,_token:"{{ csrf_token() }}"},
                                     success:function(response){
                                         jQuery('#kecamatan').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
                                         jQuery.each(response.districts, function(create, val){
                                             jQuery('#kecamatan').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                                        });
+                                        jQuery('#desa_kel').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                    }
+                                })
+                            });
+
+                            jQuery('#kecamatan').change(function(event){
+                                var idDist = this.value;
+                                jQuery('#desa_kel').html('');
+                                jQuery.ajax({
+                                    url: "/api/fetch-villages",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {district_id: idDist,_token:"{{ csrf_token() }}"},
+                                    success:function(response){
+                                        jQuery('#desa_kel').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                                        jQuery.each(response.villages, function(create, val){
+                                            jQuery('#desa_kel').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
                                         });
                                     }
                                 })

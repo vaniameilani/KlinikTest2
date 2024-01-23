@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->integer('village_id');
             $table->string('no_tps');
-            $table->longText('alamat_tps');
+            // $table->longText('alamat_tps');
             // $table->timestamps();
         });
     }
