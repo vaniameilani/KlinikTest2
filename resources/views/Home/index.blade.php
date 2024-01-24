@@ -124,11 +124,11 @@
 
                             <!-- KK -->
                             @if ($row->kk == "")
-                            <a href="/{{ $row->id_kk }}/tambah-kk" class="btn add-btn table-body-btn empty-bg-cell" role="button">
+                            <a href="/{{ $row->id_kk }}/tambah-kk" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div class="label body-name-btn">tambah data</div>
+                                <div class="label body-name-btn d-flex align-items-center">tambah data</div>
                             </a>
                             @else
                             <div class="table-body-cell">
@@ -138,11 +138,11 @@
 
                             <!-- BPJS -->
                             @if ($row->no_bpjs == "")
-                            <a href="/{{ $row->id_bpjs }}/tambah-bpjs" class="btn add-btn table-body-btn empty-bg-cell" role="button">
+                            <a href="/{{ $row->id_bpjs }}/tambah-bpjs" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div class="label body-name-btn">tambah data</div>
+                                <div class="label body-name-btn d-flex align-items-center">tambah data</div>
                             </a>
                             @else
                             <div class="table-body-cell">
@@ -152,11 +152,11 @@
 
                             <!-- LC -->
                             @if ($row->no_kartu == "")
-                            <a href="/{{ $row->id_lc }}/tambah-lc" class="btn add-btn table-body-btn empty-bg-cell" role="button">
+                            <a href="/{{ $row->id_lc }}/tambah-lc" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
                                 </svg>
-                                <div class="label body-name-btn">tambah data</div>
+                                <div class="label body-name-btn d-flex align-items-center">tambah data</div>
                             </a>
                             @else
                             <div class="table-body-cell">

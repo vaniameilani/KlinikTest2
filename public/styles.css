@@ -262,7 +262,7 @@ a.add-btn:hover { background: #EEEFF4; }
     display: flex;
     flex-direction: row;
     padding: 8px 0px;
-    align-items: center;
+    /* align-items: center; */
     gap: 4px;
     flex: 1 0 0;
     align-self: stretch;
