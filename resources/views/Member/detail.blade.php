@@ -490,6 +490,26 @@
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                    <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama Bank</div>
+                                </div>
+                                @if ($other[0]->nama_bank == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $other[0]->nama_bank }}</div>
+                                @endif
+                            </div>
+                            <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                    <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor Rekening</div>
+                                </div>
+                                @if ($other[0]->no_rek == 0)
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $other[0]->no_rek }}</div>
+                                @endif
+                            </div>
+                            <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor TPS</div>
                                 </div>
                                 @if ($other[0]->no_tps == 0)

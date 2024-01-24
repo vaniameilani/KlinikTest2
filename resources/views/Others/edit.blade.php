@@ -24,7 +24,7 @@
     <body>
         @include('component.navbar')
         <main>
-            <div style="width: 100%; height: 100%; padding-left: 176px; padding-right: 176px; padding-top: 40px; padding-bottom: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+            <div style="width: 100%; padding-left: 176px; padding-right: 176px; padding-top: 40px; padding-bottom: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
                     <a href="/detail-anggota/{{$other->nik_other}}" class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; gap: 4px; display: inline-flex" role="button">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,6 +60,26 @@
                                 @error('disabilitas')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
+                            </div>
+                        </div>
+                        <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
+                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
+                            <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Informasi Bank</div>
+                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+                                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                                    <label for="nama_bank" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama Bank</label>
+                                    <input type="text" class="form-control @error('nama_bank') is-invalid @enderror" id="nama_bank" placeholder="Masukkan Nama Bank Anggota" name="nama_bank" value="{{ $other->nama_bank }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                    @error('nama_bank')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                                    <label for="no_rek" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor Rekening</label>
+                                    <input type="text" class="form-control @error('no_rek') is-invalid @enderror" id="no_rek" placeholder="Masukkan Nomor Rekening Anggota" name="no_rek" value="{{ $other->no_rek }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                    @error('no_rek')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
@@ -160,6 +180,23 @@
                         </div>
                     </form>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script>
+                        jQuery(document).ready(function() {
+	                        jQuery('#nama_bank').keyup(function() 
+                            {
+                                var str = jQuery('#nama_bank').val();
+                            
+                                
+                                var spart = str.split(" ");
+                                for ( var i = 0; i < spart.length; i++ )
+                                {
+                                    var j = spart[i].charAt(0).toUpperCase();
+                                    spart[i] = j + spart[i].substr(1);
+                                }
+                            jQuery('#nama_bank').val(spart.join(" "));
+                            });
+                        });
+                    </script>
                     <script>
                         jQuery(document).ready(function() {
                             jQuery('#provinsi').change(function(event){

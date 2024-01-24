@@ -9,5 +9,5 @@ class Other extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_other';
-    protected $fillable = ['nik_other', 'no_hp', 'no_tps', 'alamat_tps', 'disabilitas'];
+    protected $fillable = ['nik_other', 'no_hp', 'nama_bank', 'no_rek', 'no_tps', 'alamat_tps', 'disabilitas'];
 }

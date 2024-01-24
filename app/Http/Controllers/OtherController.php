@@ -121,6 +121,8 @@ class OtherController extends Controller
             'id_other',
             'no_hp' => 'required',
             'no_tps' => 'required',
+            'nama_bank' => 'required',
+            'no_rek' => 'required',
             'alamat_tps' => 'required',
             'disabilitas' => 'required'
         ]);
@@ -136,6 +138,8 @@ class OtherController extends Controller
         Other::where('nik_other', $nik)
         ->update([
             'no_hp' => $request->no_hp,
+            'nama_bank' => $request->nama_bank,
+            'no_rek' => $request->no_rek,
             'no_tps' => $no_tps,
             'alamat_tps' => $alamat_tps,
             'disabilitas' => $request->disabilitas

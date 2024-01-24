@@ -15,6 +15,8 @@ return new class extends Migration
             $table->increments('id_other');
             $table->string('nik_other')->unique();
             $table->string('no_hp')->nullable();
+            $table->string('nama_bank')->nullable();
+            $table->string('no_rek')->nullable();
             $table->string('no_tps')->nullable();
             $table->longText('alamat_tps')->nullable();
             $table->string('disabilitas')->nullable();
