@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BpjsController;
 use App\Http\Controllers\ChangeLcController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\KtpsController;
 use App\Http\Controllers\KkController;
 use App\Http\Controllers\LcController;
@@ -33,6 +34,9 @@ Route::middleware('auth')->group(function() {
     // bawah -> halaman daftar anggota yang belum lengkap
     Route::get('/nulldata', [KtpsController::class, 'indexnull']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    // HALAMAN INDEX FILTER ----------------------------------------------------------------------------
+    Route::get('/filter', [FilterController::class,'filter']);
 
     // TAMBAH KTP/ANGGOTA ----------------------------------------------------------------------------
     Route::get('/tambah-anggota', [KtpsController::class, 'create']);
