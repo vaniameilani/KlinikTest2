@@ -48,10 +48,10 @@
                     <div class="filter">
                         <div class="h5 filter-title">Filter Berdasarkan Dapil</div>
                         <div class="filter-dropdown">
-                            <label for="" class="form-label b-medium filter-label">Dapil</label>
-                            <select class="form-select filter-name-place" name="">
+                            <label for="dapil" class="form-label b-medium filter-label">Dapil</label>
+                            <select class="form-select filter-name-place" name="dapil">
                                 <option class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="" class="b-regular filter-name">LAKI-LAKI</option>
+                                <option value="LAKI" class="b-regular filter-name">LAKI-LAKI</option>
                             </select>
                         </div>
                     </div>
@@ -87,7 +87,16 @@
                         <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
                     </button>
                 </div>
-            </form>    
+            </div>
+            </form>
+            <div>Filter berdasarkan 
+            @if(request('kecamatan') != "")Kecamatan: {{ $kecamatan->name }}@endif
+            @if(request('dapil') != "")Dapil ke: {{ request('dapil') }}@endif
+            @if(request('desa_kel') != "")Desa/Kelurahan: {{ $desa_kel[0] }}@endif
+            @if(request('no_tps') != "")Nomor TPS: {{ $no_tps[0] }}@endif
+            @if(request('faskes') != "")Faskes: {{ request('faskes') }}@endif
+            @if(request('jenis_bpjs') != "")Jenis BPJS: {{ request('jenis_bpjs') }}@endif
+            
             </div>
 
             <div class="filter-main-card">
@@ -145,7 +154,8 @@
                         </div>
                         @else
                         <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->kecamatan }}</div>
+                            <div class="b-regular body-name">{{ $row->kecamatan }}, {{ $row->desa_kel }}</div>
+                            <div class="b-regular body-name">{{ $row->alamat }}</div>
                         </div>
                         @endif
 

@@ -38,20 +38,20 @@ class FilterController extends Controller
 
         if (isset($request->faskes) && $request->faskes != '' && isset($request->jenis_bpjs) && $request->jenis_bpjs != ''){
             $filterdata =$collect
-            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp')
+            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp')
             ->where('bpjs.faskes_bpjs', '=', $request->faskes)
             ->where('bpjs.jenis_bpjs', '=', $request->jenis_bpjs);
         }elseif(isset($request->faskes) && $request->faskes != ''){
             $filterdata =$collect
-            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp')
+            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp')
             ->where('bpjs.faskes_bpjs', '=', $request->faskes);
         }elseif(isset($request->jenis_bpjs) && $request->jenis_bpjs != ''){
             $filterdata =$collect
-            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp')
+            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp')
             ->where('bpjs.jenis_bpjs', '=', $request->jenis_bpjs);
         }else{
             $filterdata =$collect
-            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp');
+            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp');
         };
 
         if(isset($request->kecamatan) && $request->kecamatan != '' &&  $request->desa_kel == '' && $request->no_tps == ''){
@@ -73,6 +73,6 @@ class FilterController extends Controller
         };
        
 
-        return view('Home.index-filter', compact('datanull', 'listkec'));
+        return view('Home.index-filter', compact('datanull', 'listkec', 'kecamatan', 'desa_kel', 'no_tps'));
     }
 }
