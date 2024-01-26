@@ -28,12 +28,14 @@ class BpjsController extends Controller
         $request->validate([
             'id',
             'no_bpjs' => 'required',
+            'faskes_bpjs' => 'required',
             'jenis_bpjs' => 'required'
         ]);
 
         Bpjs::where('nik_bpjs', $nik)
         ->update([
             'no_bpjs' => $request->no_bpjs,
+            'faskes_bpjs' => $request->faskes_bpjs,
             'jenis_bpjs' => $request->jenis_bpjs
         ]);
 
@@ -45,12 +47,14 @@ class BpjsController extends Controller
         $request->validate([
             'id_bpjs',
             'no_bpjs' => 'required',
+            'faskes_bpjs' => 'required',
             'jenis_bpjs' => 'required'
         ]);
 
         Bpjs::where('nik_bpjs', $nik)
         ->update([
             'no_bpjs' => $request->no_bpjs,
+            'faskes_bpjs' => $request->faskes_bpjs,
             'jenis_bpjs' => $request->jenis_bpjs
         ]);
 
@@ -78,12 +82,14 @@ class BpjsController extends Controller
         $request->validate([
             'id_bpjs',
             'no_bpjs' => 'required',
+            'faskes_bpjs' => 'required',
             'jenis_bpjs' => 'required'
         ]);
 
         Bpjs::where('nik_bpjs', $nik)
         ->update([
             'no_bpjs' => $request->no_bpjs,
+            'faskes_bpjs' => $request->faskes_bpjs,
             'jenis_bpjs' => $request->jenis_bpjs
         ]);
 

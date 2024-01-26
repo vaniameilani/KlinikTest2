@@ -17,7 +17,7 @@
         </div>
         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
             <!-- TABLE SECTION -->
-            <div class="filter-main-card">
+            <form method="POST" action="#" class="filter-main-card">
                 <div class="filter-col">
                 <form action="/filter" method='GET'>
                     <div class="filter">
@@ -83,7 +83,6 @@
                         <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
                     </button>
                 </div>
-                </form>
             </div>
 
             <div class="filter-main-card">

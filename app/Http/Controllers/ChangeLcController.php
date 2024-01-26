@@ -17,21 +17,28 @@ class ChangeLcController extends Controller
         // ->join('changelcs', 'lcs.no_kartu', '=', 'changelcs.no_kartu')
         // ->select('lcs.no_kartu');
 
+        // $cardtype = $lc->jenis_kartu;
+        // $datasource = $lc->sumber_data;
+
         $data = DB::table('lcs')
         ->where('lcs.id_lc', $lc)
         ->get();
+
+        $cardtype = DB::table('lcs')
+        ->where('lcs.id_lc', $lc)
+        ->value('lcs.jenis_kartu');
 
         $nama = DB::table('lcs')
         ->join('ktps', 'ktps.nik', '=', 'lcs.nik_lc')
         ->get();
 
-        return view('LC.change-card', compact('data', 'nama'));
+        return view('LC.change-card', compact('data', 'nama', 'cardtype'));
     }
 
     public function store(Request $request, $nik)
     {
         $request->validate([
-            'no_kartu',
+            'no_kartu'=> 'required',
             'jenis_kartu' => 'required',
             'tanggal_upgrade' => 'required',
             'alasan_upgrade' => 'required',

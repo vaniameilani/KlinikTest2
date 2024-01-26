@@ -48,6 +48,20 @@
                                 <label for="nama" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama</label>
                                 <input readonly type="text" class="form-control @error('nama') is-invalid @enderror disable-bg" id="nama" placeholder="Masukkan Nama Anggota" name="nama" value="{{ $nama[0]->nama }}" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
                             </div>
+                             <!-- Faskes -->
+                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                                <label for="faskes_bpjs" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kartu BPJS</label>
+                                <select class="form-select p-3 align-self-stretch" id="faskes_bpjs" name="faskes_bpjs" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                    <option >Pilih salah satu</option>
+                                    <option value="PBI APBD" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'PBI APBD' ? 'selected' : '' }}> PBI APBD </option>
+                                    <option value="PBI APBN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'PBI APBN' ? 'selected' : '' }}> PBI APBN </option>
+                                    <option value="MANDIRI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'MANDIRI' ? 'selected' : '' }}>MANDIRI</option>
+                                    <option value="PERUSAHAAN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'PERUSAHAAN' ? 'selected' : '' }}>PERUSAHAAN</option>
+                                </select>
+                                @error('faskes_bpjs')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                @enderror
+                            </div>
                             <!-- Jenis Kartu -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="jenis_bpjs" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kartu BPJS</label>

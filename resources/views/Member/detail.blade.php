@@ -315,7 +315,7 @@
                                         @if ($changelc->count() == 0)
                                         <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
                                         @else
-                                        <span style="color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $lc[0]->no_kartu }}</span>
+                                        <span style="color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $changelc[0]->no_kartu }}</span>
                                         @endif
                                     </div>
                                     <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">

@@ -111,6 +111,7 @@ class KtpsController extends Controller
             'rt' => 'required',
             'rw' => 'required',
             'alamat' => 'required',
+            'kode_pos' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'status_perkawinan' => 'required',
@@ -148,6 +149,7 @@ class KtpsController extends Controller
         $ktp->rt = $request->rt;
         $ktp->rw = $request->rw;
         $ktp->alamat = $request->alamat;
+        $ktp->kode_pos = $request->kode_pos;
         $ktp->tempat_lahir = $request->tempat_lahir;
         $ktp->tanggal_lahir = $request->tanggal_lahir;
         $ktp->status_perkawinan = $request->status_perkawinan;
@@ -306,6 +308,7 @@ class KtpsController extends Controller
             'rt' => 'required',
             'rw' => 'required',
             'alamat' => 'required',
+            'kode_pos' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'status_perkawinan' => 'required',
@@ -342,6 +345,7 @@ class KtpsController extends Controller
             'rt' => $request->rt,
             'rw' => $request->rw,
             'alamat' => $request->alamat,
+            'kode_pos' => $request->kode_pos,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'status_perkawinan' => $request->status_perkawinan,

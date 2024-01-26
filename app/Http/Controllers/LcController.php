@@ -11,8 +11,9 @@ class LcController extends Controller
 {
     public function add(Lc $lc)
     {
-        $cardtype = $lc->jenis_kartu;
-        $datasource = $lc->sumber_data;
+        // $koor = $lc->nama_koor;
+        // $cardtype = $lc->jenis_kartu;
+        // $datasource = $lc->sumber_data;
 
         $nikselect = DB::table('lcs')
         ->where('lcs.id_lc', '=', $lc->id_lc)
@@ -22,14 +23,16 @@ class LcController extends Controller
         ->where('ktps.nik', '=', $nikselect)
         ->get();
 
-        return view('LC.add', compact('lc', 'cardtype', 'datasource', 'nama'));
+        return view('LC.add', compact('lc', 'nama'));
     }
 
     public function edit(Lc $lc)
     {
+        $koor = $lc->nama_koor;
         $cardtype = $lc->jenis_kartu;
         $datasource = $lc->sumber_data;
-        return view('LC.edit', compact('lc', 'cardtype', 'datasource'));
+
+        return view('LC.edit', compact('lc', 'cardtype', 'koor', 'datasource'));
     }
 
     public function update(Request $request, $nik)
@@ -41,6 +44,7 @@ class LcController extends Controller
             'tanggal_pembuatan',
             'sumber_data' => 'required',
             'nama_koor' => 'required',
+            'telp_koor' => 'required',
         ]);
 
         Lc::where('nik_lc', $nik)
@@ -50,6 +54,7 @@ class LcController extends Controller
             'tanggal_pembuatan' => $request->tanggal_pembuatan,
             'sumber_data' => $request->sumber_data,
             'nama_koor' => $request->nama_koor,
+            'telp_koor' => $request->telp_koor,
             'scan_lc' => $request->scan_lc
         ]);
 
@@ -71,6 +76,7 @@ class LcController extends Controller
             'tanggal_pembuatan',
             'sumber_data' => 'required',
             'nama_koor' => 'required',
+            'telp_koor' => 'required',
         ]);
 
         Lc::where('nik_lc', $nik)
@@ -80,6 +86,7 @@ class LcController extends Controller
             'tanggal_pembuatan' => $request->tanggal_pembuatan,
             'sumber_data' => $request->sumber_data,
             'nama_koor' => $request->nama_koor,
+            'telp_koor' => $request->telp_koor,
             'scan_lc' => $request->scan_lc
         ]);
 
@@ -95,8 +102,9 @@ class LcController extends Controller
     // for /nulldata
     public function addnull(Lc $lc)
     {
-        $cardtype = $lc->jenis_kartu;
-        $datasource = $lc->sumber_data;
+        // $koor = $lc->nama_koor;
+        // $cardtype = $lc->jenis_kartu;
+        // $datasource = $lc->sumber_data;
 
         $nikselect = DB::table('lcs')
         ->where('lcs.id_lc', '=', $lc->id_lc)
@@ -106,7 +114,7 @@ class LcController extends Controller
         ->where('ktps.nik', '=', $nikselect)
         ->get();
 
-        return view('LC.add-null', compact('lc', 'cardtype', 'datasource', 'nama'));
+        return view('LC.add-null', compact('lc', 'nama'));
     }
 
     public function updatenull(Request $request, $nik)
@@ -118,6 +126,7 @@ class LcController extends Controller
             'tanggal_pembuatan',
             'sumber_data' => 'required',
             'nama_koor' => 'required',
+            'telp_koor' => 'required',
         ]);
 
         Lc::where('nik_lc', $nik)
@@ -127,6 +136,7 @@ class LcController extends Controller
             'tanggal_pembuatan' => $request->tanggal_pembuatan,
             'sumber_data' => $request->sumber_data,
             'nama_koor' => $request->nama_koor,
+            'telp_koor' => $request->telp_koor,
             'scan_lc' => $request->scan_lc
         ]);
 
