@@ -116,47 +116,47 @@
                             <div class="body-name b-regular">{{ $row->nama }}</div>
                         </div>
 
-                        <!-- KK -->
-                        @if ($row->kk == "")
+                        <!-- LC -->
+                        @if ($row->no_kartu == "")
                         <div class="table-body-cell">
                             <div class="b-regular body-name">-</div>
                         </div>
                         @else
                         <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->kk }}</div>
+                            <div class="b-regular body-name">{{ $row->no_kartu }}</div>
                         </div>
                         @endif
 
                         <!-- BPJS -->
-                        @if ($row->no_bpjs == "")
+                        @if ($row->jenis_bpjs == "")
                         <div class="table-body-cell">
                             <div class="b-regular body-name">-</div>
                         </div>
                         @else
                         <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->no_bpjs }}</div>
+                            <div class="b-regular body-name">{{ $row->jenis_bpjs }}</div>
                         </div>
                         @endif
 
-                        <!-- LC -->
-                        @if ($row->no_kartu == "")
+                        <!-- ALAMAT -->
+                        @if ($row->kecamatan == "")
                         <div class="table-body-cell">
                             <div class="b-regular body-name">-</div>
                         </div>
                         @else
                         <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->no_kartu }}</div>
+                            <div class="b-regular body-name">{{ $row->kecamatan }}</div>
                         </div>
                         @endif
 
-                        <!-- LC -->
-                        @if ($row->no_kartu == "")
+                        <!-- NOMOR HP -->
+                        @if ($row->no_hp == "")
                         <div class="table-body-cell">
                             <div class="b-regular body-name">-</div>
                         </div>
                         @else
                         <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->no_kartu }}</div>
+                            <div class="b-regular body-name">{{ $row->no_hp }}</div>
                         </div>
                         @endif
                     </div>
