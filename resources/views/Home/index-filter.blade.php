@@ -17,9 +17,8 @@
         </div>
         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
             <!-- TABLE SECTION -->
-            <form method="POST" action="#" class="filter-main-card">
+            <form action="/filter" method='GET' class="filter-main-card">
                 <div class="filter-col">
-                <form action="/filter" method='GET'>
                     <div class="filter">
                         <div class="h5 filter-title">Filter Berdasarkan Alamat/TPS</div>
                         <div class="filter-list">
@@ -62,10 +61,9 @@
                     <div class="filter-list">
                         <!-- Faskes -->
                         <div class="filter-dropdown">
-                            <label for="" class="form-label b-medium filter-label">Faskes</label>
-                            <select class="form-select filter-name-place" name="">
-                                <option class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="" class="b-regular filter-name">LAKI-LAKI</option>
+                            <label for="faskes" class="form-label b-medium filter-label">Faskes</label>
+                            <select class="form-select filter-name-place" name="faskes">
+                                <option value="" class="b-regular filter-name">Pilih salah satu</option>
                             </select>
                         </div>
                         <!-- Jenis Kartu BPJS -->
@@ -73,7 +71,10 @@
                             <label for="jenis_bpjs" class="form-label b-medium filter-label">Jenis Kartu BPJS</label>
                             <select class="form-select filter-name-place" name="jenis_bpjs">
                                 <option class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="" href="" class="b-regular filter-name">LAKI-LAKI</option>
+                                <option value="PBI APBD" class="b-regular name"> PBI APBD </option>
+                                <option value="PBI APBN" class="b-regular name"> PBI APBN </option>
+                                <option value="MANDIRI" class="b-regular name"> MANDIRI </option>
+                                <option value="PERUSAHAAN" class="b-regular name"> PERUSAHAAN </option>
                             </select>
                         </div>
                     </div>
@@ -83,6 +84,7 @@
                         <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
                     </button>
                 </div>
+            </form>    
             </div>
 
             <div class="filter-main-card">
