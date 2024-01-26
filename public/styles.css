@@ -2,7 +2,7 @@ body { background-color: #F5F6FA; }
 
 /* typography */
 .h1 {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
@@ -11,7 +11,7 @@ body { background-color: #F5F6FA; }
 }
 
 .h2 {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 32px;
     font-style: normal;
     font-weight: 500;
@@ -20,7 +20,7 @@ body { background-color: #F5F6FA; }
 }
 
 .h3 {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
@@ -29,7 +29,7 @@ body { background-color: #F5F6FA; }
 }
 
 .h5 {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -38,7 +38,7 @@ body { background-color: #F5F6FA; }
 }
 
 .b-regular {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -46,7 +46,7 @@ body { background-color: #F5F6FA; }
 }
 
 .b-medium {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -55,7 +55,7 @@ body { background-color: #F5F6FA; }
 }
 
 .b-bold {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -64,7 +64,7 @@ body { background-color: #F5F6FA; }
 }
 
 .label {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -72,13 +72,8 @@ body { background-color: #F5F6FA; }
 }
 
 /* Type of Background */
-.disable-bg {
-    background-color: #F3F4F6;
-}
-
-.empty-bg-cell{
-    background-color: #C4CBE0;
-}
+.disable-bg { background-color: #F3F4F6; }
+.empty-bg-cell{ background-color: #C4CBE0; }
 
 /* Menu */
 a.menu {
@@ -106,6 +101,8 @@ a.menu:focus {
     word-wrap: break-word;
 }
 
+/* BUTTONS ------------------------------------------------------------------------------------------------------ */
+
  /* Button Tambah Anggota */
 a.button-fill-second { background: #7888B6; color: white; }
 a.button-fill-second:hover { background: #5C6EA8; }
@@ -120,11 +117,105 @@ a.button-fill-third:hover { background: #C4CBE0; }
 .button-fill { background: #394E91; color: white; }
 .button-fill:hover { background: #293A79; color: white;}
 
+/*button kembali  */
+a.button-underline { text-decoration: none; }
+a.button-underline:hover { text-decoration: underline; text-decoration-color: #394E91; }
+
 /* Button Aksi on Table */
 a.button-ghost:hover { background: #EEEFF4; }
 a.add-btn:hover { background: #EEEFF4; }
 
-/* HOME.INDEX PAGE */
+.button-set-fill {
+    padding: 16px; 
+    border-radius: 10px; 
+    justify-content: center; 
+    align-items: center; 
+    display: flex;
+}
+
+
+/* FORM ---------------------------------------------------------------------------------------------- */
+.card-form {
+    align-self: stretch; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    gap: 24px; 
+    display: flex; 
+    border: 1px #DADDE5 solid;
+}
+
+.form {
+    align-self: stretch; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    gap: 16px; 
+    display: flex; 
+    gap: 24px;
+}
+
+.input-col {
+    align-self: stretch; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    gap: 24px; 
+    display: inline-flex;
+}
+
+.input-col-row {
+    flex: 1 1 0; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    gap: 4px; 
+    display: inline-flex;
+}
+
+.input-field {
+    align-self: stretch; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    gap: 4px; 
+    display: flex;
+}
+
+.name {
+    text-align: justify; 
+    color: #1D1B20; 
+    word-wrap: break-word;
+}
+
+.input-name {
+    align-self: stretch; 
+    padding: 16px; 
+    background: #FAFAFA; 
+    border-radius: 5px; 
+    border: 1px #DADDE5 solid; 
+    justify-content: flex-start; 
+    align-items: center; 
+    display: inline-flex
+}
+
+.dropdown {
+    border-radius: 5px; 
+    border: 1px #DADDE5 solid; 
+    gap: 2px;
+    padding: 16px;
+    align-self: stretch;
+}
+
+.button-set{
+    align-self: stretch; 
+    justify-content: flex-end; 
+    align-items: flex-start; 
+    gap: 8px; 
+    display: inline-flex;
+}
+
+
+/* HOME.INDEX PAGE ----------------------------------------------------------------------------------------- */
 .main-card {
     align-self: stretch; 
     padding: 40px 176px;
@@ -381,14 +472,22 @@ a.add-btn:hover { background: #EEEFF4; }
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    gap: 24px; 
+    gap: 32px; 
     display: flex;
+}
+
+.filter-col {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    gap: 48px;
 }
 
 .filter {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex: 1 0 0;
     gap: 4px;
     align-self: stretch;
 }
@@ -410,6 +509,7 @@ a.add-btn:hover { background: #EEEFF4; }
     flex-direction: column;
     align-items: flex-start;
     flex: 1 0 0;
+    align-self: stretch;
 }
 
 .filter-label {

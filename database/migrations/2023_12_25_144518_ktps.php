@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('rt');
             $table->string('rw');
             $table->longText('alamat');
+            $table->string('kode_pos');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('status_perkawinan');

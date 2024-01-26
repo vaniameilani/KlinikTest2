@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nik_bpjs')->unique();
             $table->string('no_bpjs')->nullable();
             $table->string('jenis_bpjs')->nullable();
+            $table->string('faskes_bpjs')->nullable();
             $table->timestamps();
         });
 

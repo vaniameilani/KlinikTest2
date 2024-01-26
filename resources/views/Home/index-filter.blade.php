@@ -18,39 +18,44 @@
         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
             <!-- TABLE SECTION -->
             <div class="filter-main-card">
-                <div class="filter">
-                    <div class="h5 filter-title">Filter Berdasarkan TPS</div>
-                    <div class="filter-list">
-                        <div class="filter-dropdown">
-                            <label for="kota_kab" class="form-label b-medium filter-label">Kota/Kabupaten</label>
-                            <select class="form-select filter-name-place" name="kota_kab" required>
-                                <option class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="" class="b-regular filter-name">LAKI-LAKI</option>
-                            </select>
+                <div class="filter-col">
+                    <div class="filter">
+                        <div class="h5 filter-title">Filter Berdasarkan Alamat/TPS</div>
+                        <div class="filter-list">
+                            <div class="filter-dropdown">
+                                <label for="kecamatan" class="form-label b-medium filter-label">Kecamatan</label>
+                                <select class="form-select filter-name-place" name="kecamatan" required>
+                                    <option class="b-regular filter-name">Pilih salah satu</option>
+                                    <option value="" class="b-regular filter-name">LAKI-LAKI</option>
+                                </select>
+                            </div>
+                            <div class="filter-dropdown">
+                                <label for="desa_kel" class="form-label b-medium filter-label">Desa/Kelurahan</label>
+                                <select class="form-select filter-name-place" name="desa_kel" required>
+                                    <option class="b-regular filter-name">Pilih salah satu</option>
+                                    <option value="" class="b-regular filter-name">LAKI-LAKI</option>
+                                </select>
+                            </div>
+                            <div class="filter-dropdown">
+                                <label for="no_tps" class="form-label b-medium filter-label">Nomor TPS</label>
+                                <select class="form-select filter-name-place" name="no_tps" required>
+                                    <option class="b-regular filter-name">Pilih salah satu</option>
+                                    <option value="" class="b-regular filter-name">LAKI-LAKI</option>
+                                </select>
+                            </div>
                         </div>
+                    </div>
+                    <div class="filter">
+                        <div class="h5 filter-title">Filter Berdasarkan Dapil</div>
                         <div class="filter-dropdown">
-                            <label for="kecamatan" class="form-label b-medium filter-label">Kecamatan</label>
-                            <select class="form-select filter-name-place" name="kecamatan" required>
-                                <option class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="" class="b-regular filter-name">LAKI-LAKI</option>
-                            </select>
-                        </div>
-                        <div class="filter-dropdown">
-                            <label for="desa_kel" class="form-label b-medium filter-label">Desa/Kelurahan</label>
-                            <select class="form-select filter-name-place" name="desa_kel" required>
-                                <option class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="" class="b-regular filter-name">LAKI-LAKI</option>
-                            </select>
-                        </div>
-                        <div class="filter-dropdown">
-                            <label for="no_tps" class="form-label b-medium filter-label">Nomor TPS</label>
-                            <select class="form-select filter-name-place" name="no_tps" required>
+                            <label for="" class="form-label b-medium filter-label">Dapil</label>
+                            <select class="form-select filter-name-place" name="" required>
                                 <option class="b-regular filter-name">Pilih salah satu</option>
                                 <option value="" class="b-regular filter-name">LAKI-LAKI</option>
                             </select>
                         </div>
                     </div>
-                </div>
+                </div>  
                 <div class="filter">
                     <div class="h5 filter-title">Filter Berdasarkan BPJS</div>
                     <div class="filter-list">
@@ -71,6 +76,11 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="button-set">
+                    <button class="btn button-fill" type="submit" style="padding: 16px 24px; border-radius: 10px; justify-content: center; align-items: center; display: flex;">
+                        <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
+                    </button>
                 </div>
             </div>
 
