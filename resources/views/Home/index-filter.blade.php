@@ -63,14 +63,17 @@
                         <div class="filter-dropdown">
                             <label for="faskes" class="form-label b-medium filter-label">Faskes</label>
                             <select class="form-select filter-name-place" name="faskes">
-                                <option value="" class="b-regular filter-name">Pilih salah satu</option>
+                                <option value="" class="b-regular filter-name" selected>Pilih salah satu</option>
+                                <option value="FASKES 1" class="b-regular name"> FASKES 1 </option>
+                        <option value="FASKES 2" class="b-regular name"> FASKES 2 </option>
+                        <option value="FASKES 3" class="b-regular name"> FASKES 3 </option>
                             </select>
                         </div>
                         <!-- Jenis Kartu BPJS -->
                         <div class="filter-dropdown">
                             <label for="jenis_bpjs" class="form-label b-medium filter-label">Jenis Kartu BPJS</label>
                             <select class="form-select filter-name-place" name="jenis_bpjs">
-                                <option class="b-regular filter-name">Pilih salah satu</option>
+                                <option value="" class="b-regular filter-name" selected>Pilih salah satu</option>
                                 <option value="PBI APBD" class="b-regular name"> PBI APBD </option>
                                 <option value="PBI APBN" class="b-regular name"> PBI APBN </option>
                                 <option value="MANDIRI" class="b-regular name"> MANDIRI </option>

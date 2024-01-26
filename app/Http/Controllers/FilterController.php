@@ -36,25 +36,39 @@ class FilterController extends Controller
         ->join('kks', 'ktps.nik', '=', 'kks.nik_kk')
         ->join('others', 'ktps.nik', '=', 'others.nik_other');
 
-        if (isset($request->kecamatan) && $request->kecamatan != '' &&  $request->desa_kel == '' && $request->no_tps == ''){
-            $datanull = $collect
+        if (isset($request->faskes) && $request->faskes != '' && isset($request->jenis_bpjs) && $request->jenis_bpjs != ''){
+            $filterdata =$collect
             ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->where('bpjs.faskes_bpjs', '=', $request->faskes)
+            ->where('bpjs.jenis_bpjs', '=', $request->jenis_bpjs);
+        }elseif(isset($request->faskes) && $request->faskes != ''){
+            $filterdata =$collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->where('bpjs.faskes_bpjs', '=', $request->faskes);
+        }elseif(isset($request->jenis_bpjs) && $request->jenis_bpjs != ''){
+            $filterdata =$collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->where('bpjs.jenis_bpjs', '=', $request->jenis_bpjs);
+        }else{
+            $filterdata =$collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs');
+        };
+
+        if(isset($request->kecamatan) && $request->kecamatan != '' &&  $request->desa_kel == '' && $request->no_tps == ''){
+            $datanull = $filterdata
             ->where('ktps.kecamatan', '=', $kecamatan)
             ->paginate(25);
         }elseif(isset($request->desa_kel) && $request->desa_kel != '' && $request->no_tps == ''){
-            $datanull = $collect
-            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            $datanull = $filterdata
             ->where('ktps.desa_kel', '=', $desa_kel)
             ->paginate(25);
         }elseif(isset($request->no_tps) && $request->no_tps != ''){
-            $datanull = $collect
-            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            $datanull = $filterdata
             ->where('ktps.desa_kel', '=', $desa_kel)
             ->where('others.no_tps', '=', $no_tps)
             ->paginate(25);
         }else{
-            $datanull = $collect
-            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            $datanull = $filterdata
             ->paginate(25);
         };
        
