@@ -19,28 +19,29 @@
             <!-- TABLE SECTION -->
             <div class="filter-main-card">
                 <div class="filter-col">
+                <form action="/filter" method='GET'>
                     <div class="filter">
                         <div class="h5 filter-title">Filter Berdasarkan Alamat/TPS</div>
                         <div class="filter-list">
                             <div class="filter-dropdown">
                                 <label for="kecamatan" class="form-label b-medium filter-label">Kecamatan</label>
-                                <select class="form-select filter-name-place" name="kecamatan" required>
-                                    <option class="b-regular filter-name">Pilih salah satu</option>
-                                    <option value="" class="b-regular filter-name">LAKI-LAKI</option>
+                                <select class="form-select filter-name-place" id="kecamatan" name="kecamatan">
+                                    <option value="" class="b-regular filter-name"selected>Pilih salah satu</option>
+                                    @foreach ($listkec as $kecamatan)
+                                        <option value="{{ $kecamatan->id }}" class="b-regular filter-name">{{ $kecamatan->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="filter-dropdown">
                                 <label for="desa_kel" class="form-label b-medium filter-label">Desa/Kelurahan</label>
-                                <select class="form-select filter-name-place" name="desa_kel" required>
-                                    <option class="b-regular filter-name">Pilih salah satu</option>
-                                    <option value="" class="b-regular filter-name">LAKI-LAKI</option>
+                                <select class="form-select filter-name-place" id="desa_kel" name="desa_kel">
+                                    <option value="" class="b-regular filter-name"selected>Pilih salah satu</option>
                                 </select>
                             </div>
                             <div class="filter-dropdown">
                                 <label for="no_tps" class="form-label b-medium filter-label">Nomor TPS</label>
-                                <select class="form-select filter-name-place" name="no_tps" required>
-                                    <option class="b-regular filter-name">Pilih salah satu</option>
-                                    <option value="" class="b-regular filter-name">LAKI-LAKI</option>
+                                <select class="form-select filter-name-place" id="no_tps" name="no_tps">
+                                    <option value="" class="b-regular filter-name" selected>Pilih salah satu</option>
                                 </select>
                             </div>
                         </div>
@@ -49,7 +50,7 @@
                         <div class="h5 filter-title">Filter Berdasarkan Dapil</div>
                         <div class="filter-dropdown">
                             <label for="" class="form-label b-medium filter-label">Dapil</label>
-                            <select class="form-select filter-name-place" name="" required>
+                            <select class="form-select filter-name-place" name="">
                                 <option class="b-regular filter-name">Pilih salah satu</option>
                                 <option value="" class="b-regular filter-name">LAKI-LAKI</option>
                             </select>
@@ -62,7 +63,7 @@
                         <!-- Faskes -->
                         <div class="filter-dropdown">
                             <label for="" class="form-label b-medium filter-label">Faskes</label>
-                            <select class="form-select filter-name-place" name="" required>
+                            <select class="form-select filter-name-place" name="">
                                 <option class="b-regular filter-name">Pilih salah satu</option>
                                 <option value="" class="b-regular filter-name">LAKI-LAKI</option>
                             </select>
@@ -70,7 +71,7 @@
                         <!-- Jenis Kartu BPJS -->
                         <div class="filter-dropdown">
                             <label for="jenis_bpjs" class="form-label b-medium filter-label">Jenis Kartu BPJS</label>
-                            <select class="form-select filter-name-place" name="jenis_bpjs" required>
+                            <select class="form-select filter-name-place" name="jenis_bpjs">
                                 <option class="b-regular filter-name">Pilih salah satu</option>
                                 <option value="" href="" class="b-regular filter-name">LAKI-LAKI</option>
                             </select>
@@ -82,6 +83,7 @@
                         <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
                     </button>
                 </div>
+                </form>
             </div>
 
             <div class="filter-main-card">
@@ -160,4 +162,42 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    jQuery(document).ready(function() {
+        jQuery('#kecamatan').change(function(event){
+            var idDist = this.value;
+            jQuery('#desa_kel').html('');
+            jQuery.ajax({
+                url: "/api/fetch-villages",
+                type: 'POST',
+                dataType: 'json',
+                data: {district_id: idDist,_token:"{{ csrf_token() }}"},
+                success:function(response){
+                    jQuery('#desa_kel').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                    jQuery.each(response.villages, function(create, val){
+                        jQuery('#desa_kel').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.name+' </option>')
+                    });
+                }
+            })
+        });
+
+        jQuery('#desa_kel').change(function(event){
+            var idVillage = this.value;
+            jQuery('#no_tps').html('');
+            jQuery.ajax({
+                url: "/api/fetch-tps",
+                type: 'POST',
+                dataType: 'json',
+                data: {village_id: idVillage,_token:"{{ csrf_token() }}"},
+                success:function(response){
+                    jQuery('#no_tps').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option>');
+                    jQuery.each(response.tps_lists, function(create, val){
+                        jQuery('#no_tps').append('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="'+val.id+'"> '+val.no_tps+' </option>')
+                    });
+                }
+            })
+        });
+    });
+    </script>
 </main>    
