@@ -10,25 +10,17 @@
 
         <!-- css -->
         <link rel="stylesheet" href="css/login.css">
-
         <style>
             body {  
                 width: auto; 
                 height: auto; 
-            }
-
-            /* KENAPA KAMU NGGAK MAU MUNCUL  */
-            .bg-acc{
-                background-image: url('background-image.jpg');
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
+                background-image: url(/public/images/login-bg.png); background-size: cover;
             }
         </style>
     </head>
 
     <body>
-    <div class="bg-acc position-absolute top-50 start-50 translate-middle">
+    <div class="position-absolute top-50 start-50 translate-middle">
         <div style="width: 500px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: center; display: blox;">
             <div style="padding: 40px; background: #E8EAF2; border-radius: 10px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 24px;"> 
             

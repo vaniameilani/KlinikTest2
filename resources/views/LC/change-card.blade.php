@@ -47,10 +47,11 @@
                                 <label for="nama" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor Kartu</label>
                                 <input disabled type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nomor Kartu LC Anggota" name="nama" value="{{ $nama[0]->nama }}" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
                             </div> -->
+
                             <!-- Nomor Kartu -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="no_kartu" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor Kartu</label>
-                                <input readonly type="text" class="form-control @error('no_kartu') is-invalid @enderror" id="no_kartu" placeholder="Masukkan Nomor Kartu LC Anggota" name="no_kartu" value="{{ $data[0]->no_kartu }}" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                <input type="text" class="form-control @error('no_kartu') is-invalid @enderror" id="no_kartu" placeholder="Masukkan Nomor Kartu LC Anggota" name="no_kartu" value="{{ $data[0]->no_kartu }}" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                 @error('no_kartu')
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
@@ -58,13 +59,13 @@
                             <!-- Jenis LC -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="jenis_kartu" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kartu</label>
-                                <select class="form-select p-3 align-self-stretch" id="jenis_kartu" name="jenis_kartu" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                <select class="form-select p-3 align-self-stretch" value="{{ $data[0]->jenis_kartu }}" id="jenis_kartu" name="jenis_kartu" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="L" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" >L</option>
-                                    <option value="R" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" >R</option>
-                                    <option value="LR" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" >LR</option>
-                                    <option value="LN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" >LN</option>
-                                    <option value="PADI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" >PADI</option>
+                                    <option value="L" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'L' ? 'selected' : '' }}>L</option>
+                                    <option value="R" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'R' ? 'selected' : '' }}>R</option>
+                                    <option value="LR" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'LR' ? 'selected' : '' }}>LR</option>
+                                    <option value="LN" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'LN' ? 'selected' : '' }}>LN</option>
+                                    <option value="PADI" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $cardtype == 'PADI' ? 'selected' : '' }}>PADI</option>
                                 </select>
                                 @error('jenis_kartu')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -80,11 +81,11 @@
                             </div>
                             <!-- Alasan ganti LC -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-                                <label for="alasan_upgrade" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kartu</label>
+                                <label for="alasan_upgrade" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alasan Ganti Kartu</label>
                                 <select class="form-select p-3 align-self-stretch" id="alasan_upgrade" name="alasan_upgrade" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option >Pilih salah satu</option>
-                                    <option value="Alasan 1" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" >Alasan 1</option>
-                                    <option value="Alasan 2" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" >Alasan 2</option>
+                                    <option value="Alasan 1" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('alasan_upgrade') == 'Alasan 1' ? 'selected' : '' }}>Alasan 1</option>
+                                    <option value="Alasan 2" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('alasan_upgrade') == 'Alasan 2' ? 'selected' : '' }}>Alasan 2</option>
                                 </select>
                                 @error('alasan_upgrade')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>

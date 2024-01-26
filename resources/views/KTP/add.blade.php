@@ -33,7 +33,7 @@
                 <!-- Nama -->
                 <div class="input-field">
                     <label for="nama" class="form-label b-medium name">Nama</label>
-                    <input type="text" class="input-name form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nama Anggota" name="nama" value="{{ old('nama')}}" required>
+                    <input type="text" class="input-name form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nama Anggota" name="nama" value="{{ old('nama') }}" required>
                     @error('nama')
                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                     @enderror

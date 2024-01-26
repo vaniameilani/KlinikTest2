@@ -17,7 +17,7 @@
         </div>
         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
             <!-- TABLE SECTION -->
-            <div class="filter-main-card">
+            <form method="POST" action="#" class="filter-main-card">
                 <div class="filter-col">
                     <div class="filter">
                         <div class="h5 filter-title">Filter Berdasarkan Alamat/TPS</div>
@@ -82,7 +82,7 @@
                         <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
                     </button>
                 </div>
-            </div>
+            </form>
 
             <div class="filter-main-card">
                 <div style="align-self:stretch; justify-content: flex-start; align-items: center; display: inline-flex">

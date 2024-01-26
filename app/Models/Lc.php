@@ -9,5 +9,5 @@ class Lc extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_lc';
-    protected $fillable = ['nik_lc', 'no_kartu', 'jenis_kartu', 'tanggal_pembuatan', 'sumber_data', 'nama_koor', 'scan_lc'];
+    protected $fillable = ['nik_lc', 'no_kartu', 'jenis_kartu', 'tanggal_pembuatan', 'sumber_data', 'nama_koor', 'telp_koor', 'scan_lc'];
 }

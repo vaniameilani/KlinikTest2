@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('tanggal_pembuatan')->nullable();
             $table->string('sumber_data')->nullable();
             $table->string('nama_koor')->nullable();
+            $table->string('telp_koor')->nullable();
             $table->binary('scan_lc')->nullable();
             $table->timestamps();
         });

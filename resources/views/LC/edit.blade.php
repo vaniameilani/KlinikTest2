@@ -43,10 +43,33 @@
                         @method('PUT')
                         @csrf
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
+                            
+                            <!-- Nama & No HP Koor -->
+                            <div class="input-col">
+                                <div class="input-col-row">
+                                    <label for="nama_koor" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama Koordinator</label>
+                                    <select class="form-select p-3 align-self-stretch" value="{{ $lc->nama_koor }}" id="nama_koor" name="nama_koor" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                        <option >Pilih salah satu</option>
+                                        <option value="Nama 1" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $koor == 'Nama 1' ? 'selected' : '' }}>Nama 1</option>
+                                        <option value="Nama 2" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $koor == 'Nama 2' ? 'selected' : '' }}>Nama 2</option>
+                                    </select>
+                                    @error('nama_koor')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div class="input-col-row">
+                                    <label for="telp_koor" class="form-label b-medium name" >Nomor Telepon Koordinator</label>
+                                    <input type="date" class="input-name form-control @error('telp_koor') is-invalid @enderror" id="telp_koor" placeholder="Masukkan Nomor Telepon Koordinator" name="telp_koor" value="{{ $lc->telp_koor }}" required>
+                                    @error('telp_koor')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        
                             <!-- Sumber Data -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="sumber_data" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Sumber Data</label>
-                                <select class="form-select p-3 align-self-stretch" name="sumber_data" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
+                                <select class="form-select p-3 align-self-stretch" value="{{ $lc->sumber_data }}" id="sumber_data" name="sumber_data" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
                                     <option>Pilih salah satu</option>
                                     <option value="Gaple" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $datasource == 'Gaple' ? 'selected' : '' }}>
                                        Gaple
@@ -62,14 +85,7 @@
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>
-                            <!-- Nama Koor -->
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-                                <label for="nama_koor" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama Koor</label>
-                                <input type="text" class="form-control @error('nama_koor') is-invalid @enderror" id="nama_koor" placeholder="Masukkan Nama Koor" name="nama_koor" value="{{ $lc->nama_koor }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
-                                @error('nama_koor')
-                                <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
-                            </div>
+
                             <!-- Jenis LC -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="jenis_kartu" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Jenis Kartu</label>
@@ -84,23 +100,26 @@
                                 @error('jenis_kartu')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
-                            </div> -->
-                            <!-- Nomor Kartu
-                            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            </div> 
+
+                            <!-- Nomor Kartu -->
+                            <!-- <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="no_kartu" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor Kartu</label>
                                 <input type="text" class="form-control @error('no_kartu') is-invalid @enderror" id="no_kartu" placeholder="Masukkan Nama Koor" name="no_kartu" value="{{ $lc->no_kartu }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                 @error('no_kartu')
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
-                            </div>
-                            <!-- Tanggal Dibuat -->
-                            <!-- <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+                            </div> -->
+
+                            <!-- Tanggal Pembuatan -->
+                             <!-- <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="tanggal_pembuatan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Pembuatan</label>
                                 <input type="date" class="form-control @error('tanggal_pembuatan') is-invalid @enderror" id="tanggal_pembuatan" placeholder="Masukkan Tanggal Lahir Anggota" name="tanggal_pembuatan" value="{{ $lc->tanggal_pembuatan }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                 @error('tanggal_pembuatan')
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div> -->
+
                             <!-- Upload LC -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label class="form-label" for="scan_lc" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Unggah Scan LC</label>
@@ -121,7 +140,7 @@
                             </button>
                         </div>
                     </form>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                     <script>
                         jQuery(document).ready(function() {
 	                        jQuery('#nama_koor').keyup(function() 
@@ -138,7 +157,7 @@
                             jQuery('#nama_koor').val(spart.join(" "));
                             });
                         });
-                    </script>
+                    </script> -->
                 </div>
             </div>
         </main>
