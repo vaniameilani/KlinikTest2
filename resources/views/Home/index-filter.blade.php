@@ -180,6 +180,9 @@
                             <div class="h5 header-name d-flex align-items-center pt-2">Alamat</div>
                             <div class="h5 header-name d-flex align-items-center pt-2">No HP</div>
                         </div>
+                        @if ($datanull == '')
+                        <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Tidak ada data yang sesuai dengan filter</div>
+                        @else
                         @foreach ($datanull as $row)
                         <div class="table-body">
                             <!-- NIK -->
@@ -253,6 +256,7 @@
                             @endif
                         </div>
                         @endforeach
+                        @endif
                     </div>
                     {{ $datanull->withQueryString()->links() }} 
                 </div>
