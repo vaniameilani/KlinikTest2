@@ -122,7 +122,7 @@ a.button-underline { text-decoration: none; }
 a.button-underline:hover { text-decoration: underline; text-decoration-color: #394E91; }
 
 /* Button Aksi on Table */
-a.button-ghost:hover { background: #EEEFF4; }
+a.button-ghost:hover { background: #EEEFF4; color: #394E91;}
 a.add-btn:hover { background: #EEEFF4; }
 
 .button-set-fill {
@@ -419,7 +419,8 @@ a.add-btn:hover { background: #EEEFF4; }
 
 .table-body-cell {
     display: flex;
-    padding: 8px 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -432,6 +433,14 @@ a.add-btn:hover { background: #EEEFF4; }
     color: #1D1B20;
     word-wrap: break-word;
     align-self: stretch;
+}
+
+.body-name-link {
+    text-align: start;
+    color: #394E91;
+    word-wrap: break-word;
+    align-self: stretch;
+    text-decoration: underline;
 }
 
 .table-body-btn {
@@ -472,8 +481,17 @@ a.add-btn:hover { background: #EEEFF4; }
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    gap: 32px; 
+    gap: 24px; 
     display: flex;
+}
+
+.filter-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
 }
 
 .filter-col {
@@ -531,4 +549,3 @@ a.add-btn:hover { background: #EEEFF4; }
     color: #1D1B20;
     text-align: justify;
 }
-

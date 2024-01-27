@@ -10,30 +10,23 @@
 
         <!-- css -->
         <link rel="stylesheet" href="css/login.css">
-        <style>
-            body {  
-                width: auto; 
-                height: auto; 
-                background-image: url(/public/images/login-bg.png); background-size: cover;
-            }
-        </style>
     </head>
 
-    <body>
+    <body style="width:auto; height:auto; background: url(images/login-bg.png); background-size:cover; ">
     <div class="position-absolute top-50 start-50 translate-middle">
         <div style="width: 500px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: center; display: blox;">
             <div style="padding: 40px; background: #E8EAF2; border-radius: 10px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 24px;"> 
             
                 <!-- Alert Registrasi Berhasil -->
                 @if(session()->has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show" style="align-self: stretch;" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
 
                 @if(session()->has('loginError'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="alert alert-danger alert-dismissible fade show"  style="align-self: stretch;" role="alert">
                         {{ session('loginError') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>

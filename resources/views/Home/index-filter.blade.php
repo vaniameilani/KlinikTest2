@@ -51,7 +51,7 @@
                             <label for="dapil" class="form-label b-medium filter-label">Dapil</label>
                             <select class="form-select filter-name-place" name="dapil">
                                 <option class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="LAKI" class="b-regular filter-name">LAKI-LAKI</option>
+                                <option value="Dapil 1" class="b-regular filter-name">Dapil 1</option>
                             </select>
                         </div>
                     </div>
@@ -65,8 +65,8 @@
                             <select class="form-select filter-name-place" name="faskes">
                                 <option value="" class="b-regular filter-name" selected>Pilih salah satu</option>
                                 <option value="FASKES 1" class="b-regular name"> FASKES 1 </option>
-                        <option value="FASKES 2" class="b-regular name"> FASKES 2 </option>
-                        <option value="FASKES 3" class="b-regular name"> FASKES 3 </option>
+                                <option value="FASKES 2" class="b-regular name"> FASKES 2 </option>
+                                <option value="FASKES 3" class="b-regular name"> FASKES 3 </option>
                             </select>
                         </div>
                         <!-- Jenis Kartu BPJS -->
@@ -87,92 +87,139 @@
                         <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
                     </button>
                 </div>
-            </div>
             </form>
-            <div>Filter berdasarkan 
-            @if(request('kecamatan') != "")Kecamatan: {{ $kecamatan->name }}@endif
-            @if(request('dapil') != "")Dapil ke: {{ request('dapil') }}@endif
-            @if(request('desa_kel') != "")Desa/Kelurahan: {{ $desa_kel[0] }}@endif
-            @if(request('no_tps') != "")Nomor TPS: {{ $no_tps[0] }}@endif
-            @if(request('faskes') != "")Faskes: {{ request('faskes') }}@endif
-            @if(request('jenis_bpjs') != "")Jenis BPJS: {{ request('jenis_bpjs') }}@endif
-            
-            </div>
 
             <div class="filter-main-card">
                 <div style="align-self:stretch; justify-content: flex-start; align-items: center; display: inline-flex">
                     <div style="color: #1D1B20; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Daftar Anggota</div>
                 </div>
-                <div class="table">
-                    <div class="table-head">
-                        <div class="h5 header-name d-flex align-items-center pt-2">NIK</div>
-                        <div class="h5 header-name d-flex align-items-center pt-2">Nama</div>
-                        <div class="h5 header-name d-flex align-items-center pt-2">LC</div>
-                        <div class="h5 header-name d-flex align-items-center pt-2">Faskes/Jenis Kartu BPJS</div>
-                        <div class="h5 header-name d-flex align-items-center pt-2">Alamat</div>
-                        <div class="h5 header-name d-flex align-items-center pt-2">No HP</div>
+                <div class="filter-content">
+                    <div style="align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px; display: inline-flex">
+                        <div style="color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Filter berdasarkan:</div>
+                        <div style="justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
+                            @if(request('kecamatan') != "")
+                            <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kecamatan:</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ $kecamatan->name }}</div>
+                            </div>
+                            @endif
+
+                            @if(request('dapil') != "")
+                            <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Dapil ke:</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ request('dapil') }}</div>
+                            </div>
+                            @endif
+
+                            @if(request('desa_kel') != "")
+                            <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Desa/Kelurahan:</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ $desa_kel[0] }}</div>
+                            </div>
+                            @endif
+
+                            @if(request('no_tps') != "")
+                            <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Nomor TPS:</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ $no_tps[0] }}</div>
+                            </div>
+                            @endif
+
+                            @if(request('faskes') != "")
+                            <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Faskes:</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ request('faskes') }}</div>
+                            </div>
+                            @endif
+
+                            @if(request('jenis_bpjs') != "")
+                            <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Jenis BPJS:</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ request('jenis_bpjs') }}</div>
+                            </div>
+                            @endif
+                        </div>
                     </div>
 
-                    @foreach ($datanull as $row)
-                    <div class="table-body">
-                        <!-- NIK -->
-                        <div class="table-body-cell">
-                            <a href="" class="btn button-ghost body-name b-regular">{{ $row->nik }}</a>
-                        </div>
+                    <!-- <div>Filter berdasarkan 
+                        @if(request('kecamatan') != "")Kecamatan: {{ $kecamatan->name }}@endif
+                        @if(request('dapil') != "")Dapil ke: {{ request('dapil') }}@endif
+                        @if(request('desa_kel') != "")Desa/Kelurahan: {{ $desa_kel[0] }}@endif
+                        @if(request('no_tps') != "")Nomor TPS: {{ $no_tps[0] }}@endif
+                        @if(request('faskes') != "")Faskes: {{ request('faskes') }}@endif
+                        @if(request('jenis_bpjs') != "")Jenis BPJS: {{ request('jenis_bpjs') }}@endif
+                    </div> -->
 
-                        <!-- NAMA -->
-                        <div class="table-body-cell">
-                            <div class="body-name b-regular">{{ $row->nama }}</div>
+                    <div class="table">
+                        <div class="table-head">
+                            <div class="h5 header-name d-flex align-items-center pt-2">NIK</div>
+                            <div class="h5 header-name d-flex align-items-center pt-2">Nama</div>
+                            <div class="h5 header-name d-flex align-items-center pt-2">LC</div>
+                            <div class="h5 header-name d-flex align-items-center pt-2">Faskes/Jenis Kartu BPJS</div>
+                            <div class="h5 header-name d-flex align-items-center pt-2">Alamat</div>
+                            <div class="h5 header-name d-flex align-items-center pt-2">No HP</div>
                         </div>
+                        @foreach ($datanull as $row)
+                        <div class="table-body">
+                            <!-- NIK -->
+                            <div class="table-body-cell">
+                                <a href="" class="btn button-ghost body-name-link b-medium">{{ $row->nik }}</a>
+                            </div>
 
-                        <!-- LC -->
-                        @if ($row->no_kartu == "")
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">-</div>
-                        </div>
-                        @else
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->no_kartu }}</div>
-                        </div>
-                        @endif
+                            <!-- NAMA -->
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">{{ $row->nama }}</div>
+                            </div>
 
-                        <!-- BPJS -->
-                        @if ($row->jenis_bpjs == "")
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">-</div>
-                        </div>
-                        @else
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->jenis_bpjs }}</div>
-                        </div>
-                        @endif
+                            <!-- LC -->
+                            @if ($row->no_kartu == "")
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">-</div>
+                            </div>
+                            @else
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->no_kartu }}</div>
+                            </div>
+                            @endif
 
-                        <!-- ALAMAT -->
-                        @if ($row->kecamatan == "")
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">-</div>
-                        </div>
-                        @else
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->kecamatan }}, {{ $row->desa_kel }}</div>
-                            <div class="b-regular body-name">{{ $row->alamat }}</div>
-                        </div>
-                        @endif
+                            <!-- BPJS -->
+                            @if ($row->jenis_bpjs == "")
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">-</div>
+                            </div>
+                            @else
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->jenis_bpjs }}</div>
+                            </div>
+                            @endif
 
-                        <!-- NOMOR HP -->
-                        @if ($row->no_hp == "")
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">-</div>
+                            <!-- ALAMAT -->
+                            @if ($row->kecamatan == "")
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">-</div>
+                            </div>
+                            @else
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->kecamatan }}, {{ $row->desa_kel }}</div>
+                                <div class="b-regular body-name">{{ $row->alamat }}</div>
+                            </div>
+                            @endif
+
+                            <!-- NOMOR HP -->
+                            @if ($row->no_hp == "")
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">-</div>
+                            </div>
+                            @else
+                            <div class="table-body-cell">
+                                <div class="b-regular body-name">{{ $row->no_hp }}</div>
+                            </div>
+                            @endif
                         </div>
-                        @else
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->no_hp }}</div>
-                        </div>
-                        @endif
+                        @endforeach
                     </div>
-                    @endforeach
+                    {{ $datanull->withQueryString()->links() }} 
                 </div>
-                {{ $datanull->withQueryString()->links() }} 
             </div>
         </div>
     </div>
