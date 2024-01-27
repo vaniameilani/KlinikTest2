@@ -30,6 +30,7 @@ class FilterController extends Controller
         $kecamatan = District::all()->where('id', $request->kecamatan)->pluck('name');
         $desa_kel = Village::all()->where('id', $request->desa_kel)->pluck('name');
         $no_tps = TpsList::all()->where('id', $request->no_tps)->pluck('no_tps');
+
         $collect = DB::table('ktps')
         ->join('bpjs', 'ktps.nik', '=', 'bpjs.nik_bpjs')
         ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')

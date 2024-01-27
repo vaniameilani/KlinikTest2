@@ -26,8 +26,8 @@
                                 <label for="kecamatan" class="form-label b-medium filter-label">Kecamatan</label>
                                 <select class="form-select filter-name-place" id="kecamatan" name="kecamatan">
                                     <option value="" class="b-regular filter-name"selected>Pilih salah satu</option>
-                                    @foreach ($listkec as $kecamatan)
-                                        <option value="{{ $kecamatan->id }}" class="b-regular filter-name">{{ $kecamatan->name }}</option>
+                                    @foreach ($listkec as $kec)
+                                        <option value="{{ $kec->id }}" class="b-regular filter-name">{{ $kec->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -50,7 +50,7 @@
                         <div class="filter-dropdown">
                             <label for="dapil" class="form-label b-medium filter-label">Dapil</label>
                             <select class="form-select filter-name-place" name="dapil">
-                                <option class="b-regular filter-name">Pilih salah satu</option>
+                                <option value="" class="b-regular filter-name">Pilih salah satu</option>
                                 <option value="Dapil 1" class="b-regular filter-name">Dapil 1</option>
                             </select>
                         </div>
@@ -100,7 +100,7 @@
                             @if(request('kecamatan') != "")
                             <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
                                 <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kecamatan:</div>
-                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ $kecamatan->name }}</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ $kecamatan[0] }}</div>
                             </div>
                             @endif
 
@@ -142,7 +142,7 @@
                     </div>
 
                     <!-- <div>Filter berdasarkan 
-                        @if(request('kecamatan') != "")Kecamatan: {{ $kecamatan->name }}@endif
+                        @if(request('kecamatan') != "")Kecamatan: {{ $kecamatan[0] }}@endif
                         @if(request('dapil') != "")Dapil ke: {{ request('dapil') }}@endif
                         @if(request('desa_kel') != "")Desa/Kelurahan: {{ $desa_kel[0] }}@endif
                         @if(request('no_tps') != "")Nomor TPS: {{ $no_tps[0] }}@endif
