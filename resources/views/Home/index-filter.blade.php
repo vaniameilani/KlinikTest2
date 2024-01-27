@@ -48,6 +48,13 @@
                     <div class="filter">
                         <div class="h5 filter-title">Filter Berdasarkan Dapil</div>
                         <div class="filter-dropdown">
+                            <label for="kota_kab" class="form-label b-medium filter-label">Kota/Kabupaten</label>
+                            <select class="form-select filter-name-place" name="kota_kab">
+                                <option class="b-regular filter-name">Pilih salah satu</option>
+                                <option value="#" class="b-regular filter-name">{{ # }}</option>
+                            </select>
+                        </div>
+                        <div class="filter-dropdown">
                             <label for="dapil" class="form-label b-medium filter-label">Dapil</label>
                             <select class="form-select filter-name-place" name="dapil">
                                 <option value="" class="b-regular filter-name">Pilih salah satu</option>
