@@ -41,7 +41,7 @@ class FilterController extends Controller
         $no_tps = TpsList::all()->where('id', $request->no_tps)->pluck('no_tps');
 
         $belitung1 = ["LESUNG BATANG", "PANGKALLALANG", "BULUH TUMBANG", "PERAWAS", "DUKONG", "JURU SEBERANG", "AIR MERBAU", "AIK KETEKOK", "AIK RAYAK"];
-        $belitung2 = ["KOTA", "PARIT", "TANJUNGPENDAM", "PAAL SATU", "KAMPONG DAMAI", "AIR SAGA", "AIK PELEMPANG JAYA"];
+        $belitung2 = ["KOTA", "PARIT", "TANJUNG PENDAM", "PAAL SATU", "KAMPONG DAMAI", "AIR SAGA", "AIK PELEMPANG JAYA"];
         $belitung3 = ["AIR SELUMAR", "AIR SERUK", "BATU ITAM", "KECIPUT", "PELEPAK PUTE", "SIJUK", "SUNGAI PADANG"," TANJONG TINGGI", "TANJUNG BINGA", "TERONG", "AIR BATU BUDING", "BADAU", "CERUCUK", "IBUL", "KACANG BOTOR", "PEGANTUNGAN", "SUNGAI SAMAK"];
         $belitung4 = ["BANTAN", "GUNUNG RITING", "KEMBIRI", "LASSAR", "MEMBALONG", "MENTIGI", "PADANG KANDIS", "PERPAT", "PULAU SELIU", "PULAU SUMEDANG", "SIMPANG RUSA", "TANJUNGRUSA", "PETALING", "PULAU GERSIK", "SELAT NASIK", "SUAK GUAL"];
         $beltim1 = ["BARU", "BENTAIAN JAYA", "BUKU LIMAU", "KELUBI", "KURNIA JAYA", "LALANG", "LALANG JAYA", "MEKAR JAYA", "PADANG", "AIK MADU", "LINTANG", "RENGGIANG", "SIMPANG TIGA"];
@@ -51,7 +51,7 @@ class FilterController extends Controller
         if($request->dapil == "BELITUNG 1"){
         $dapil = ["LESUNG BATANG", "PANGKALLALANG", "BULUH TUMBANG", "PERAWAS", "DUKONG", "JURU SEBERANG", "AIR MERBAU", "AIK KETEKOK", "AIK RAYAK"];
         }elseif($request->dapil == "BELITUNG 2"){
-        $dapil = ["KOTA", "PARIT", "TANJUNGPENDAM", "PAAL SATU", "KAMPONG DAMAI", "AIR SAGA", "AIK PELEMPANG JAYA"];
+        $dapil = ["KOTA", "PARIT", "TANJUNG PENDAM", "PAAL SATU", "KAMPONG DAMAI", "AIR SAGA", "AIK PELEMPANG JAYA"];
         }elseif($request->dapil == "BELITUNG 3"){
         $dapil = ["AIR SELUMAR", "AIR SERUK", "BATU ITAM", "KECIPUT", "PELEPAK PUTE", "SIJUK", "SUNGAI PADANG"," TANJONG TINGGI", "TANJUNG BINGA", "TERONG", "AIR BATU BUDING", "BADAU", "CERUCUK", "IBUL", "KACANG BOTOR", "PEGANTUNGAN", "SUNGAI SAMAK"];
         }elseif($request->dapil == "BELITUNG 4"){

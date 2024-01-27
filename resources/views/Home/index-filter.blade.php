@@ -47,19 +47,21 @@
                     </div>
                     <div class="filter">
                         <div class="h5 filter-title">Filter Berdasarkan Dapil</div>
-                        <div class="filter-dropdown">
-                            <label for="kota_kab" class="form-label b-medium filter-label">Kota/Kabupaten</label>
-                            <select class="form-select filter-name-place" id="kota_kab" name="kota_kab">
-                                <option value="" class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="KABUPATEN BELITUNG" class="b-regular filter-name">KABUPATEN BELITUNG</option>
-                                <option value="KABUPATEN BELITUNG TIMUR" class="b-regular filter-name">KABUPATEN BELITUNG TIMUR</option>
-                            </select>
-                        </div>
-                        <div class="filter-dropdown">
-                            <label for="dapil" class="form-label b-medium filter-label">Dapil</label>
-                            <select class="form-select filter-name-place" id="dapil" name="dapil">
-                                <option value="" class="b-regular filter-name">Pilih salah satu</option>
-                            </select>
+                        <div class="filter-list">
+                            <div class="filter-dropdown">
+                                <label for="kota_kab" class="form-label b-medium filter-label">Kota/Kabupaten</label>
+                                <select class="form-select filter-name-place" id="kota_kab" name="kota_kab">
+                                    <option value="" class="b-regular filter-name">Pilih salah satu</option>
+                                    <option value="KABUPATEN BELITUNG" class="b-regular filter-name">KABUPATEN BELITUNG</option>
+                                    <option value="KABUPATEN BELITUNG TIMUR" class="b-regular filter-name">KABUPATEN BELITUNG TIMUR</option>
+                                </select>
+                            </div>
+                            <div class="filter-dropdown">
+                                <label for="dapil" class="form-label b-medium filter-label">Dapil</label>
+                                <select class="form-select filter-name-place" id="dapil" name="dapil">
+                                    <option value="" class="b-regular filter-name">Pilih salah satu</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>  
@@ -230,7 +232,6 @@
                                     @foreach ($beltim3 as $bel_tim3) @if($row->kecamatan == $beltim->name && $row->desa_kel == $bel_tim3)Dapil Belitung Timur 3 @endif @endforeach  
 
                                     @endforeach  
-
                                 </div>  
                             </div>
                             @endif
