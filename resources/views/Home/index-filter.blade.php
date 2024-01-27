@@ -49,16 +49,16 @@
                         <div class="h5 filter-title">Filter Berdasarkan Dapil</div>
                         <div class="filter-dropdown">
                             <label for="kota_kab" class="form-label b-medium filter-label">Kota/Kabupaten</label>
-                            <select class="form-select filter-name-place" name="kota_kab">
-                                <option class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="#" class="b-regular filter-name">{{ # }}</option>
+                            <select class="form-select filter-name-place" id="kota_kab" name="kota_kab">
+                                <option value="" class="b-regular filter-name">Pilih salah satu</option>
+                                <option value="KABUPATEN BELITUNG" class="b-regular filter-name">KABUPATEN BELITUNG</option>
+                                <option value="KABUPATEN BELITUNG TIMUR" class="b-regular filter-name">KABUPATEN BELITUNG TIMUR</option>
                             </select>
                         </div>
                         <div class="filter-dropdown">
                             <label for="dapil" class="form-label b-medium filter-label">Dapil</label>
-                            <select class="form-select filter-name-place" name="dapil">
+                            <select class="form-select filter-name-place" id="dapil" name="dapil">
                                 <option value="" class="b-regular filter-name">Pilih salah satu</option>
-                                <option value="Dapil 1" class="b-regular filter-name">Dapil 1</option>
                             </select>
                         </div>
                     </div>
@@ -104,6 +104,13 @@
                     <div style="align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px; display: inline-flex">
                         <div style="color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Filter berdasarkan:</div>
                         <div style="justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
+                            @if(request('kota_kab') != "")
+                            <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kota/Kabupaten:</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ request('kota_kab') }}</div>
+                            </div>
+
+                            @endif
                             @if(request('kecamatan') != "")
                             <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
                                 <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kecamatan:</div>
@@ -113,7 +120,7 @@
 
                             @if(request('dapil') != "")
                             <div style="padding-left: 24px; padding-right: 24px; padding-top: 4px; padding-bottom: 4px; background: #C4CBE0; border-radius: 50px; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
-                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Dapil ke:</div>
+                                <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Dapil:</div>
                                 <div style="color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">{{ request('dapil') }}</div>
                             </div>
                             @endif
@@ -209,6 +216,22 @@
                             <div class="table-body-cell">
                                 <div class="b-regular body-name">{{ $row->kecamatan }}, {{ $row->desa_kel }}</div>
                                 <div class="b-regular body-name">{{ $row->alamat }}</div>
+                                <div class="b-regular body-name">
+                                    @foreach ($kecbelitung as $belitung)
+                                    
+                                    @foreach ($belitung1 as $bel1) @if($row->kecamatan == $belitung->name && $row->desa_kel == $bel1)Dapil Belitung 1 @endif @endforeach  
+                                    @foreach ($belitung2 as $bel2) @if($row->kecamatan == $belitung->name && $row->desa_kel == $bel2)Dapil Belitung 2 @endif @endforeach  
+                                    @foreach ($belitung3 as $bel3) @if($row->kecamatan == $belitung->name && $row->desa_kel == $bel3)Dapil Belitung 3 @endif @endforeach  
+                                    @foreach ($belitung4 as $bel4) @if($row->kecamatan == $belitung->name && $row->desa_kel == $bel4)Dapil Belitung 4 @endif @endforeach  
+                                    @endforeach
+                                    @foreach ($kecbeltim as $beltim)
+                                    @foreach ($beltim1 as $bel_tim1) @if($row->kecamatan == $beltim->name && $row->desa_kel == $bel_tim1)Dapil Belitung Timur 1 @endif @endforeach  
+                                    @foreach ($beltim2 as $bel_tim2) @if($row->kecamatan == $beltim->name && $row->desa_kel == $bel_tim2)Dapil Belitung Timur 2 @endif @endforeach  
+                                    @foreach ($beltim3 as $bel_tim3) @if($row->kecamatan == $beltim->name && $row->desa_kel == $bel_tim3)Dapil Belitung Timur 3 @endif @endforeach  
+
+                                    @endforeach  
+
+                                </div>  
                             </div>
                             @endif
 
@@ -266,6 +289,18 @@
                 }
             })
         });
+
+        jQuery('#kota_kab').change(function(event){
+            var kotakab = this.value;
+            jQuery('#dapil').html('');
+            if (kotakab == "KABUPATEN BELITUNG") {
+                jQuery('#dapil').html(
+                '<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option><option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="BELITUNG 1">BELITUNG 1</option><option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="BELITUNG 2">BELITUNG 2</option><option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="BELITUNG 3">BELITUNG 3</option><option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="BELITUNG 4">BELITUNG 4</option>');
+            }else{
+                jQuery('#dapil').html('<option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="">Pilih salah satu</option><option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="BELITUNG TIMUR 1">BELITUNG TIMUR 1</option><option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="BELITUNG TIMUR 2">BELITUNG TIMUR 2</option><option style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" value="BELITUNG TIMUR 3">BELITUNG TIMUR 3</option>');
+            }
+        });
+        
     });
     </script>
 </main>    

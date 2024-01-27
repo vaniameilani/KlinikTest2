@@ -80,19 +80,19 @@ class KtpsController extends Controller
 
     public function fatchRegency(Request $request)
     {
-        $data['regencies'] = Regency::where('province_id', $request->province_id)->get();
+        $data['regencies'] = Regency::where('province_id', $request->province_id)->orderBy('name')->get();
         return response()->json($data);
     }
 
     public function fatchDistrict(Request $request)
     {
-        $data['districts'] = District::where('regency_id', $request->regency_id)->get();
+        $data['districts'] = District::where('regency_id', $request->regency_id)->orderBy('name')->get();
         return response()->json($data);
     }
 
     public function fatchVillage(Request $request)
     {
-        $data['villages'] = Village::where('district_id', $request->district_id)->get();
+        $data['villages'] = Village::where('district_id', $request->district_id)->orderBy('name')->get();
         return response()->json($data);
     }
 
