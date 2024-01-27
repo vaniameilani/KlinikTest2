@@ -92,6 +92,9 @@
                     </div>
                 </div>
                 <div class="button-set">
+                    <a href='/filter' class="btn button-ghost" style="padding: 16px; border-radius: 10px; justify-content: center; align-items: center; display: flex" role="button">
+                        <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Reset</div>
+                    </a>
                     <button class="btn button-fill" type="submit" style="padding: 16px 24px; border-radius: 10px; justify-content: center; align-items: center; display: flex;">
                         <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
                     </button>
