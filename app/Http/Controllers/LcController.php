@@ -59,6 +59,7 @@ class LcController extends Controller
         ]);
 
         $changelc = new Changelc;
+        $changelc->nik_clc = $nik;
         $changelc->no_kartu = $request->no_kartu;
         $changelc->jenis_kartu = $request->jenis_kartu;
         $changelc->tanggal_upgrade = $request->tanggal_pembuatan;
@@ -91,6 +92,7 @@ class LcController extends Controller
         ]);
 
         $changelc = new Changelc;
+        $changelc->nik_clc = $nik;
         $changelc->no_kartu = $request->no_kartu;
         $changelc->jenis_kartu = $request->jenis_kartu;
         $changelc->tanggal_upgrade = $request->tanggal_pembuatan;
@@ -141,6 +143,7 @@ class LcController extends Controller
         ]);
 
         $changelc = new Changelc;
+        $changelc->nik_clc = $nik;
         $changelc->no_kartu = $request->no_kartu;
         $changelc->jenis_kartu = $request->jenis_kartu;
         $changelc->tanggal_upgrade = $request->tanggal_pembuatan;

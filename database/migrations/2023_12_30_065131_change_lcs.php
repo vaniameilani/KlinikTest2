@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('change_lcs', function (Blueprint $table){
             $table->id();
-            // $table->string('nik_change');
+            $table->string('nik_clc');
             $table->string('no_kartu')->nullable();
             $table->string('jenis_kartu')->nullable();
             $table->date('tanggal_upgrade')->nullable();

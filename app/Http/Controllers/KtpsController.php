@@ -55,6 +55,12 @@ class KtpsController extends Controller
             ->where('ktps.nama', 'like', '%'.$search.'%')
             ->orderBy('lcs.id_lc', 'DESC')
             ->Paginate(10);
+        }elseif(ctype_digit($search)){
+            $data = $collect
+            ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
+            ->where('ktps.nik', 'like', '%'.$search.'%')
+            ->orderBy('lcs.id_lc', 'DESC')
+            ->Paginate(10);
         }elseif(ctype_alnum($search)){
             $data = $collect
             ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs')
@@ -218,7 +224,7 @@ class KtpsController extends Controller
         ->select('lcs.no_kartu');
 
         $changelc = DB::table('change_lcs')
-        ->where('change_lcs.no_kartu', '=', $lcselect)
+        ->where('change_lcs.nik_clc', '=', $nik->nik)
         ->orderBy('tanggal_upgrade', 'desc')
         ->paginate(3);
 

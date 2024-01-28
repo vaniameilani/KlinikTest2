@@ -45,12 +45,19 @@ class ChangeLcController extends Controller
         ]);
 
         $changelc = new Changelc;
+        $changelc->nik_clc = $nik;
         $changelc->no_kartu = $request->no_kartu;
         $changelc->jenis_kartu = $request->jenis_kartu;
         $changelc->tanggal_upgrade = $request->tanggal_upgrade;
         $changelc->alasan_upgrade = $request->alasan_upgrade;
         $changelc->save();
 
+        Lc::where('nik_lc', $nik)
+        ->update([
+            'no_kartu' => $request->no_kartu,
+            'jenis_kartu' => $request->jenis_kartu,
+            'tanggal_pembuatan' => $request->tanggal_upgrade
+        ]);
         return redirect()->route('detail-anggota', ['nik' => $nik]);
     }
 

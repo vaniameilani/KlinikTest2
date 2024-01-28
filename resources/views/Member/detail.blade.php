@@ -379,13 +379,16 @@
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
                             <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                                 <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Riwayat Ganti Kartu</div>
+                                @if ($changelc->count() == 0)
+                                @else
                                 <a class="btn button-line" href="/ubah-kartu/{{$lc[0]->id_lc}}" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                     <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Ganti Kartu</div>
                                 </a>  
+                                @endif
                             </div>
                             @if ($changelc->count() == 0)
                             <div style="align-self: stretch; height: 114px; padding-top: 40px; padding-bottom: 40px; background: #E8EAF2; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; display: flex">
-                                <div style="opacity: 0.50; text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Belum mengikuti acara apapun</div>
+                                <div style="opacity: 0.50; text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Belum ada riwayat penambahan/pergantian kartu</div>
                             </div>
                             @else
                             <div style="align-self: stretch; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">

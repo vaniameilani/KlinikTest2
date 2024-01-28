@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ChangeLc extends Model
 {
     use HasFactory;
-    protected $fillable = ['no_kartu', 'jenis_kartu', 'tanggal_upgrade'
+    protected $fillable = ['nik_clc', 'no_kartu', 'jenis_kartu', 'tanggal_upgrade'
 , 'alasan_upgrade', 'status', 'tanggal_penarikan', 'alasan_penarikan'];
 }
