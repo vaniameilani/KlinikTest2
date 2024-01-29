@@ -28,11 +28,10 @@ class LcController extends Controller
 
     public function edit(Lc $lc)
     {
-        $koor = $lc->nama_koor;
         $cardtype = $lc->jenis_kartu;
         $datasource = $lc->sumber_data;
 
-        return view('LC.edit', compact('lc', 'cardtype', 'koor', 'datasource'));
+        return view('LC.edit', compact('lc', 'cardtype', 'datasource'));
     }
 
     public function update(Request $request, $nik)
