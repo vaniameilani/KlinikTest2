@@ -123,8 +123,12 @@ class KtpsController extends Controller
             'status_perkawinan' => 'required',
             'kewarganegaraan' => 'required',
             'asal_negara' => 'required',
-            // 'scan_ktp' => 'required',
+            'scan_ktp' => 'required|image|mimes:jpeg,png,jpg|max:1000',
         ]);
+
+        $filename = time().$request->file('scan_ktp')->getClientOriginalName();
+        $path = $request->file('scan_ktp')->storeAs('images', $filename, 'public');
+        $requestData["scan_ktp"] = '/storage/'.$path;
 
         $ssprovinsi = DB::table('provinces')
         ->where('provinces.id', '=', $request->provinsi)

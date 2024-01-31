@@ -24,7 +24,11 @@
                     <div style="text-align: justify; color: white; font-size: 32px; font-family: Inter; font-weight: 500; line-height: 44.80px; word-wrap: break-word">{{ $ktp->nama }}</div>
                     <div style="justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                         <div style="text-align: justify; color: #C4CBE0; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Nomor Telepon:</div>
+                        @if ($other[0]->no_hp == 0)
+                        <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                        @else
                         <div style="text-align: justify; color: white; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">{{ $other[0]->no_hp }}</div>
+                        @endif
                     </div>
                 </div>
                 <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
@@ -32,8 +36,12 @@
                 <div style="text-align: justify; color: white; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">{{ $lc[0]->sumber_data }}</div>
                     <!-- @endforeach -->
                     <div style="justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
-                        <div style="text-align: justify; color: #C4CBE0; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Koordinasi Wilayah:</div>
+                        <div style="text-align: justify; color: #C4CBE0; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Koordinator Wilayah:</div>
                         <div style="text-align: justify; color: white; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">{{ $lc[0]->nama_koor }}</div>
+                    </div>
+                    <div style="justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                        <div style="text-align: justify; color: #C4CBE0; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Nomor Telepon Koordinator:</div>
+                        <div style="text-align: justify; color: white; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">{{ $lc[0]->telp_koor }}</div>
                     </div>
                 </div>
             </div>
@@ -143,8 +151,8 @@
                             @if ($ktp->scan_ktp == 0)
                             <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
                             @else
-                            <a class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" href="#" role="button">
-                                <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">File KTP.pdf</div>
+                            <a class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" href="{{ asset($ktp->scan_ktp) }}" role="button">
+                                <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">File KTP</div>
                             </a>
                             @endif
                         </div>

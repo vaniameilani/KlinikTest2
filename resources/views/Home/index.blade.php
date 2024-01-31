@@ -167,9 +167,10 @@
                                 <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn px-3 button-fill body-btn-detail">
                                     <div class="b-bold header-name" style="color: white;">Detail</div>
                                 </a>
-                                <a href="#" role="button" class="btn px-3 button-ghost-delete body-btn-detail">
+                                <a href="#" role="button" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')" class="btn px-3 button-ghost-delete body-btn-detail">
                                     <div class="b-bold header-name-delete">Hapus</div>
                                 </a>
+                                <!-- <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="#"><i class="fa fa-trash"></i></a> -->
                             </div>
                         </div>
                         @endforeach

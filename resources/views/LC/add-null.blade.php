@@ -53,27 +53,25 @@
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             </div>
+
                             <!-- Nama & No HP Koor -->
                             <div class="input-col">
                                 <div class="input-col-row">
-                                    <label for="nama_koor" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama Koordinator</label>
-                                    <select class="form-select p-3 align-self-stretch" id="nama_koor" name="nama_koor" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
-                                        <option >Pilih salah satu</option>
-                                        <option value="Nama 1" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('koor') == 'Nama 1' ? 'selected' : '' }}>Nama 1</option>
-                                        <option value="Nama 2" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ old('koor') == 'Nama 2' ? 'selected' : '' }}>Nama 2</option>
-                                    </select>
+                                    <label for="nama_koor" class="form-label b-medium name" >Nama Koordinator</label>
+                                    <input type="text" class="input-name form-control @error('nama_koor') is-invalid @enderror" id="nama_koor" placeholder="Masukkan Nama Koordinator" name="nama_koor" value="{{ old('nama_koor') }}" required>
                                     @error('nama_koor')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
                                 <div class="input-col-row">
                                     <label for="telp_koor" class="form-label b-medium name" >Nomor Telepon Koordinator</label>
-                                    <input type="date" class="input-name form-control @error('telp_koor') is-invalid @enderror" id="telp_koor" placeholder="Masukkan Nomor Telepon Koordinator" name="telp_koor" value="{{ old('telp_koor') }}" required>
+                                    <input type="text" class="input-name form-control @error('telp_koor') is-invalid @enderror" id="telp_koor" placeholder="Masukkan Nomor Telepon Koordinator" name="telp_koor" value="{{ old('telp_koor') }}" required>
                                     @error('telp_koor')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
                             </div>
+                            
                             <!-- Sumber Data -->
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="sumber_data" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Sumber Data</label>

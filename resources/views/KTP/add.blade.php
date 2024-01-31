@@ -224,7 +224,7 @@
                     <div style="align-self: stretch; border-radius: 5px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 4px; display: flex">
                         <input class="form-control @error('scan_ktp') is-invalid @enderror p-3 pr-5" type="file" name="scan_ktp" id="scan_ktp" style="align-self: stretch; justify-content: flex-start; align-items: center; display: inline-flex; border-radius: 5px; border: 1px #DADDE5 solid;">
                         <div style="padding-right: 110px; justify-content: flex-start; align-items: center; display: inline-flex">
-                            <div style="text-align: justify; color: #757575; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Format: JPG atau PDF</div>
+                            <div style="text-align: justify; color: #757575; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Format: JPG, JPEG, PNG | Maks: 1MB</div>
                         </div>
                     </div>
                     @error('scan_ktp')

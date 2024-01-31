@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('status_perkawinan');
             $table->string('kewarganegaraan');
             $table->string('asal_negara');
-            $table->binary('scan_ktp')->nullable();
+            $table->string('scan_ktp', 500)->nullable();
             $table->timestamps();
         });
     }
