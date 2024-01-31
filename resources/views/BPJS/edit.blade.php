@@ -46,14 +46,28 @@
 
                 <!-- Faskes -->
                 <div class="input-field">
-                    <label for="faskes_bpjs" class="form-label b-medium name">Jenis Kartu BPJS</label>
+                    <label for="faskes_bpjs" class="form-label b-medium name">Jenis Faskes BPJS</label>
                     <select class="form-select dropdown" id="faskes_bpjs" name="faskes_bpjs" required>
                         <option >Pilih salah satu</option>
-                        <option value="FASKES 1" class="b-regular name" {{ $cardtype == 'FASKES 1' ? 'selected' : '' }}> FASKES 1 </option>
-                        <option value="FASKES 2" class="b-regular name" {{ $cardtype == 'FASKES 2' ? 'selected' : '' }}> FASKES 2 </option>
-                        <option value="FASKES 3" class="b-regular name" {{ $cardtype == 'FASKES 3' ? 'selected' : '' }}> FASKES 3 </option>
+                        <option value="FASKES 1" class="b-regular name" {{ $faskes == 'FASKES 1' ? 'selected' : '' }}> FASKES 1 </option>
+                        <option value="FASKES 2" class="b-regular name" {{ $faskes == 'FASKES 2' ? 'selected' : '' }}> FASKES 2 </option>
+                        <option value="FASKES 3" class="b-regular name" {{ $faskes == 'FASKES 3' ? 'selected' : '' }}> FASKES 3 </option>
                     </select>
                     @error('faskes_bpjs')
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                    @enderror
+                </div>
+
+                <!-- Kelas -->
+                <div class="input-field">
+                    <label for="kelas_bpjs" class="form-label b-medium name">Jenis Kelas BPJS</label>
+                    <select class="form-select dropdown" id="kelas_bpjs" name="kelas_bpjs" required>
+                        <option >Pilih salah satu</option>
+                        <option value="KELAS 1" class="b-regular name" {{ $classtype == 'KELAS 1' ? 'selected' : '' }}> KELAS 1 </option>
+                        <option value="KELAS 2" class="b-regular name" {{ $classtype == 'KELAS 2' ? 'selected' : '' }}> KELAS 2 </option>
+                        <option value="KELAS 3" class="b-regular name" {{ $classtype == 'KELAS 3' ? 'selected' : '' }}> KELAS 3 </option>
+                    </select>
+                    @error('kelas_bpjs')
                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                     @enderror
                 </div>
@@ -65,8 +79,8 @@
                         <option >Pilih salah satu</option>
                         <option value="PBI APBD" class="b-regular name" {{ $cardtype == 'PBI APBD' ? 'selected' : '' }}> PBI APBD </option>
                         <option value="PBI APBN" class="b-regular name" {{ $cardtype == 'PBI APBN' ? 'selected' : '' }}> PBI APBN </option>
+                        <option value="PEGAWAI SWASTA" class="b-regular name" {{ $cardtype == 'PEGAWAI SWASTA' ? 'selected' : '' }}> PEGAWAI SWASTA </option>
                         <option value="MANDIRI" class="b-regular name" {{ $cardtype == 'MANDIRI' ? 'selected' : '' }}> MANDIRI </option>
-                        <option value="PERUSAHAAN" class="b-regular name" {{ $cardtype == 'PERUSAHAAN' ? 'selected' : '' }}> PERUSAHAAN </option>
                     </select>
                     @error('jenis_bpjs')
                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>

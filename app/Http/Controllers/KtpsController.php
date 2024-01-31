@@ -201,6 +201,7 @@ class KtpsController extends Controller
         ->join('ktps', 'kks.nik_kk', '=', 'ktps.nik')
         ->select('ktps.nik', 'ktps.nama', 'kks.kk', 'bpjs.no_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'bpjs.id_bpjs', 'lcs.id_lc')
         ->where('kks.kk', '=', $kkselect)
+        ->orderBy('ktps.nama')
         ->get();
 
         $lc = DB::table('lcs')

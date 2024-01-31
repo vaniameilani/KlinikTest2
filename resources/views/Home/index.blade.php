@@ -163,9 +163,12 @@
                             @endif
 
                             <!-- AKSI -->
-                            <div class="table-body-cell ps-4">
-                                <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn button-ghost body-btn-detail">
-                                    <div class="b-bold header-name">Detail</div>
+                            <div class="table-body-cell-action ps-4">
+                                <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn px-3 button-fill body-btn-detail">
+                                    <div class="b-bold header-name" style="color: white;">Detail</div>
+                                </a>
+                                <a href="#" role="button" class="btn px-3 button-ghost-delete body-btn-detail">
+                                    <div class="b-bold header-name-delete">Hapus</div>
                                 </a>
                             </div>
                         </div>

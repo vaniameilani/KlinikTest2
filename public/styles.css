@@ -125,6 +125,12 @@ a.button-underline:hover { text-decoration: underline; text-decoration-color: #3
 a.button-ghost:hover { background: #EEEFF4; color: #394E91;}
 a.add-btn:hover { background: #EEEFF4; }
 
+/* button property */
+.button-ghost:hover { background: #EEEFF4; color: #394E91;}
+
+/* delete button in table */
+a.button-ghost-delete:hover { background: #EEEFF4; color: #E8322E; }
+
 .button-set-fill {
     padding: 16px; 
     border-radius: 10px; 
@@ -408,6 +414,13 @@ a.add-btn:hover { background: #EEEFF4; }
     flex: 1 0 0;
 }
 
+.header-name-delete {
+    text-align: start; 
+    color: #E8322E;
+    align-self: stretch;
+    flex: 1 0 0;
+}
+
 .table-body {
     align-self: stretch; 
     padding: 0px 20px;
@@ -424,6 +437,15 @@ a.add-btn:hover { background: #EEEFF4; }
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.table-body-cell-action {
+    display: flex;
+    /* padding: 16px 0px; */
+    align-items: center;
+    gap: 8px;
     flex: 1 0 0;
     align-self: stretch;
 }
@@ -462,7 +484,7 @@ a.add-btn:hover { background: #EEEFF4; }
 
 .body-btn-detail {
     display: flex;
-    padding: 16px 40px;
+    /* padding: 16px 40px; */
     justify-content: center;
     align-items: center;
     border-radius: 10px;

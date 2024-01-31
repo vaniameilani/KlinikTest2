@@ -9,6 +9,7 @@ use App\Http\Controllers\LcController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Lc;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,6 +69,9 @@ Route::middleware('auth')->group(function() {
     Route::get('{lc}/tambah-lc', [LcController::class, 'add']);
     Route::put('/update-anggota-lc/{nik}', [LcController::class, 'update']);
     Route::put('/update-lc/{nik}', [LcController::class, 'updatelc']);
+
+    Route::get('/status/{lc}/edit', [LcController::class, 'openstatus']);
+    Route::put('/update-status-lc/{nik}', [LcController::class, 'status']);
 
     // for nulldata
     Route::get('{lc}/tambah-data/lc', [LcController::class, 'addnull']);

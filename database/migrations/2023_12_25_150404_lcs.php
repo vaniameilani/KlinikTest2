@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('sumber_data')->nullable();
             $table->string('nama_koor')->nullable();
             $table->string('telp_koor')->nullable();
+            $table->string('status')->nullable();
+            $table->date('tanggal_penarikan')->nullable();
+            $table->string('alasan_penarikan')->nullable();
             $table->binary('scan_lc')->nullable();
             $table->timestamps();
         });

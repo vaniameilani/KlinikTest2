@@ -151,4 +151,53 @@ class LcController extends Controller
         return redirect('/nulldata');
     }
 
+    public function openstatus (Lc $lc)
+    {
+        $cardtype = $lc->jenis_kartu;
+        $datasource = $lc->sumber_data;
+
+        return view('LC.edit', compact('lc', 'cardtype', 'datasource'));
+    }
+
+    public function status (Request $request, $lc)
+    {
+        $nikselect = DB::table('lcs')
+        ->where('lcs.id_lc', '=', $lc->id_lc)
+        ->select('nik_lc');
+
+        $nik = DB::table('ktps')
+        ->where('ktps.nik', '=', $nikselect)
+        ->get();
+
+        $request->validate([
+            'id_lc',
+            'nik_lc',
+            'no_kartu',
+            'jenis_kartu',
+            'tanggal_pembuatan',
+            'sumber_data',
+            'nama_koor',
+            'telp_koor',
+            'status' => 'required',
+            'tanggal_penarikan' => 'required',
+            'alasan_penarikan' => 'required',
+        ]);
+
+        Lc::where('nik_lc', $nik)
+        ->update([
+            'no_kartu' => $request->no_kartu,
+            'jenis_kartu' => $request->jenis_kartu,
+            'tanggal_pembuatan' => $request->tanggal_pembuatan,
+            'sumber_data' => $request->sumber_data,
+            'nama_koor' => $request->nama_koor,
+            'telp_koor' => $request->telp_koor,
+            'scan_lc' => $request->scan_lc,
+            'status' => $request->status,
+            'tanggal_penarikan' => $request->tanggal_penarikan,
+            'alasan_penarikan' => $request->alasan_penarikan,
+        ]);
+
+        return redirect()->route('detail-anggota', ['nik' => $nik]);
+    }
+
 }
