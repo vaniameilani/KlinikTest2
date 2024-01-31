@@ -123,12 +123,12 @@ class KtpsController extends Controller
             'status_perkawinan' => 'required',
             'kewarganegaraan' => 'required',
             'asal_negara' => 'required',
-            'scan_ktp' => 'required|image|mimes:jpeg,png,jpg|max:1000',
+            'scan_ktp',
         ]);
 
-        $filename = time().$request->file('scan_ktp')->getClientOriginalName();
-        $path = $request->file('scan_ktp')->storeAs('images', $filename, 'public');
-        $requestData["scan_ktp"] = '/storage/'.$path;
+        // $fileName = time().$request->file('photo')->getClientOriginalName();
+        // $path = $request->file('photo')->storeAs('images', $fileName, 'public');
+        // $requestData["photo"] = '/storage/'.$path;
 
         $ssprovinsi = DB::table('provinces')
         ->where('provinces.id', '=', $request->provinsi)
@@ -165,7 +165,21 @@ class KtpsController extends Controller
         $ktp->status_perkawinan = $request->status_perkawinan;
         $ktp->kewarganegaraan = $request->kewarganegaraan;
         $ktp->asal_negara = $request->asal_negara;
-        $ktp->scan_ktp = $request->scan_ktp;
+        // $ktp->scan_ktp = $request->scan_ktp;
+        if($request->hasFile('scan_ktp')){
+            // $file = $request->file('scan_ktp');
+            // $ext = $file->getClientOriginalExtension();
+            // $filename = time().'.'.$ext; 
+            // $file->move('uploads/buku/', $filename); 
+            // $ktp->scan_ktp = $filename;
+
+            $filename = time().$request->file('scan_ktp')->getClientOriginalExtension();
+            $path = $request->file('scan_ktp')->storeAs('images', $filename, 'public');
+            $ext = '/storage/'.$path;
+
+            $ktp->scan_ktp = $ext;
+        }
+
         $ktp->save();
 
         $kk = new kk;
@@ -401,5 +415,17 @@ class KtpsController extends Controller
        
 
         return view('Home.indexnull', compact('datanull'));
+    }
+
+    public function destroy(Ktp $nik)
+    {
+        $deleteBpjs = DB::table('bpjs')->where('nik_bpjs', '=', $nik->nik)->delete();
+        $deleteclc = DB::table('change_lcs')->where('nik_clc', '=', $nik->nik)->delete();
+        $deletekk = DB::table('kks')->where('nik_kk', '=', $nik->nik)->delete();
+        $deletektp = DB::table('ktps')->where('nik', '=', $nik->nik)->delete();
+        $deletelc = DB::table('lcs')->where('nik_lc', '=', $nik->nik)->delete();
+        $deleteother = DB::table('others')->where('nik_other', '=', $nik->nik)->delete();
+
+        return redirect('/')->with('success', 'Data telah dihapus');
     }
 }

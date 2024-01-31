@@ -151,9 +151,10 @@
                             @if ($ktp->scan_ktp == 0)
                             <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
                             @else
-                            <a class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" href="{{ asset($ktp->scan_ktp) }}" role="button">
+                            <!-- <a class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" href="{{ asset('/storage/'.$ktp->scan_ktp) }} role="button">
                                 <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">File KTP</div>
-                            </a>
+                            </a> -->
+                            <img src="{{ asset($ktp->scan_ktp) }}" width= '50' height='50' class="img img-responsive" />
                             @endif
                         </div>
                     </div>
@@ -275,33 +276,33 @@
                                             <h1 class="modal-title fs-5 ps-3" id="freezeCard">Kartu Freeze</h1>
                                             <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <form method="POST" action="/update-freeze-taken/{{ $ktp->nik }}" class="px-3">
-                                            @method('PUT')
-                                            @csrf
-                                                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex;">
-                                                    <div class="input-field">
-                                                        <label for="status" class="form-label b-medium name">Status</label>
-                                                        <input readonly type="text" class="input-name form-control @error('status') is-invalid @enderror" id="status" placeholder="Masukkan Status Kartu" name="status" value="Dibekukan">
+                                        <form method="POST" action="/update-freeze-taken/{{ $ktp->nik }}" class="px-3">
+                                            <div class="modal-body">
+                                                @method('PUT')
+                                                @csrf
+                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex;">
+                                                        <div class="input-field">
+                                                            <label for="status" class="form-label b-medium name">Status</label>
+                                                            <input readonly type="text" class="input-name form-control @error('status') is-invalid @enderror" id="status" placeholder="Masukkan Status Kartu" name="status" value="Dibekukan">
+                                                        </div>
+                                                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                                            <label for="tanggal_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Freeze Kartu</label>
+                                                            <input type="date" class="form-control @error('tanggal_penarikan') is-invalid @enderror disable-bg" id="tanggal_penarikan" placeholder="Masukkan Tanggal Freeze Kartu" name="tanggal_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                                        </div>
+                                                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                                            <label for="alasan_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alasan Freeze Kartu</label>
+                                                            <input type="text" class="form-control @error('alasan_penarikan') is-invalid @enderror disable-bg" id="alasan_penarikan" placeholder="Masukkan Alasan Freeze Kartu" name="alasan_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                                                        </div>
                                                     </div>
-                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                                                        <label for="tanggal_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Freeze Kartu</label>
-                                                        <input type="date" class="form-control @error('tanggal_penarikan') is-invalid @enderror disable-bg" id="tanggal_penarikan" placeholder="Masukkan Tanggal Freeze Kartu" name="tanggal_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
-                                                    </div>
-                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                                                        <label for="alasan_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alasan Freeze Kartu</label>
-                                                        <input type="text" class="form-control @error('alasan_penarikan') is-invalid @enderror disable-bg" id="alasan_penarikan" placeholder="Masukkan Alasan Freeze Kartu" name="alasan_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
-                                                    </div>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="modal-footer" style="padding-left: 24px; padding-right: 24px;">
-                                            <button type="submit" class="btn button-fill" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                                                <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
-                                            </button>
-                                            </form>
-                                            <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
-                                        </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer" style="padding-left: 24px; padding-right: 24px;">
+                                                <button type="submit" class="btn button-fill" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                                    <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
+                                                </button>
+                                                <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -312,33 +313,33 @@
                                             <h1 class="modal-title fs-5 ps-3" id="takenCard">Penarikan Kartu</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <form method="POST" action="/update-freeze-taken/{{ $ktp->nik }}" class="px-3">
-                                            @method('PUT')
-                                            @csrf
-                                                <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex;">
-                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                                                        <label for="status" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status</label>
-                                                        <input readonly type="text" class="form-control @error('status') is-invalid @enderror disable-bg" id="status" placeholder="Masukkan status Anggota" name="status" value="Dinonaktifkan" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
+                                        <form method="POST" action="/update-freeze-taken/{{ $ktp->nik }}" class="px-3">
+                                            <div class="modal-body">
+                                                @method('PUT')
+                                                @csrf
+                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex;">
+                                                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                                            <label for="status" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status</label>
+                                                            <input readonly type="text" class="form-control @error('status') is-invalid @enderror disable-bg" id="status" placeholder="Masukkan status Anggota" name="status" value="Dinonaktifkan" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
+                                                        </div>
+                                                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                                            <label for="tanggal_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Penarikan Kartu</label>
+                                                            <input type="date" class="form-control @error('tanggal_penarikan') is-invalid @enderror disable-bg" id="tanggal_penarikan" placeholder="Masukkan Tanggal Freeze Kartu" name="tanggal_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
+                                                        </div>
+                                                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                                            <label for="alasan_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alasan Penarikan Kartu</label>
+                                                            <input type="text" class="form-control @error('alasan_penarikan') is-invalid @enderror disable-bg" id="alasan_penarikan" placeholder="Masukkan Alasan Freeze Kartu" name="alasan_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
+                                                        </div>
                                                     </div>
-                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                                                        <label for="tanggal_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Penarikan Kartu</label>
-                                                        <input type="date" class="form-control @error('tanggal_penarikan') is-invalid @enderror disable-bg" id="tanggal_penarikan" placeholder="Masukkan Tanggal Freeze Kartu" name="tanggal_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                                                    </div>
-                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                                                        <label for="alasan_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alasan Penarikan Kartu</label>
-                                                        <input type="text" class="form-control @error('alasan_penarikan') is-invalid @enderror disable-bg" id="alasan_penarikan" placeholder="Masukkan Alasan Freeze Kartu" name="alasan_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                                                    </div>
-                                                </div>
-                                            
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn button-fill" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                                                <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
-                                            </button>
-                                            </form>
-                                            <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
-                                        </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn button-fill" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                                    <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
+                                                </button>
+                                                <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

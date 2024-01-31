@@ -19,7 +19,7 @@
         </style>
     </head>
 
-    <body style="width:auto; height:auto; background: url(images/login-bg.png); background-size:cover; ">
+    <body style="width:auto; height:auto; background: url(photos/login-bg.png); background-size:cover; ">
         <div class="position-absolute top-50 start-50 translate-middle">
             <div style="width: 500px; flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: center; display: blox;">
                 <div style="padding: 40px; background: #E8EAF2; border-radius: 10px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 24px;"> 

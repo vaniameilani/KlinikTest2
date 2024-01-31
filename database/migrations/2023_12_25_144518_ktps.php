@@ -44,4 +44,14 @@ return new class extends Migration
     {
         //
     }
+
+    // public function rules()
+    // {
+    //     'scan_ktp' => [
+    //       'nullable',
+    //       'image',
+    //       'mimes:jpg,jpeg,png',
+    //       'max:5120'
+    //     ];
+    // }
 };

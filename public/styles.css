@@ -313,7 +313,7 @@ a.button-ghost-delete:hover { background: #EEEFF4; color: #E8322E; }
     border-radius: 10px;
     border: 1px solid #DADDE5;
     /* background: #394E91; */
-    background: url(images/bg-card-dark.png);
+    background: url(photos/bg-card-dark.png);
     background-repeat: no-repeat;
     background-size:cover;
     align-self: stretch;

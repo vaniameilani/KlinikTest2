@@ -3,7 +3,7 @@
 @section('content')
 <div style="width: 100%; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
     <!-- HERO SECTION -->
-    <div style="align-self: stretch; background: url(images/hero-image-blur.png); background-size:cover; padding-left: 176px; padding-right: 176px; padding-top: 80px; padding-bottom: 80px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; display: inline-flex">
+    <div style="align-self: stretch; background: url(photos/hero-image-blur.png); background-size:cover; padding-left: 176px; padding-right: 176px; padding-top: 80px; padding-bottom: 80px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; display: inline-flex">
         <div style="align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px; display: flex;">
             <div style="text-align: justify; color: white; font-size: 40px; font-family: Inter; font-weight: 700; line-height: 56px; word-wrap: break-word">Selamat Datang di Yayasan Raycare Nusantara!</div>
             <div style="align-self: stretch; text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Semoga harimu menyenangkan! Ada anggota baru hari ini?</div>
@@ -167,9 +167,13 @@
                                 <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn px-3 button-fill body-btn-detail">
                                     <div class="b-bold header-name" style="color: white;">Detail</div>
                                 </a>
-                                <a href="#" role="button" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')" class="btn px-3 button-ghost-delete body-btn-detail">
-                                    <div class="b-bold header-name-delete">Hapus</div>
-                                </a>
+                                <form method="post" action="/detail-anggota/{{ $row->nik }}">
+                                    @method('delete')
+                                    @csrf
+                                    <button role="button" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')" class="btn px-3 button-ghost-delete body-btn-detail">
+                                        <div class="b-bold header-name-delete">Hapus</div>
+                                    </button>
+                                </form>
                                 <!-- <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="#"><i class="fa fa-trash"></i></a> -->
                             </div>
                         </div>

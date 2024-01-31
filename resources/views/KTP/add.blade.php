@@ -19,7 +19,7 @@
 
     <!-- FORM -->
     <div class="card-form">
-        <form method="POST" action="/ktps" style="align-self: stretch; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 32px;">
+        <form method="POST" action="/ktps" enctype="multipart/form-data" style="align-self: stretch; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 32px;">
             @csrf
             <div class="form">
                 <!-- NIK -->
