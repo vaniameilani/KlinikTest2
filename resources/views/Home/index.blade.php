@@ -168,11 +168,11 @@
                                     <div class="b-bold header-name" style="color: white;">Detail</div>
                                 </a>
                                 <form method="post" action="/detail-anggota/{{ $row->nik }}">
-                                @method('delete')
-                                @csrf
-                                <button role="button" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')" class="btn px-3 button-ghost-delete body-btn-detail">
-                                    <div class="b-bold header-name-delete">Hapus</div>
-                                </button>
+                                    @method('delete')
+                                    @csrf
+                                    <button role="button" onclick="return confirm('Apakah Anda yakin untuk menghapus data ini?')" class="btn px-3 button-ghost-delete body-btn-detail">
+                                        <div class="b-bold header-name-delete">Hapus</div>
+                                    </button>
                                 </form>
                                 <!-- <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="#"><i class="fa fa-trash"></i></a> -->
                             </div>
