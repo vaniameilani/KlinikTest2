@@ -50,6 +50,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/detail-anggota/{nik}', [KtpsController::class, 'show'])->name('detail-anggota');
     Route::get('/detail-anggota/{ktp}/edit/ktp', [KtpsController::class, 'edit']);
     Route::put('/update-anggota/{nik}', [KtpsController::class, 'update']);
+    Route::delete('/detail-anggota/{nik}', [KtpsController::class, 'destroy']);
+
 
     // KK -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{kk}/edit/kk', [KkController::class, 'edit'])->name('edit-kk');

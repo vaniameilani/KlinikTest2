@@ -402,4 +402,16 @@ class KtpsController extends Controller
 
         return view('Home.indexnull', compact('datanull'));
     }
+
+    public function destroy(Ktp $nik)
+    {
+        $deleteBpjs = DB::table('bpjs')->where('nik_bpjs', '=', $nik->nik)->delete();
+        $deleteclc = DB::table('change_lcs')->where('nik_clc', '=', $nik->nik)->delete();
+        $deletekk = DB::table('kks')->where('nik_kk', '=', $nik->nik)->delete();
+        $deletektp = DB::table('ktps')->where('nik', '=', $nik->nik)->delete();
+        $deletelc = DB::table('lcs')->where('nik_lc', '=', $nik->nik)->delete();
+        $deleteother = DB::table('others')->where('nik_other', '=', $nik->nik)->delete();
+
+        return redirect('/')->with('success', 'Data telah dihapus');
+    }
 }
