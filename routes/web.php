@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function() {
     Route::put('/update-anggota/{nik}', [KtpsController::class, 'update']);
     Route::delete('/detail-anggota/{nik}', [KtpsController::class, 'destroy']);
 
+
     // KK -------------------------------------------------------------------------------
     Route::get('/detail-anggota/{kk}/edit/kk', [KkController::class, 'edit'])->name('edit-kk');
     Route::put('/update-anggota-kk/{nik}', [KkController::class, 'update']);
