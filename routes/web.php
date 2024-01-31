@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function() {
     Route::get('{lc}/tambah-lc', [LcController::class, 'add']);
     Route::put('/update-anggota-lc/{nik}', [LcController::class, 'update']);
     Route::put('/update-lc/{nik}', [LcController::class, 'updatelc']);
+    Route::put('/update-freeze-taken/{nik}', [LcController::class, 'freezeortaken']);
 
     Route::get('/status/{lc}/edit', [LcController::class, 'openstatus']);
     Route::put('/update-status-lc/{nik}', [LcController::class, 'status']);

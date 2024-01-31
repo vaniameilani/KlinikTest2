@@ -200,4 +200,23 @@ class LcController extends Controller
         return redirect()->route('detail-anggota', ['nik' => $nik]);
     }
 
+    public function freezeortaken (Request $request, $nik)
+    {
+
+        $request->validate([
+            'status' => 'required',
+            'tanggal_penarikan' => 'required',
+            'alasan_penarikan' => 'required',
+        ]);
+
+        Lc::where('nik_lc', $nik)
+        ->update([
+            'status' => $request->status,
+            'tanggal_penarikan' => $request->tanggal_penarikan,
+            'alasan_penarikan' => $request->alasan_penarikan,
+        ]);
+
+        return redirect()->route('detail-anggota', ['nik' => $nik]);
+    }
+
 }

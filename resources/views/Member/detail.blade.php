@@ -250,14 +250,14 @@
                                     <!-- <button class="button-ghost dropdown-item" data-bs-target="#freezeCard" data-bs-toggle="modal">
                                         <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kartu Freeze</div>
                                     </button> -->
-                                    <a class="button-ghost dropdown-item" href="/status/{lc}/edit" data-bs-toggle="modal">
+                                    <a class="button-ghost dropdown-item" data-bs-target="#freezeCard" data-bs-toggle="modal">
                                         <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kartu Freeze</div>
                                     </a>
                                 </li>
                                 <li>
-                                    <button class="button-ghost dropdown-item" data-bs-target="#takenCard" data-bs-toggle="modal"> Penarikan Kartu
-                                        <!-- <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kartu Freeze</div> -->
-                                    </button>
+                                    <a class="button-ghost dropdown-item" data-bs-target="#takenCard" data-bs-toggle="modal">
+                                        <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Penarikan kartu</div>
+                                    </a>
                                 </li>
                             </ul>
                             <div class="modal fade" id="freezeCard" aria-hidden="true" aria-labelledby="freezeCard" tabindex="-1">
@@ -268,29 +268,30 @@
                                             <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="/update-status-lc/{{$lc[0]->nik_lc}}" class="px-3">
+                                            <form method="POST" action="/update-freeze-taken/{{ $ktp->nik }}" class="px-3">
                                             @method('PUT')
                                             @csrf
                                                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex;">
                                                     <div class="input-field">
                                                         <label for="status" class="form-label b-medium name">Status</label>
-                                                        <input type="text" class="input-name form-control @error('status') is-invalid @enderror" id="status" placeholder="Masukkan Status Kartu" name="status" value="{{ $lc[0]->status }}">
+                                                        <input readonly type="text" class="input-name form-control @error('status') is-invalid @enderror" id="status" placeholder="Masukkan Status Kartu" name="status" value="Dibekukan">
                                                     </div>
                                                     <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                                         <label for="tanggal_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Freeze Kartu</label>
-                                                        <input type="date" class="form-control @error('tanggal_penarikan') is-invalid @enderror disable-bg" id="tanggal_penarikan" placeholder="Masukkan Tanggal Freeze Kartu" name="tanggal_penarikan" value="{{ $lc[0]->tanggal_penarikan }}" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
+                                                        <input type="date" class="form-control @error('tanggal_penarikan') is-invalid @enderror disable-bg" id="tanggal_penarikan" placeholder="Masukkan Tanggal Freeze Kartu" name="tanggal_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                                     </div>
                                                     <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                                         <label for="alasan_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alasan Freeze Kartu</label>
-                                                        <input type="text" class="form-control @error('alasan_penarikan') is-invalid @enderror disable-bg" id="alasan_penarikan" placeholder="Masukkan Alasan Freeze Kartu" name="alasan_penarikan" value="{{ $lc[0]->alasan_penarikan }}" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
+                                                        <input type="text" class="form-control @error('alasan_penarikan') is-invalid @enderror disable-bg" id="alasan_penarikan" placeholder="Masukkan Alasan Freeze Kartu" name="alasan_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            
                                         </div>
                                         <div class="modal-footer" style="padding-left: 24px; padding-right: 24px;">
-                                            <button class="btn button-fill" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                            <button type="submit" class="btn button-fill" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                                 <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
                                             </button>
+                                            </form>
                                             <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
                                         </div>
                                     </div>
@@ -304,13 +305,13 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="#" class="px-3">
+                                            <form method="POST" action="/update-freeze-taken/{{ $ktp->nik }}" class="px-3">
                                             @method('PUT')
                                             @csrf
                                                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex;">
                                                     <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                                         <label for="status" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status</label>
-                                                        <input readonly type="text" class="form-control @error('status') is-invalid @enderror disable-bg" id="status" placeholder="Masukkan status Anggota" name="status" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
+                                                        <input readonly type="text" class="form-control @error('status') is-invalid @enderror disable-bg" id="status" placeholder="Masukkan status Anggota" name="status" value="Dinonaktifkan" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
                                                     </div>
                                                     <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                                         <label for="tanggal_penarikan" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Penarikan Kartu</label>
@@ -321,12 +322,13 @@
                                                         <input type="text" class="form-control @error('alasan_penarikan') is-invalid @enderror disable-bg" id="alasan_penarikan" placeholder="Masukkan Alasan Freeze Kartu" name="alasan_penarikan" value="" style="align-self: stretch; padding: 16px; background: #F3F4F6; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex">
                                                     </div>
                                                 </div>
-                                            </form>
+                                            
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn button-fill" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                                                 <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
                                             </button>
+                                            </form>
                                             <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
                                         </div>
                                     </div>
@@ -390,19 +392,31 @@
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status</div>
                                 </div>
+                                @if ($lc[0]->status == 0)
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $lc[0]->status }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Penarikan/Freeze</div>
                                 </div>
+                                @if ($lc[0]->tanggal_penarikan == 0)
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $lc[0]->tanggal_penarikan }}</div>
+                                @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
                                 <div style="width: 176px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                     <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Alasan Penarikan/Freeze</div>
                                 </div>
+                                @if ($lc[0]->alasan_penarikan == 0)
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
+                                @else
+                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $lc[0]->alasan_penarikan }}</div>
+                                @endif
                             </div>
                         </div>
                     </div>
