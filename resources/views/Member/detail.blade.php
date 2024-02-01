@@ -151,10 +151,22 @@
                             @if ($ktp->scan_ktp == 0)
                             <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
                             @else
-                            <!-- <a class="button-underline" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" href="{{ asset('/storage/'.$ktp->scan_ktp) }} role="button">
+                            <a class="button-underline" data-bs-target="#scanKtp" data-bs-toggle="modal" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" role="button">
                                 <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">File KTP</div>
-                            </a> -->
-                            <img src="{{ asset($ktp->scan_ktp) }}" width= '50' height='50' class="img img-responsive" />
+                            </a>
+                            <div class="modal fade" id="scanKtp" aria-hidden="true" aria-labelledby="scanKtp" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5 ps-3" id="scanKtp">Scan KTP</h1>
+                                            <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="{{ asset($ktp->scan_ktp) }}" style="width: 100%; height: 100%;" class="img img-responsive" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @endif
                         </div>
                     </div>

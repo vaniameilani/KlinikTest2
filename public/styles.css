@@ -468,6 +468,8 @@ a.button-ghost-delete:hover { background: #EEEFF4; color: #E8322E; }
 .table-body-btn {
     display: flex;
     flex-direction: row;
+    padding-top: 12px;
+    padding-bottom: 12px;
     /* padding: 8px 0px; */
     /* align-items: center; */
     flex: 1 0 0;

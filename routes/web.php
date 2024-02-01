@@ -114,3 +114,7 @@ Route::middleware('auth')->group(function() {
 Route::get('/acara', function () {
     return view('Event/index');
 });
+
+Route::get('/tambah-acara', function () {
+    return view('Event/add');
+});
