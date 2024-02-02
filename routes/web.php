@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BpjsController;
 use App\Http\Controllers\ChangeLcController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\KtpsController;
 use App\Http\Controllers\KkController;
@@ -29,8 +30,9 @@ Route::middleware('guest')->group(function() {
     Route::post('/register', [RegisterController::class, 'store']);
 });
 
-// HOME
+// MAIN
 Route::middleware('auth')->group(function() {
+    // HOME ----------------------------------------------------------------------------------------------------------
     Route::get('/', [KtpsController::class, 'index'])->name('home');
     // bawah -> halaman daftar anggota yang belum lengkap
     Route::get('/nulldata', [KtpsController::class, 'indexnull']);
@@ -107,14 +109,10 @@ Route::middleware('auth')->group(function() {
     // LC -------------------------------------------------------------------------------
     Route::get('/ubah-kartu/{lc}', [ChangeLcController::class, 'create']);
     Route::post('/ubah-kartu-lc/{nik}', [ChangeLcController::class, 'store']);
-});
+    // ENDHOME ---------------------------------------------------------------------------------------
 
-// EVENT -------------------------------------------------------------------------------
-// INDEX / LIST
-Route::get('/acara', function () {
-    return view('Event/index');
-});
-
-Route::get('/tambah-acara', function () {
-    return view('Event/add');
+    // EVENT ------------------------------------------------------------------------------------
+    Route::get('/acara', [EventController::class, 'index']);
+    Route::get('/tambah-acara', [EventController::class, 'add']);
+    Route::get('/detail-acara', [EventController::class, 'show']);
 });
