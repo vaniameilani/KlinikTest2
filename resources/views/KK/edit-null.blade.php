@@ -54,7 +54,10 @@
                             <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                                 <label for="status" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Status</label>
                                 <select class="form-select p-3 align-self-stretch" name="status" style="border-radius: 5px; border: 1px #DADDE5 solid;" required>
-                                    <option>Pilih salah satu</option>
+                                <option>Pilih salah satu</option>
+                                    <option value="Orang Tua/Kerabat" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $status == 'Orang Tua/Kerabat' ? 'selected' : '' }}>
+                                       Orang Tua/Kerabat
+                                    </option>
                                     <option value="Kepala Keluarga" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word" {{ $status == 'Kepala Keluarga' ? 'selected' : '' }}>
                                        Kepala Keluarga
                                     </option>

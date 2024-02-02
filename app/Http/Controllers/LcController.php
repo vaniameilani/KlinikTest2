@@ -54,8 +54,67 @@ class LcController extends Controller
             'sumber_data' => $request->sumber_data,
             'nama_koor' => $request->nama_koor,
             'telp_koor' => $request->telp_koor,
-            'scan_lc' => $request->scan_lc
+            'status' => "Aktif"
         ]);
+
+        $lc = Lc::where('nik_lc', $nik)->first();
+        if($request->hasFile('scan_lc'))
+        {   
+            $destination = public_path().$lc->scan_lc;
+            if($lc->scan_lc != '' && $lc->scan_lc != null)
+                {
+                    unlink($destination);
+                }
+            $filename = time().'.'.$request->file('scan_lc')->getClientOriginalExtension();
+            $path = $request->file('scan_lc')->storeAs('images', $filename, 'public');
+            $ext = '/storage/'.$path;
+            Lc::where('nik_lc', $nik)->update(['scan_lc' => $ext]);
+        };
+        
+        $updateclc = ChangeLc::where('nik_clc', $nik)->orderBy('id', 'desc')->first();
+        $updateclc->update([
+            'no_kartu' => $request->no_kartu,
+            'jenis_kartu' => $request->jenis_kartu
+        ]);
+        return redirect()->route('detail-anggota', ['nik' => $nik]);
+
+    }
+    public function addupdate(Request $request, $nik)
+    {
+        $request->validate([
+            'id_lc',
+            'no_kartu' => 'required',
+            'jenis_kartu',
+            'tanggal_pembuatan',
+            'sumber_data' => 'required',
+            'nama_koor' => 'required',
+            'telp_koor' => 'required',
+        ]);
+
+        Lc::where('nik_lc', $nik)
+        ->update([
+            'no_kartu' => $request->no_kartu,
+            'jenis_kartu' => $request->jenis_kartu,
+            'tanggal_pembuatan' => $request->tanggal_pembuatan,
+            'sumber_data' => $request->sumber_data,
+            'nama_koor' => $request->nama_koor,
+            'telp_koor' => $request->telp_koor,
+            'status' => "Aktif"
+        ]);
+
+        $lc = Lc::where('nik_lc', $nik)->first();
+        if($request->hasFile('scan_lc'))
+        {   
+            $destination = public_path().$lc->scan_lc;
+            if($lc->scan_lc != '' && $lc->scan_lc != null)
+                {
+                    unlink($destination);
+                }
+            $filename = time().'.'.$request->file('scan_lc')->getClientOriginalExtension();
+            $path = $request->file('scan_lc')->storeAs('images', $filename, 'public');
+            $ext = '/storage/'.$path;
+            Lc::where('nik_lc', $nik)->update(['scan_lc' => $ext]);
+        };
 
         $changelc = new Changelc;
         $changelc->nik_clc = $nik;
@@ -65,6 +124,7 @@ class LcController extends Controller
         $changelc->save();
 
         return redirect()->route('detail-anggota', ['nik' => $nik]);
+
     }
 
     public function updatelc(Request $request, $nik)
@@ -87,8 +147,22 @@ class LcController extends Controller
             'sumber_data' => $request->sumber_data,
             'nama_koor' => $request->nama_koor,
             'telp_koor' => $request->telp_koor,
-            'scan_lc' => $request->scan_lc
+            'status' => "Aktif"
         ]);
+
+        $lc = Lc::where('nik_lc', $nik)->first();
+        if($request->hasFile('scan_lc'))
+        {   
+            $destination = public_path().$lc->scan_lc;
+            if($lc->scan_lc != '' && $lc->scan_lc != null)
+                {
+                    unlink($destination);
+                }
+            $filename = time().'.'.$request->file('scan_lc')->getClientOriginalExtension();
+            $path = $request->file('scan_lc')->storeAs('images', $filename, 'public');
+            $ext = '/storage/'.$path;
+            Lc::where('nik_lc', $nik)->update(['scan_lc' => $ext]);
+        };
 
         $changelc = new Changelc;
         $changelc->nik_clc = $nik;
@@ -138,8 +212,22 @@ class LcController extends Controller
             'sumber_data' => $request->sumber_data,
             'nama_koor' => $request->nama_koor,
             'telp_koor' => $request->telp_koor,
-            'scan_lc' => $request->scan_lc
+            'status' => "Aktif"
         ]);
+
+        $lc = Lc::where('nik_lc', $nik)->first();
+        if($request->hasFile('scan_lc'))
+        {   
+            $destination = public_path().$lc->scan_lc;
+            if($lc->scan_lc != '' && $lc->scan_lc != null)
+                {
+                    unlink($destination);
+                }
+            $filename = time().'.'.$request->file('scan_lc')->getClientOriginalExtension();
+            $path = $request->file('scan_lc')->storeAs('images', $filename, 'public');
+            $ext = '/storage/'.$path;
+            Lc::where('nik_lc', $nik)->update(['scan_lc' => $ext]);
+        };
 
         $changelc = new Changelc;
         $changelc->nik_clc = $nik;

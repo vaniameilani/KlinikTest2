@@ -17,7 +17,7 @@
             </div>
         </div>
         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex; border: 1px #DADDE5 solid;">
-            <form method="POST" action="/update-anggota-lc/{{$lc->nik_lc}}" style="align-self: stretch; padding: 40px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: flex">
+            <form method="POST" action="/update-anggota-lc/{{$lc->nik_lc}}" enctype='multipart/form-data' style="align-self: stretch; padding: 40px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: flex">
                 @method('PUT')
                 @csrf
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
@@ -43,7 +43,7 @@
                     <!-- NOMOR LC -->
                     <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
                         <label for="no_kartu" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nomor LC</label>
-                        <input readonly type="text" class="form-control @error('no_kartu') is-invalid @enderror" id="no_kartu" placeholder="Masukkan Nomor Kartu LC Anggota" name="no_kartu" value="{{ $lc->no_kartu }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                        <input type="text" class="form-control @error('no_kartu') is-invalid @enderror" id="no_kartu" placeholder="Masukkan Nomor Kartu LC Anggota" name="no_kartu" value="{{ $lc->no_kartu }}" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                         @error('no_kartu')
                         <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                         @enderror
