@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_acara')->nullable();
             $table->date('tgl_acara')->nullable();
             $table->longText('lokasi_acara')->nullable();
+            $table->string('daftar_anggota')->nullable();
             $table->timestamps();
         });
     }
