@@ -137,6 +137,7 @@
                     <div class="input-col-row">
                         <label for="kota_kab" class="form-label b-medium name" >Kota/Kabupaten</label>
                         <select class="form-select dropdown" id="kota_kab" name="kota_kab" required>
+                            <option >Pilih salah satu</option>
                             <!-- <option >Pilih salah satu</option>
                             <option value="BELITUNG" class="name b-regular" {{ old('kota_kab') == 'BELITUNG' ? 'selected' : '' }}>BELITUNG</option>
                             <option value="BELITUNG TIMUR" class="name b-regular" {{ old('kota_kab') == 'BELITUNG TIMUR' ? 'selected' : '' }}>BELITUNG TIMUR</option> -->
@@ -151,6 +152,7 @@
                     <div class="input-col-row">
                         <label for="kecamatan" class="form-label b-medium name" >Kecamatan</label>
                         <select class="form-select dropdown" id="kecamatan" name="kecamatan" required>
+                            <option >Pilih salah satu</option>
                             <!-- <option >Pilih salah satu</option>
                             <option value="MEMBALONG" class="name b-regular" {{ old('kecamatan') == 'MEMBALONG' ? 'selected' : '' }}>MEMBALONG</option>
                             <option value="SELAT NASIK" class="name b-regular" {{ old('kecamatan') == 'SELAT NASIK' ? 'selected' : '' }}>SELAT NASIK</option> -->

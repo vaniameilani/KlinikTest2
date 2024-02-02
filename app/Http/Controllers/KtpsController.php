@@ -13,6 +13,7 @@ use App\Models\Province;
 use App\Models\Regency;
 use App\Models\Village;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Support\Collection;
 
@@ -80,7 +81,7 @@ class KtpsController extends Controller
 
     public function create()
     {
-        $prov = Province::all();
+        $prov = Province::all()->sortBy('name');
         return view('KTP.add', compact('prov'));
     }
 
@@ -173,10 +174,9 @@ class KtpsController extends Controller
             // $file->move('uploads/buku/', $filename); 
             // $ktp->scan_ktp = $filename;
 
-            $filename = time().$request->file('scan_ktp')->getClientOriginalExtension();
+            $filename = time().'.'.$request->file('scan_ktp')->getClientOriginalExtension();
             $path = $request->file('scan_ktp')->storeAs('images', $filename, 'public');
             $ext = '/storage/'.$path;
-
             $ktp->scan_ktp = $ext;
         }
 
@@ -339,6 +339,8 @@ class KtpsController extends Controller
             'status_perkawinan' => 'required',
             'kewarganegaraan' => 'required',
             'asal_negara' => 'required',
+            'scan_ktp'
+            
         ]);
 
         $ssprovinsi = DB::table('provinces')
@@ -356,6 +358,7 @@ class KtpsController extends Controller
         $ssdesakel = DB::table('villages')
         ->where('villages.id', '=', $request->desa_kel)
         ->value('villages.name');
+
 
         Ktp::where('nik', $nik)
         ->update([
@@ -376,12 +379,29 @@ class KtpsController extends Controller
             'status_perkawinan' => $request->status_perkawinan,
             'kewarganegaraan' => $request->kewarganegaraan,
             'asal_negara' => $request->asal_negara,
-            'scan_ktp' => $request->scan_ktp
+
         ]);
+
+        $ktp = Ktp::where('nik', $nik)->first();
+        if($request->hasFile('scan_ktp'))
+        {   
+            $destination = public_path().$ktp->scan_ktp;
+            if($ktp->scan_ktp != '' && $ktp->scan_ktp != null)
+                {
+                    unlink($destination);
+                }
+            $filename = time().'.'.$request->file('scan_ktp')->getClientOriginalExtension();
+            $path = $request->file('scan_ktp')->storeAs('images', $filename, 'public');
+            $ext = '/storage/'.$path;
+            Ktp::where('nik', $nik)->update(['scan_ktp' => $ext]);
+        };
+
         Kk::where('nik_kk', $nik)
         ->update([
             'nama' => $request->nama
         ]);
+
+
         
         return redirect()->route('detail-anggota', ['nik' => $nik]);
     }
@@ -419,12 +439,17 @@ class KtpsController extends Controller
 
     public function destroy(Ktp $nik)
     {
+        $destination = public_path().$nik->scan_ktp;
+            if($nik->scan_ktp != '' && $nik->scan_ktp != null)
+                {
+                    unlink($destination);
+                }
         $deleteBpjs = DB::table('bpjs')->where('nik_bpjs', '=', $nik->nik)->delete();
         $deleteclc = DB::table('change_lcs')->where('nik_clc', '=', $nik->nik)->delete();
         $deletekk = DB::table('kks')->where('nik_kk', '=', $nik->nik)->delete();
         $deletektp = DB::table('ktps')->where('nik', '=', $nik->nik)->delete();
         $deletelc = DB::table('lcs')->where('nik_lc', '=', $nik->nik)->delete();
-        $deleteother = DB::table('others')->where('nik_other', '=', $nik->nik)->delete();
+        $deleteother = DB::table('others')->where('nik_other', '=', $nik->nik)->delete();    
 
         return redirect('/')->with('success', 'Data telah dihapus');
     }

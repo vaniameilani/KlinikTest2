@@ -36,6 +36,20 @@ class KkController extends Controller
             'scan_kk' => $request->scan_kk
         ]);
 
+        $kk = kk::where('nik_kk', $nik)->first();
+        if($request->hasFile('scan_kk'))
+        {   
+            $destination = public_path().$kk->scan_kk;
+            if($kk->scan_kk != '' && $kk->scan_kk != null)
+                {
+                    unlink($destination);
+                }
+            $filename = time().'.'.$request->file('scan_kk')->getClientOriginalExtension();
+            $path = $request->file('scan_kk')->storeAs('images', $filename, 'public');
+            $ext = '/storage/'.$path;
+            kk::where('nik', $nik)->update(['scan_kk' => $ext]);
+        };
+
         return redirect()->route('detail-anggota', ['nik' => $nik]);
 
     }

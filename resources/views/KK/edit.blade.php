@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex; border: 1px #DADDE5 solid;">
-                    <form method="POST" 
+                    <form method="POST" enctype='multipart/form-data'
                     @if(Route::current()->getName() == 'edit-kk')
                     action="/update-anggota-kk/{{$kk->nik_kk}}" 
                     @else
