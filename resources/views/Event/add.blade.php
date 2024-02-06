@@ -175,12 +175,17 @@
 
                         $.each( res, function(create, value){
                             tableRow = '<div class="table-body"><div class="table-body-cell-checkbox"><input class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" id="'+value.no_kartu+'"></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+
                         $('#resultsearch').append(tableRow);
-                            
+                        
+                        if($('#cbs'+value.no_kartu+'').val() == $('#'+value.no_kartu+'').val())
+                        $('#'+value.no_kartu+'').prop('checked',true)
+                        else
+                        $('#'+value.no_kartu+'').prop('checked',false)
                         $(function(){
                             $('#'+value.no_kartu+'').click(function() {
                                 if($(this).is(':checked')){
-                                    addRow = '<div class="table-body" id="cb'+value.no_kartu+'"><div class="table-body-cell-checkbox"><input onclick="return false;" class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" name="daftar_anggota[]" checked></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+                                    addRow = '<div class="table-body" id="cb'+value.no_kartu+'"><div class="table-body-cell-checkbox"><input onclick="return false;" class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" name="daftar_anggota[]" id="cbs'+value.no_kartu+'" checked></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
                                     $('#checkboxresult').append(addRow);
                                 }else{
                                     $('#cb'+value.no_kartu+'').remove();
