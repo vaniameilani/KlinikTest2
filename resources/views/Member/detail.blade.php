@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                <!-- @foreach($lc as $card)     -->
-                <div style="text-align: justify; color: white; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">{{ $lc[0]->sumber_data }}</div>
+                    <!-- @foreach($lc as $card)     -->
+                    <div style="text-align: justify; color: white; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">{{ $lc[0]->sumber_data }}</div>
                     <!-- @endforeach -->
                     <div style="justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
                         <div style="text-align: justify; color: #C4CBE0; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 21px; word-wrap: break-word">Koordinator Wilayah:</div>

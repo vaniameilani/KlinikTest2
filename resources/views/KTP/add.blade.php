@@ -19,7 +19,7 @@
 
     <!-- FORM -->
     <div class="card-form">
-        <form method="POST" action="/ktps" enctype="multipart/form-data" style="align-self: stretch; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 32px;">
+        <form  action="/ktps" method="POST" enctype="multipart/form-data" style="align-self: stretch; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 32px;">
             @csrf
             <div class="form">
                 <!-- NIK -->
@@ -100,7 +100,7 @@
                 <!-- Pekerjaan -->
                 <div class="input-field">
                     <label for="pekerjaan" class="form-label b-medium name" >Pekerjaan</label>
-                    <input type="text" class="input-name form-control @error('pekerjaan') is-invalid @enderror" id="pekerjaan" placeholder="Masukkan Pekerjaan Anggota" name="pekerjaan" value="{{ old('pekerjaan')}}" required>
+                    <input type="text" class="input-name form-control @error('pekerjaan') is-invalid @enderror" id="pekerjaan" placeholder="Masukkan Pekerjaan Anggota" name="pekerjaan" value="{{ old('pekerjaan') }}" required>
                     @error('pekerjaan')
                     <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                     @enderror

@@ -14,27 +14,31 @@
                         <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Acara</div>
                     </a>
                 </div>
+
+                @foreach ($events as $data)
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
-                    <a class="btn card-event" href="/detail-acara" style="align-self: stretch; padding: 16px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex" role="button">
-                        <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Acara  Ulang Tahun Klink Raycare ke-22</div>
+                    <a class="btn card-event" href="/detail-acara/{{ $data->id_acara }}" style="align-self: stretch; padding: 16px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex" role="button">
+                        <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">{{ $data->nama_acara }}</div>
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                             <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
-                                <div style="align-self: stretch; position: relative">
+                                <!-- <div style="align-self: stretch; position: relative">
                                     <div style="align-self: stretch; left: 3.33px; top: 1.67px; position: absolute; background: #757575"></div>
-                                </div>
-                                <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Gedung Serbaguna, Jalan Cakrawala no. 12, Jakarta Selatan</div>
+                                </div> -->
+                                <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $data->tgl_acara }}</div>
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
-                                <div style="align-self: stretch; position: relative">
+                                <!-- <div style="align-self: stretch; position: relative">
                                     <div style="align-self: stretch; left: 4.17px; top: 5px; position: absolute; opacity: 0.30; background: #757575"></div>
                                     <div style="align-self: stretch; left: 2.50px; top: 1.67px; position: absolute; background: #757575"></div>
-                                </div>
-                                <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Gedung Serbaguna, Jalan Cakrawala no. 12, Jakarta Selatan</div>
+                                </div> -->
+                                <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $data->lokasi_acara }}</div>
                             </div>
                         </div>
                     </a>
                 </div>
+                @endforeach
             </div>
+            
         </div>
     </div>
 </main>
