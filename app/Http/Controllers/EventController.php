@@ -20,7 +20,11 @@ class EventController extends Controller
 
     public function add()
     {
-        $ktps = Ktp::all();
+        $ktps = DB::table('lcs')
+        ->whereNotNull('no_kartu')
+        ->join('ktps', 'lcs.nik_lc', '=', 'ktps.nik')
+        ->select('ktps.nama', 'lcs.no_kartu', 'lcs.jenis_kartu')
+        ->paginate(10);
         return view('Event.add', compact('ktps'));
     }
 
@@ -67,12 +71,31 @@ class EventController extends Controller
             $datas[] = DB::table('lcs')
             ->join('ktps', 'lcs.nik_lc', '=', 'ktps.nik')
             ->select('ktps.nik', 'ktps.nama', 'lcs.no_kartu', 'lcs.jenis_kartu')
-            ->where('lcs.nik_lc', '=', $ms)
+            ->where('lcs.no_kartu', '=', $ms)
             ->get();
 
         }
         // dd($ktps);
 
         return view('Event.detail', compact('event', 'datas'));
+    }
+
+    public function search(Request $request)
+    {
+        $request->get('searchQuest');
+        if ($request->get('searchQuest') == 0){
+        $collects = '';
+        }else{
+        $collects = DB::table('ktps')
+        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
+        ->whereNotNull('lcs.no_kartu')
+        ->where('lcs.no_kartu', 'LIKE','%'.$request->get('searchQuest').'%')
+        ->select('ktps.nama', 'lcs.no_kartu', 'lcs.jenis_kartu')
+        ->take(5)
+        ->get();
+        }
+
+        return json_encode( $collects );
+
     }
 }

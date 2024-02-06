@@ -53,8 +53,8 @@
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                             @enderror
                         </div>
-
-                        <!-- Lokasi Acara -->
+                        <!-- List Anggota -->
+                        <!-- <label for="list_anggota" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">List Anggota</label> -->
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                             <div class="table">
                                 <div class="table-head">
@@ -64,43 +64,46 @@
                                         </div>
                                     </div>
                                     <div class="table-header-cell">
-                                        <div class="h5 header-name">NIK</div>
+                                        <div class="h5 header-name">Nama</div>
+                                    </div>
+                                    <div class="table-header-cell">
+                                        <div class="h5 header-name">JenisKartu</div>
+                                    </div>
+                                    <div class="table-header-cell">
+                                        <div class="h5 header-name">Nomor Kartu</div>
+                                    </div>
+                                </div>
+                            </div>      
+                            <div class="table" id="checkboxresult">
+                            </div>
+                        
+
+                        <!-- Tambah Anggota -->
+                        <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
+                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                            <div class="table">
+                                <div class="table-head">
+                                    <div class="table-header-cell-checkbox">
+                                        <div class="h5 header-name">
+                                            <input disabled class="form-check-input me-1" type="checkbox">
+                                        </div>
                                     </div>
                                     <div class="table-header-cell">
                                         <div class="h5 header-name">Nama</div>
                                     </div>
-                                    <!-- <div class="table-header-cell">
+                                    <div class="table-header-cell">
+                                        <div class="h5 header-name">JenisKartu</div>
+                                    </div>
+                                    <div class="table-header-cell">
                                         <div class="h5 header-name">Nomor Kartu</div>
-                                    </div> -->
+                                    </div>
                                 </div>
-                                
-                                @foreach ($ktps as $ktp)
-                                <div class="table-body">
+                            </div>   
+                                <div class="table" id="resultsearch">
                                     <!-- Checkbox -->
-                                    <div class="table-body-cell-checkbox">
-                                        <input class="form-check-input me-1" type="checkbox" value="{{ $ktp->nik }}" name="daftar_anggota[]">
-                                        <!-- <label class="form-check-label" for="firstCheckbox">First checkbox</label> -->
-                                    </div>
-
-                                    <!-- Nama Anggota -->
-                                    <div class="table-body-cell">
-                                        <div class="body-name b-regular">{{ $ktp->nik }}</div>
-                                    </div>
-
-                                    <!-- Jenis Kartu -->
-                                    <div class="table-body-cell">
-                                        <div class="body-name b-regular">{{ $ktp->nama }}</div>
-                                    </div>
-
-                                    <!-- Nomor Kartu -->
-                                    <!-- <div class="table-body-cell">
-                                        <div class="body-name b-regular">#</div>
-                                    </div> -->
                                 </div>
-                                @endforeach
-                            </div>
                         </div>
-                    </div>
+                    
 
                     <!-- Pemisah : Line -->
                     <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
@@ -148,6 +151,49 @@
                 jQuery('#lokasi_acara').val(spart.join(" "));
                 });
             });
+        </script>
+        <script>
+
+        </script>
+         <script type="text/javascript">
+            $('body').on('keyup','#search', function(){
+                var searchQuest = $(this).val();
+
+                $.ajax({
+                    method: 'POST',
+                    url: '{{ route("search") }}',
+                    dataType: 'json',
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                        searchQuest: searchQuest,
+                    },
+                    success: function(res){
+                        var tableRow = '';
+                        var addRow = '';
+                        
+                        $('#resultsearch').html('');
+
+                        $.each( res, function(create, value){
+                            tableRow = '<div class="table-body"><div class="table-body-cell-checkbox"><input class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" id="'+value.no_kartu+'"></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+                        $('#resultsearch').append(tableRow);
+                            
+                        $(function(){
+                            $('#'+value.no_kartu+'').click(function() {
+                                if($(this).is(':checked')){
+                                    addRow = '<div class="table-body" id="cb'+value.no_kartu+'"><div class="table-body-cell-checkbox"><input onclick="return false;" class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" name="daftar_anggota[]" checked></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+                                    $('#checkboxresult').append(addRow);
+                                }else{
+                                    $('#cb'+value.no_kartu+'').remove();
+                                }
+                            });
+                            });
+                        });
+                        
+
+                    }
+                });
+            });
+
         </script>
         
     </div>
