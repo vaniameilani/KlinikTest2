@@ -22,7 +22,7 @@
     <div class="container-fluid" style="background: white; border-radius: 10px; border: 1px #DADDE5 solid; padding-top: 32px; padding-bottom: 40px;">
         <div class="d-flex justify-content-between align-items-center align-self-center" style="padding-left: 40px; padding-right: 40px;">
             <div style="text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">{{ $event->nama_acara }}</div>
-            <a class="btn button-fill" href="" style="padding: 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+            <a class="btn button-fill" href="{{ $event->id_acara }}/edit" style="padding: 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
                 <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Edit Data</div>
             </a>
         </div>
@@ -50,12 +50,15 @@
             </div>
             <div class="col-9">
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
-                    <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Daftar Anggota</div>
+                    <div class="d-flex justify-content-between align-items-center align-self-stretch">
+                        <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Daftar Anggota</div>
+                        <a class="btn button-borderline" href="#" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                            <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan Status Kehadiran</div>
+                        </a>
+                    </div>
+
                     <div class="table">
                         <div class="table-head">
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">NIK</div>
-                            </div>
                             <div class="table-header-cell">
                                 <div class="h5 header-name">Nama</div>
                             </div>
@@ -65,7 +68,7 @@
                             <div class="table-header-cell">
                                 <div class="h5 header-name">Nomor Kartu</div>
                             </div>
-                            <div class="table-header-cell">
+                            <div class="table-header-cell ps-2">
                                 <div class="h5 header-name">Aksi</div>
                             </div>
                             <div class="table-header-cell">
@@ -75,15 +78,6 @@
 
                         @foreach ($datas as $data)
                         <div class="table-body">
-                            <!-- NIK Anggota -->
-                            <div class="table-body-cell">
-                                @if ($data[0]->nik == 0)
-                                    <div>-</div>
-                                @else
-                                    <div class="body-name b-regular">{{ $data[0]->nik }}</div>
-                                @endif
-                            </div>
-
                              <!-- Nama Anggota -->
                              <div class="table-body-cell">
                                 @if ($data[0]->nama == 0)
@@ -112,19 +106,22 @@
                             </div>
 
                             <!-- Aksi Button -->
-                            <div class="table-body-cell">
-                                <a class="btn button-borderline px-3" href="" role="button">
-                                    <div class="b-bold" style="color: #394E91;">Hadir</div>
-                                </a>
-                                <!-- <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-                                </div> -->
+                            <div class="d-flex align-items-center px-2 pe-2" style="flex: 1 0 0;">
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex flex-row gap-2">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1"> Hadir </label>
+                                    </div>
+                                    <div class="d-flex flex-row gap-2">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1"> Tidak Hadir </label>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Status -->
                             <div class="table-body-cell">
-                                <div class="body-name b-regular">#</div>
+                                <div class="body-name b-regular">-</div>
                             </div>
                         </div>
                         @endforeach

@@ -23,8 +23,8 @@ class EventController extends Controller
         $ktps = DB::table('lcs')
         ->whereNotNull('no_kartu')
         ->join('ktps', 'lcs.nik_lc', '=', 'ktps.nik')
-        ->select('ktps.nama', 'lcs.no_kartu', 'lcs.jenis_kartu')
-        ->paginate(10);
+        ->select('ktps.nik', 'ktps.nama', 'lcs.jenis_kartu', 'lcs.no_kartu')
+        ->get();
 
         return view('Event.add', compact('ktps'));
     }
@@ -62,6 +62,7 @@ class EventController extends Controller
         // print_r($message);
 
         $datas = array();
+        $lcs = array();
         foreach ($names as $ms)
         {
             // $ktps[] = DB::table('ktps')
@@ -78,50 +79,5 @@ class EventController extends Controller
         // dd($ktps);
 
         return view('Event.detail', compact('event', 'datas'));
-    }
-
-    public function edit(Event $event)
-    {
-        return view('Event.edit', compact('event'));
-    }
-
-    public function update(Request $request, $event)
-    {
-        $request->validate([
-            'nama_acara' => 'required',
-            'tgl_acara' => 'required',
-            'lokasi_acara' => 'required',
-            'daftar_anggota',
-        ]);
-
-        Event::where('id_acara', $event)
-        ->update([
-            'nama_acara' => $request->nama_acara,
-            'tgl_acara' => $request->tgl_acara,
-            'lokasi_acara' => $request->lokasi_acara,
-        ]);
-        
-        return redirect('/acara')->with('status', 'Data berhasil diupdate!');
-        // return redirect('/detail-acara', ['id_acara' => $event->id_acara]);
-        // return redirect()->route('detail-acara', ['event' => $event->id_acara]); 
-    }
-
-    public function search(Request $request)
-    {
-        $request->get('searchQuest');
-        if ($request->get('searchQuest') == 0){
-        $collects = '';
-        }else{
-        $collects = DB::table('ktps')
-        ->join('lcs', 'ktps.nik', '=', 'lcs.nik_lc')
-        ->whereNotNull('lcs.no_kartu')
-        ->where('lcs.no_kartu', 'LIKE','%'.$request->get('searchQuest').'%')
-        ->select('ktps.nama', 'lcs.no_kartu', 'lcs.jenis_kartu')
-        ->take(5)
-        ->get();
-        }
-
-        return json_encode( $collects );
-
     }
 }

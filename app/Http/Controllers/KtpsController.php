@@ -401,8 +401,6 @@ class KtpsController extends Controller
             'nama' => $request->nama
         ]);
 
-
-        
         return redirect()->route('detail-anggota', ['nik' => $nik]);
     }
     

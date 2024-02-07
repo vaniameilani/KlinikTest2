@@ -21,15 +21,15 @@
     <!-- FORM -->
     <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex; border: 1px #DADDE5 solid;">
         <div style="align-self: stretch; padding-top: 40px; padding-bottom: 24px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
-            @method('PUT')
-            @csrf
-            <form method="POST" action="#" style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+            <form method="POST" action="/save-acara" style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <!-- @method('PUT') -->
+                @csrf
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 40px; display: flex">
                     <!-- FORM ACARA -->
                     <div style="align-self: stretch; padding-right: 40px; padding-left: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                         <!-- Nama Acara -->
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <label for="nama_acara" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama</label>
+                            <label for="nama_acara" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama Acara</label>
                             <input type="text" class="form-control @error('nama_acara') is-invalid @enderror" id="nama_acara" placeholder="Masukkan Nama Acara" name="nama_acara" value="" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
                             @error('nama_acara')
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
@@ -53,210 +53,68 @@
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                             @enderror
                         </div>
-
-                        <!-- Lokasi Acara -->
+                        <!-- List Anggota -->
+                        <!-- <label for="list_anggota" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">List Anggota</label> -->
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                             <div class="table">
                                 <div class="table-head">
                                     <div class="table-header-cell-checkbox">
                                         <div class="h5 header-name">
-                                            test
+                                            <input disabled class="form-check-input me-1" type="checkbox">
                                         </div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">NIK</div>
                                     </div>
                                     <div class="table-header-cell">
                                         <div class="h5 header-name">Nama</div>
                                     </div>
-                                    <!-- <div class="table-header-cell">
+                                    <div class="table-header-cell">
+                                        <div class="h5 header-name">JenisKartu</div>
+                                    </div>
+                                    <div class="table-header-cell">
                                         <div class="h5 header-name">Nomor Kartu</div>
-                                    </div> -->
+                                    </div>
                                 </div>
-                                
-                                @foreach ($ktps as $ktp)
-                                <div class="table-body">
-                                    <!-- Checkbox -->
-                                    <div class="table-body-cell-checkbox">
-                                        <input class="form-check-input me-1" type="checkbox" value="{{ old('nik') }}" name="daftar_anggota[]">
-                                        <!-- <label class="form-check-label" for="firstCheckbox">First checkbox</label> -->
-                                    </div>
-
-                                    <!-- Nama Anggota -->
-                                    <div class="table-body-cell">
-                                        <div class="body-name b-regular">{{ $ktp->nik }}</div>
-                                    </div>
-
-                                    <!-- Jenis Kartu -->
-                                    <div class="table-body-cell">
-                                        <div class="body-name b-regular">{{ $ktp->nama }}</div>
-                                    </div>
-
-                                    <!-- Nomor Kartu -->
-                                    <!-- <div class="table-body-cell">
-                                        <div class="body-name b-regular">#</div>
-                                    </div> -->
-                                </div>
-                                @endforeach
+                            </div>      
+                            <div class="table" id="checkboxresult">
                             </div>
-                        </div>
-                    </div>
+                        
 
-                    <!-- TAMBAH ANGGOTA -->
-                    <div style="align-self: stretch; padding-right: 40px; padding-left: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
-                        <!-- Header -->
-                        <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
-                            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                                <div class="h5" style="text-align: justify; color: #1D1B20; word-wrap: break-word">Daftar Anggota</div>
-                                <div class="label" style="text-align: justify; color: #9E9E9E; word-wrap: break-word">Tambahkan anggota klinik yang mengikuti acara ini</div>
-                            </div>
-                            <a class="btn button-fill" data-bs-target="#addmember" role="button" data-bs-toggle="modal" style="padding: 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                                <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota</div>
-                            </a>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="addmember" aria-hidden="true" aria-labelledby="addmember" tabindex="-1">
-                            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <div class="modal-title fs-5 px-4 h1" id="addmember">Tambah Anggota</div>
-                                        <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- Search -->
-                                        <div style="padding-left: 24px; padding-right: 24px;">
-                                            <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex; margin-bottom: 16px;">
-                                                <form action="#" method='GET' class="form-search">
-                                                    <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
-                                                    <button class="btn button-fill" type="submit" style="padding: 16px 24px; border-radius: 10px; justify-content: center; align-items: center; display: flex">
-                                                        <div class="b-bold self-stretch" style="word-wrap: break-word;">Cari Anggota</div>
-                                                    </button>
-                                                </form>  
-                                            </div>
-                                            <!-- Table list anggota -->
-                                            <div class="table">
-                                                <div class="table-head">
-                                                    <div class="table-header-cell-checkbox">
-                                                        <div class="h5 header-name">
-                                                            <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-                                                        </div>
-                                                    </div>
-                                                    <div class="table-header-cell">
-                                                        <div class="h5 header-name">Nama</div>
-                                                    </div>
-                                                    <div class="table-header-cell">
-                                                        <div class="h5 header-name">Jenis Kartu</div>
-                                                    </div>
-                                                    <div class="table-header-cell">
-                                                        <div class="h5 header-name">Nomor Kartu</div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <!-- foreach -->
-                                                <div class="table-body">
-                                                    <!-- Checkbox -->
-                                                    <div class="table-body-cell-checkbox">
-                                                        <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-                                                        <!-- <label class="form-check-label" for="firstCheckbox">First checkbox</label> -->
-                                                    </div>
-
-                                                    <!-- Nama Anggota -->
-                                                    <div class="table-body-cell">
-                                                        <div class="body-name b-regular">#</div>
-                                                    </div>
-
-                                                    <!-- Jenis Kartu -->
-                                                    <div class="table-body-cell">
-                                                        <div class="body-name b-regular">#</div>
-                                                    </div>
-
-                                                    <!-- Nomor Kartu -->
-                                                    <div class="table-body-cell">
-                                                        <div class="body-name b-regular">#</div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <!-- Tambah Anggota -->
+                        <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
+                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                            <div class="table">
+                                <div class="table-head">
+                                    <div class="table-header-cell-checkbox">
+                                        <div class="h5 header-name">
+                                            <input disabled class="form-check-input me-1" type="checkbox">
                                         </div>
                                     </div>
-                                    <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
-                                    <div class="modal-button-section">
-                                        <button type="submit" class="btn button-fill button-set-fill">
-                                            <div class="b-bold name" style="color: white;">Tambah</div>
-                                        </button>
+                                    <div class="table-header-cell">
+                                        <div class="h5 header-name">Nama</div>
+                                    </div>
+                                    <div class="table-header-cell">
+                                        <div class="h5 header-name">JenisKartu</div>
+                                    </div>
+                                    <div class="table-header-cell">
+                                        <div class="h5 header-name">Nomor Kartu</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>   
+                                <div class="table" id="resultsearch">
+                                    <!-- Checkbox -->
+                                </div>
                         </div>
-                        <!-- content -->
-                        <div style="align-self: stretch; height: 114px; padding-top: 40px; padding-bottom: 40px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; display: flex">
-                            <div style="opacity: 0.50; text-align: justify; color: #9E9E9E; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Belum ada daftar anggota untuk mengikuti acara ini</div>
-                        </div>
-                    </div>
+                    
+
                     <!-- Pemisah : Line -->
                     <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
                 </div>
                 <!-- Button Section -->
-                <div class="button-section">
+                <div class="button-section mt-4">
                     <button type="submit" class="btn button-fill button-set-fill">
                         <div class="b-bold name" style="color: white;">Tambah</div>
                     </button>
                 </div>
             </form>
-
-            <div class="table">
-                        <div class="table-head">
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Nama</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Jenis Kartu</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Nomor Kartu</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Aksi</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Status</div>
-                            </div>
-                        </div>
-                        
-                        <!-- foreach -->
-                        <div class="table-body">
-                            <!-- Nama Anggota -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">#</div>
-                            </div>
-
-                            <!-- Jenis Kartu -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">#</div>
-                            </div>
-
-                            <!-- Nomor Kartu -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">#</div>
-                            </div>
-
-                            <!-- Aksi Button -->
-                            <div class="table-body-cell">
-                                <a class="btn button-borderline px-3" href="" role="button">
-                                    <div class="b-bold" style="color: #394E91;">Hadir</div>
-                                </a>
-                                <!-- <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-                                </div> -->
-                            </div>
-
-                            <!-- Status -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">#</div>
-                            </div>
-                        </div>
-                    </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -293,6 +151,54 @@
                 jQuery('#lokasi_acara').val(spart.join(" "));
                 });
             });
+        </script>
+        <script>
+
+        </script>
+         <script type="text/javascript">
+            $('body').on('keyup','#search', function(){
+                var searchQuest = $(this).val();
+
+                $.ajax({
+                    method: 'POST',
+                    url: '{{ route("search") }}',
+                    dataType: 'json',
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                        searchQuest: searchQuest,
+                    },
+                    success: function(res){
+                        var tableRow = '';
+                        var addRow = '';
+                        
+                        $('#resultsearch').html('');
+
+                        $.each( res, function(create, value){
+                            tableRow = '<div class="table-body"><div class="table-body-cell-checkbox"><input class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" id="'+value.no_kartu+'"></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+
+                        $('#resultsearch').append(tableRow);
+                        
+                        if($('#cbs'+value.no_kartu+'').val() == $('#'+value.no_kartu+'').val())
+                        $('#'+value.no_kartu+'').prop('checked',true)
+                        else
+                        $('#'+value.no_kartu+'').prop('checked',false)
+                        $(function(){
+                            $('#'+value.no_kartu+'').click(function() {
+                                if($(this).is(':checked')){
+                                    addRow = '<div class="table-body" id="cb'+value.no_kartu+'"><div class="table-body-cell-checkbox"><input onclick="return false;" class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" name="daftar_anggota[]" id="cbs'+value.no_kartu+'" checked></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+                                    $('#checkboxresult').append(addRow);
+                                }else{
+                                    $('#cb'+value.no_kartu+'').remove();
+                                }
+                            });
+                            });
+                        });
+                        
+
+                    }
+                });
+            });
+
         </script>
         
     </div>

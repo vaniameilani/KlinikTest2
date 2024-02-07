@@ -6,6 +6,14 @@
         <div style="align-self: stretch; padding-top: 56px; padding-bottom: 56px; background: #394E91; justify-content: center; align-items: center; display: inline-flex">
             <div style="text-align: justify; color: white; font-size: 40px; font-family: Inter; font-weight: 700; line-height: 56px; word-wrap: break-word">Acara</div>
         </div>
+        @if (session('status'))
+            <div style="align-self: stretch; margin-left: 176px; margin-right: 176px; margin-top: 40px;">
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="align-self: stretch;">
+                    {{ session('status') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
         <div style="align-self: stretch; padding-left: 176px; padding-right: 176px; padding-top: 40px; padding-bottom: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
             <div style="align-self: stretch; padding: 40px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: flex">
                 <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">

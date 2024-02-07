@@ -28,82 +28,121 @@
                     <!-- FORM ACARA -->
                     <div style="align-self: stretch; padding-right: 40px; padding-left: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                         <!-- Nama Acara -->
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <label for="nama_acara" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Nama Acara</label>
-                            <input type="text" class="form-control @error('nama_acara') is-invalid @enderror" id="nama_acara" placeholder="Masukkan Nama Acara" name="nama_acara" value="" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                        <div class="input-field">
+                            <label for="nama_acara" class="form-label b-medium name">Nama Acara</label>
+                            <input type="text" class="input-name form-control @error('nama_acara') is-invalid @enderror" id="nama_acara" placeholder="Masukkan Nama Acara" name="nama_acara" value="{{ old('nama_acara') }}" required>
                             @error('nama_acara')
-                                <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                             @enderror
                         </div>
         
                         <!-- Tanggal Acara -->
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <label for="tgl_acara" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal</label>
-                            <input type="date" class="form-control @error('tgl_acara') is-invalid @enderror" id="tgl_acara" placeholder="Masukkan Tanggal Acara" name="tgl_acara" value="" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                        <div class="input-field">
+                            <label for="tgl_acara" class="form-label b-medium name">Tanggal Acara</label>
+                            <input type="date" class="input-name form-control @error('tgl_acara') is-invalid @enderror" id="tgl_acara" placeholder="Masukkan Tanggal Acara Anggota" name="tgl_acara" value="{{ old('tgl_acara') }}" required>
                             @error('tgl_acara')
-                                <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                             @enderror
                         </div>
 
                         <!-- Lokasi Acara -->
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <label for="lokasi_acara" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Lokasi</label>
-                            <input type="textarea" class="form-control @error('lokasi_acara') is-invalid @enderror" id="lokasi_acara" placeholder="Masukkan Lokasi Acara" name="lokasi_acara" value="" style="align-self: stretch; padding: 16px; background: #FAFAFA; border-radius: 5px; border: 1px #DADDE5 solid; justify-content: flex-start; align-items: center; display: inline-flex" required>
+                        <div class="input-field">
+                            <label for="lokasi_acara" class="form-label b-medium name">Lokasi Acara</label>
+                            <input type="textarea" class="input-name form-control @error('lokasi_acara') is-invalid @enderror" id="lokasi_acara" placeholder="Masukkan Lokasi Acara" name="lokasi_acara" value="{{ old('lokasi_acara') }}" required>
                             @error('lokasi_acara')
-                                <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                             @enderror
                         </div>
-                        <!-- List Anggota -->
-                        <!-- <label for="list_anggota" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">List Anggota</label> -->
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <div class="table">
-                                <div class="table-head">
-                                    <div class="table-header-cell-checkbox">
-                                        <div class="h5 header-name">
-                                            <input disabled class="form-check-input me-1" type="checkbox">
-                                        </div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">Nama</div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">JenisKartu</div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">Nomor Kartu</div>
-                                    </div>
-                                </div>
-                            </div>      
-                            <div class="table" id="checkboxresult">
-                            </div>
-                        
+                    </div>
 
-                        <!-- Tambah Anggota -->
-                        <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <div class="table">
-                                <div class="table-head">
-                                    <div class="table-header-cell-checkbox">
-                                        <div class="h5 header-name">
-                                            <input disabled class="form-check-input me-1" type="checkbox">
-                                        </div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">Nama</div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">JenisKartu</div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">Nomor Kartu</div>
-                                    </div>
-                                </div>
-                            </div>   
-                                <div class="table" id="resultsearch">
-                                    <!-- Checkbox -->
-                                </div>
+                    <div style="align-self: stretch; padding-right: 40px; padding-left: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+                        <!-- Daftar Anggota -->
+                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                            <label class="h5 form-label" style="text-align: justify; color: #1D1B20; word-wrap: break-word">Daftar Anggota</label>
+                            <div class="label" style="text-align: justify; color: #9E9E9E; word-wrap: break-word;">Tambahkan anggota yang mengikuti acara ini</div>
                         </div>
-                    
+
+                        <!-- Daftar Anggota yang telah ditambahkan -->
+                        <div class="table">
+                            <div class="table-head">
+                                <div class="table-header-cell">
+                                    <div class="h5 header-name">Nama</div>
+                                </div>
+                                <div class="table-header-cell">
+                                    <div class="h5 header-name">Jenis Kartu</div>
+                                </div>
+                                <div class="table-header-cell">
+                                    <div class="h5 header-name">Nomor Kartu</div>
+                                </div>
+                            </div>
+        
+                            <!-- FOREACH HERE -->
+                            <div class="table-body">
+                                <!-- Nama Anggota -->
+                                <div class="table-body-cell">
+                                    <div class="body-name b-regular"></div>
+                                </div>
+
+                                <!-- Jenis Kartu -->
+                                <div class="table-body-cell">
+                                    <div class="body-name b-regular"></div>
+                                </div>
+
+                                <!-- Nomor Kartu -->
+                                <div class="table-body-cell">
+                                    <div class="body-name b-regular"></div>
+                                </div>
+                            </div>
+                            <!-- ENDFOREACH HERE -->
+                        </div>
+
+                        <!-- Untuk Tambah Anggota -->
+                        <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC">
+                        <div class="table">
+                            <div class="table-head">
+                                <div class="table-header-cell-checkbox">
+                                    <div class="h5 header-name">
+                                        <input disabled class="form-check-input me-1" type="checkbox">
+                                    </div>
+                                </div>
+                                <div class="table-header-cell">
+                                    <div class="h5 header-name">Nama</div>
+                                </div>
+                                <div class="table-header-cell">
+                                    <div class="h5 header-name">Jenis Kartu</div>
+                                </div>
+                                <div class="table-header-cell">
+                                    <div class="h5 header-name">Nomor Kartu</div>
+                                </div>
+                            </div>
+        
+                            @foreach ($ktps as $data)
+                            <div class="table-body">
+                                <!-- checkbox -->
+                                <div >
+                                    <div class="h5 header-name">
+                                        <input class="form-check-input me2" type="checkbox" value="{{ $data->no_kartu }}" name="daftar_anggota[]">
+                                    </div>
+                                </div>
+
+                                <!-- Nama Anggota -->
+                                <div class="table-body-cell">
+                                    <div class="body-name b-regular">{{ $data->nama }}</div>
+                                </div>
+
+                                <!-- Jenis Kartu -->
+                                <div class="table-body-cell">
+                                    <div class="body-name b-regular">{{ $data->jenis_kartu }}</div>
+                                </div>
+
+                                <!-- Nomor Kartu -->
+                                <div class="table-body-cell">
+                                    <div class="body-name b-regular">{{ $data->no_kartu }}</div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
 
                     <!-- Pemisah : Line -->
                     <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
@@ -152,10 +191,7 @@
                 });
             });
         </script>
-        <script>
-
-        </script>
-         <script type="text/javascript">
+        <script type="text/javascript">
             $('body').on('keyup','#search', function(){
                 var searchQuest = $(this).val();
 
@@ -193,13 +229,10 @@
                             });
                             });
                         });
-                        
-
                     }
                 });
             });
 
         </script>
-        
     </div>
 </main>
