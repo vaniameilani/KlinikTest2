@@ -284,14 +284,26 @@
                                     <!-- <button class="button-ghost dropdown-item" data-bs-target="#freezeCard" data-bs-toggle="modal">
                                         <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kartu Freeze</div>
                                     </button> -->
+                                    @if($lc[0]->status == 'Aktif')
                                     <a class="button-ghost dropdown-item" data-bs-target="#freezeCard" data-bs-toggle="modal">
                                         <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Kartu Freeze</div>
                                     </a>
+                                    @elseif($lc[0]->status == 'Dibekukan')
+                                    <a class="button-ghost dropdown-item" data-bs-target="#unfreezeCard" data-bs-toggle="modal">
+                                        <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Un-Freeze Kartu</div>
+                                    </a>
+                                    @endif
                                 </li>
                                 <li>
+                                    @if($lc[0]->status == 'Aktif' || $lc[0]->status == 'Dibekukan')
                                     <a class="button-ghost dropdown-item" data-bs-target="#takenCard" data-bs-toggle="modal">
                                         <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Penarikan kartu</div>
                                     </a>
+                                    @elseif ($lc[0]->status == 'Dinonaktifkan')
+                                    <a class="button-ghost dropdown-item" data-bs-target="#aktifCard" data-bs-toggle="modal">
+                                        <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Aktifkan kartu</div>
+                                    </a>
+                                    @endif
                                 </li>
                             </ul>
                             <div class="modal fade" id="freezeCard" aria-hidden="true" aria-labelledby="freezeCard" tabindex="-1">
@@ -322,7 +334,35 @@
                                                 
                                             </div>
                                             <div class="modal-footer" style="padding-left: 24px; padding-right: 24px;">
-                                                <button type="submit" class="btn button-fill" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                                <button type="submit" class="btn button-fill" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex" onclick="return confirm('Apakah Anda yakin untuk membekukan kartu dengan nomor {{ $lc[0]->no_kartu }}?')">
+                                                    <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
+                                                </button>
+                                                <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="unfreezeCard" aria-hidden="true" aria-labelledby="unfreezeCard" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5 ps-3" id="unfreezeCard">Un-Freeze Kartu</h1>
+                                            <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form method="POST" action="/update-freeze-taken/{{ $ktp->nik }}" class="px-3">
+                                            <div class="modal-body">
+                                                @method('PUT')
+                                                @csrf
+                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex;">
+                                                        <div class="input-field">
+                                                            <label for="status" class="form-label b-medium name">Status</label>
+                                                            <input readonly type="text" class="input-name form-control @error('status') is-invalid @enderror" id="status" placeholder="Masukkan Status Kartu" name="status" value="Aktif">
+                                                        </div>
+                                                    </div>                                              
+                                            </div>
+                                            <div class="modal-footer" style="padding-left: 24px; padding-right: 24px;">
+                                                <button type="submit" class="btn button-fill" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex" onclick="return confirm('Apakah Anda yakin untuk Unfreeze kartu dengan nomor {{ $lc[0]->no_kartu }}?')">
                                                     <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
                                                 </button>
                                                 <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
@@ -359,7 +399,35 @@
                                                 
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn button-fill" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                                                <button class="btn button-fill" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex" onclick="return confirm('Apakah Anda yakin untuk menonaktifkan kartu dengan nomor {{ $lc[0]->no_kartu }}?')">
+                                                    <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
+                                                </button>
+                                                <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="aktifCard" aria-hidden="true" aria-labelledby="aktifCard" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5 ps-3" id="aktifCard">Aktifkan Kartu</h1>
+                                            <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form method="POST" action="/update-freeze-taken/{{ $ktp->nik }}" class="px-3">
+                                            <div class="modal-body">
+                                                @method('PUT')
+                                                @csrf
+                                                    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex;">
+                                                        <div class="input-field">
+                                                            <label for="status" class="form-label b-medium name">Status</label>
+                                                            <input readonly type="text" class="input-name form-control @error('status') is-invalid @enderror" id="status" placeholder="Masukkan Status Kartu" name="status" value="Aktif">
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer" style="padding-left: 24px; padding-right: 24px;">
+                                                <button type="submit" class="btn button-fill" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex" onclick="return confirm('Apakah Anda yakin untuk mengaktifkan kembali kartu dengan nomor {{ $lc[0]->no_kartu }}?')">
                                                     <div style="text-align: justify; color: white;  font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan</div>
                                                 </button>
                                                 <!-- <button class="btn button-fill px-3 rounded-3" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button> -->
@@ -441,8 +509,12 @@
                                 </div>
                                 @if ($lc[0]->status == 0)
                                 <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">-</div>
-                                @else
-                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $lc[0]->status }}</div>
+                                @elseif ($lc[0]->status == 'Aktif')
+                                <div style="text-align: justify; color: #228b22; font-size: 16px; font-family: Inter; font-weight: 700; line-height: 24px; word-wrap: break-word">{{ $lc[0]->status }}</div>
+                                @elseif ($lc[0]->status == 'Dibekukan')
+                                <div style="text-align: justify; color: #00eeff; font-size: 16px; font-family: Inter; font-weight: 700; line-height: 24px; word-wrap: break-word">{{ $lc[0]->status }}</div>
+                                @elseif ($lc[0]->status == 'Dinonaktifkan')
+                                <div style="text-align: justify; color: #FF0032; font-size: 16px; font-family: Inter; font-weight: 700; line-height: 24px; word-wrap: break-word">{{ $lc[0]->status }}</div>
                                 @endif
                             </div>
                             <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
