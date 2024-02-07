@@ -45,7 +45,7 @@ class EventController extends Controller
         $acara->daftar_anggota = json_encode($request->daftar_anggota);
         $acara->save();
 
-        return redirect('/acara')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/acara')->with('status', 'Data berhasil ditambahkan');
     }
 
     public function show(Event $event)
@@ -101,9 +101,7 @@ class EventController extends Controller
             'lokasi_acara' => $request->lokasi_acara,
         ]);
         
-        return redirect('/acara')->with('status', 'Data berhasil diupdate!');
-        // return redirect('/detail-acara', ['id_acara' => $event->id_acara]);
-        // return redirect()->route('detail-acara', ['event' => $event->id_acara]); 
+        return redirect()->to('detail-acara/'.$event)->with('status', 'Data berhasil diupdate!'); 
     }
 
     public function search(Request $request)

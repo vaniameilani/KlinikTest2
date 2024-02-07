@@ -18,6 +18,15 @@
         </div>
     </div>
 
+    @if (session('status'))
+        <div style="align-self: stretch;">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="align-self: stretch;">
+                {{ session('status') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+
     <!-- FORM -->
     <div class="container-fluid" style="background: white; border-radius: 10px; border: 1px #DADDE5 solid; padding-top: 32px; padding-bottom: 40px;">
         <div class="d-flex justify-content-between align-items-center align-self-center" style="padding-left: 40px; padding-right: 40px;">
