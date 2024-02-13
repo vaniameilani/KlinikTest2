@@ -646,7 +646,7 @@
                     {{ $getevents->withQueryString()->links() }}
                     @endif
                     </div>
-
+                </div>
             <!-- BPJS -->
             <div style="align-self: stretch; padding: 24px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                 <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
@@ -772,7 +772,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
 
         <!-- DAFTAR KK -->
         <div style="width: 100%; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; gap: 24px; display: inline-flex">
