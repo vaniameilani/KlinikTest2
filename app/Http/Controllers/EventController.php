@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Psy\Readline\Hoa\Console;
+use App\Support\Collection;
 
 class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
+        $events = Event::orderByDesc('tgl_acara')->paginate(5);
         return view('Event.index', compact('events'));
     }
 
@@ -37,12 +38,19 @@ class EventController extends Controller
             'lokasi_acara' => 'required',
             'daftar_anggota' => 'required'
         ]);
+        $countanggota = count($request->daftar_anggota);
+        for ($i = 1; $i <= $countanggota; $i++){
+            $storestatus [] = null;
+        }
+        $inputstatus = json_encode($storestatus);
 
         $acara = new Event;
         $acara->nama_acara = $request->nama_acara;
         $acara->tgl_acara = $request->tgl_acara;
         $acara->lokasi_acara = $request->lokasi_acara;
+        $acara->status = $inputstatus;
         $acara->daftar_anggota = json_encode($request->daftar_anggota);
+
         $acara->save();
 
         return redirect('/acara')->with('status', 'Data berhasil ditambahkan');
@@ -51,6 +59,13 @@ class EventController extends Controller
     public function show(Event $event)
     {
         $names = json_decode($event->daftar_anggota);
+        $getstatus = json_decode($event->status);
+        if ($getstatus == null){
+        $status = null;
+        }else{
+        $status = array_combine($names, $getstatus);
+        }
+        
         // $count = count($names);
         // dd($count);
 
@@ -75,9 +90,9 @@ class EventController extends Controller
             ->get();
 
         }
-        // dd($ktps);
+        // dd($status);
 
-        return view('Event.detail', compact('event', 'datas'));
+        return view('Event.detail', compact('event', 'datas', 'status'));
     }
 
     public function edit(Event $event)
@@ -102,6 +117,28 @@ class EventController extends Controller
         ]);
         
         return redirect()->to('detail-acara/'.$event)->with('status', 'Data berhasil diupdate!'); 
+    }
+
+    public function absen(Request $request, $event)
+    {
+        $ssevents = DB::table('events')
+        ->where('id_acara', $event)
+        ->value('daftar_anggota');
+
+        $names = json_decode($ssevents);
+        $absen = array();
+        foreach ($names as $key){
+            $radio = "radio$key";
+            $absen[] = $request->$radio;
+            
+        }
+
+        Event::where('id_acara', $event)
+        ->update([
+            'status' => json_encode($absen)
+        ]);
+        
+        return redirect()->to('detail-acara/'.$event)->with('status', 'Kehadiran berhasil direkap'); 
     }
 
     public function search(Request $request)

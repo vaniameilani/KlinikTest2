@@ -119,5 +119,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/detail-acara/{event}', [EventController::class, 'show']);
     Route::get('/detail-acara/{event}/edit', [EventController::class, 'edit']);
     Route::put('/update-acara/{event}', [EventController::class, 'update']);
+    Route::put('/detail-acara/{event}/absen', [EventController::class, 'absen']);
     Route::post('/tambah-acara/search',[EventController::class, 'search'])->name('search');
 });

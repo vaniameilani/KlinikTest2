@@ -12,10 +12,12 @@ use App\Models\Other;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\Village;
+use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Support\Collection;
+use Illuminate\Support\Arr;
 
 
 class KtpsController extends Controller
@@ -247,6 +249,37 @@ class KtpsController extends Controller
         ->orderBy('tanggal_upgrade', 'desc')
         ->paginate(3);
 
+        $kartu = $lcselect->value('lcs.no_kartu');
+        
+        $events = DB::table('events')
+        ->where('daftar_anggota', 'like', '%'.$kartu.'%')
+        ->select('daftar_anggota', 'id_acara', 'nama_acara', 'status', 'tgl_acara', 'lokasi_acara')
+        ->orderBy('tgl_acara', 'DESC');
+
+        $getevents = $events->paginate(3);
+        $idevent = $events->pluck('id_acara')->toArray();
+        $idacara = count($getevents);
+        $statuses = $events->pluck('status');
+        $nokartu = $events->pluck('daftar_anggota');
+        foreach ($nokartu as $card){
+            $sscard[] = json_decode($card);
+        }
+
+        foreach ($statuses as $status){
+            $ss_status[] = json_decode($status);
+        }
+        for($i=0; $i <= $idacara - 1; $i++){
+            $results[] = array_combine($sscard[$i], $ss_status[$i]);
+        }
+        $stat = array_combine($idevent, $results);
+
+        // $result=array(); 
+        // foreach($getcard as $key=>$value ){ 
+        //   $val=$getstatus[$key]; 
+        //   $result[$key]=array($value,$val); 
+        // } 
+
+
         // $prov = DB::table('provinces')
         // ->where('provinces.id', '=', $nik->provinsi)
         // ->get();
@@ -270,6 +303,9 @@ class KtpsController extends Controller
             'changelc' => $changelc,
             'listdata' => $listdata,
             'lcselect' => $lcselect,
+            'results' => $results,
+            'stat' => $stat,
+            'getevents' => $getevents
             // 'prov' => $prov,
             // 'rgc' => $rgc,
             // 'dist' => $dist

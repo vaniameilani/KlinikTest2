@@ -61,10 +61,13 @@
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                     <div class="d-flex justify-content-between align-items-center align-self-stretch">
                         <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Daftar Anggota</div>
-                        <a class="btn button-borderline" href="#" style="padding: 8px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                            <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan Status Kehadiran</div>
-                        </a>
-                    </div>
+                        <form method="POST" action="/detail-acara/{{$event->id_acara}}/absen" style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                            @method('PUT')
+                            @csrf
+                            <button type="submit" class="btn button-fill button-set-fill">
+                                <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan Status Kehadiran</div>
+                            </button>
+                        </div>
 
                     <div class="table">
                         <div class="table-head">
@@ -86,6 +89,7 @@
                         </div>
 
                         @foreach ($datas as $data)
+                        
                         <div class="table-body">
                              <!-- Nama Anggota -->
                              <div class="table-body-cell">
@@ -118,22 +122,43 @@
                             <div class="d-flex align-items-center px-2 pe-2" style="flex: 1 0 0;">
                                 <div class="d-flex flex-column">
                                     <div class="d-flex flex-row gap-2">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1"> Hadir </label>
+                                    @if ($status == null)
+                                        <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" id="Radio1" value="Hadir">
+                                        <label class="form-check-label" for="Radio1"> Hadir </label>
                                     </div>
                                     <div class="d-flex flex-row gap-2">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1"> Tidak Hadir </label>
+                                        <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" id="Radio2" value="Tidak Hadir">
+                                        <label class="form-check-label" for="Radio2"> Tidak Hadir </label>
+                                    @else
+                                        <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" {{ ($status[$data[0]->no_kartu]=="Hadir")? "checked" : "" }} id="Radio1" value="Hadir">
+                                        <label class="form-check-label" for="Radio1"> Hadir </label>
+                                    </div>
+                                    <div class="d-flex flex-row gap-2">
+                                        <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" {{ ($status[$data[0]->no_kartu]=="Tidak Hadir")? "checked" : "" }} id="Radio2" value="Tidak Hadir">
+                                        <label class="form-check-label" for="Radio2"> Tidak Hadir </label>
+                                    @endif
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Status -->
                             <div class="table-body-cell">
-                                <div class="body-name b-regular">-</div>
+                                <div class="body-name b-regular">
+                                    @if ($status == null)
+                                    -
+                                    @elseif($status[$data[0]->no_kartu] == null)
+                                    Kehadiran belum direkap
+                                    @else
+                                    {{$status[$data[0]->no_kartu]}}
+                                    @endif
+                                </div>
                             </div>
+                        
+                        
                         </div>
                         @endforeach
+                        
+                        </form>
                     </div>
                 </div>
             </div>

@@ -593,11 +593,60 @@
                     <div style="align-self: stretch; justify-content: flex-start; align-items: center; display: inline-flex">
                         <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Riwayat Penggunaan Kartu</div>
                     </div>
+                    <!-- ACARA -->
+                    @if ($getevents == null)
                     <div style="align-self: stretch; height: 114px; padding-top: 40px; padding-bottom: 40px; background: #E8EAF2; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; display: flex">
                         <div style="opacity: 0.50; text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Belum mengikuti acara apapun</div>
                     </div>
-                </div>
-            </div>
+                    @else
+                    <div class="table">
+                        <div class="table-head">
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">Nama Acara</div>
+                            </div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">Tanggal Acara</div>
+                            </div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">Lokasi Acara</div>
+                            </div>
+                            <div class="table-header-cell">
+                                <div class="h5 header-name">Kehadiran</div>
+                            </div>
+                        </div>
+                        @foreach ($getevents as $event)
+                        <div class="table-body">
+                            <!-- Nama Acara -->
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">{{ $event->nama_acara }}</div>
+                            </div>
+                            <!-- Tanggal Acara -->
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">{{ $event->tgl_acara }}</div>
+                            </div>
+                            <!-- Lokasi Acara -->
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">{{ $event->lokasi_acara }}</div>
+                            </div>
+                            <!-- Status -->
+                            <div class="table-body-cell">
+                                <div class="body-name b-regular">
+                                    @if ($stat[$event->id_acara][$lc[0]->no_kartu] == null)
+                                    Kehadiran belum direkap
+                                    @else
+                                    {{ $stat[$event->id_acara][$lc[0]->no_kartu] }}
+                                    @endif
+                                </div>
+                            </div>
+
+
+                            
+                            
+                        </div>
+                        @endforeach
+                    @endif
+                    {{ $getevents->withQueryString()->links() }}
+                    </div>
 
             <!-- BPJS -->
             <div style="align-self: stretch; padding: 24px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">

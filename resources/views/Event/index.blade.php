@@ -26,7 +26,7 @@
                 @foreach ($events as $data)
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
                     <a class="btn card-event" href="/detail-acara/{{ $data->id_acara }}" style="align-self: stretch; padding: 16px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex" role="button">
-                        <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">{{ $data->nama_acara }}</div>
+                        <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">{{ $data->nama_acara }} | {{count(json_decode($data->daftar_anggota))}} Anggota</div>
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                             <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
                                 <!-- <div style="align-self: stretch; position: relative">
@@ -46,6 +46,7 @@
                 </div>
                 @endforeach
             </div>
+            {{ $events->links() }}
             
         </div>
     </div>
