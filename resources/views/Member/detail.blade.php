@@ -638,14 +638,13 @@
                                     @endif
                                 </div>
                             </div>
-
-
-                            
-                            
                         </div>
                         @endforeach
                     @endif
+                    @if ($getevents == null)
+                    @else
                     {{ $getevents->withQueryString()->links() }}
+                    @endif
                     </div>
 
             <!-- BPJS -->

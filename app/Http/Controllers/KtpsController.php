@@ -251,28 +251,43 @@ class KtpsController extends Controller
 
         $kartu = $lcselect->value('lcs.no_kartu');
         
-        $events = DB::table('events')
-        ->where('daftar_anggota', 'like', '%'.$kartu.'%')
-        ->select('daftar_anggota', 'id_acara', 'nama_acara', 'status', 'tgl_acara', 'lokasi_acara')
-        ->orderBy('tgl_acara', 'DESC');
-
-        $getevents = $events->paginate(3);
-        $idevent = $events->pluck('id_acara')->toArray();
-        $idacara = count($getevents);
-        $statuses = $events->pluck('status');
-        $nokartu = $events->pluck('daftar_anggota');
-        foreach ($nokartu as $card){
-            $sscard[] = json_decode($card);
+        if($kartu == null){
+            $events = null;
+        }else{
+            $events = DB::table('events')
+            ->where('daftar_anggota', 'like', '%'.$kartu.'%')
+            ->select('daftar_anggota', 'id_acara', 'nama_acara', 'status', 'tgl_acara', 'lokasi_acara')
+            ->orderBy('tgl_acara', 'DESC');
         }
+        if($events == null){
+            $getevents = null;
+            $idevent = null;
+            $idacara = null;
+            $statuses = null;
+            $nokartu = null;
+            $sscard = null;
+            $ss_status = null;
+            $results = null;
+            $stat = null;
+        }else{
+            $getevents = $events->paginate(3);
+            $idevent = $events->pluck('id_acara')->toArray();
+            $idacara = count($getevents);
+            $statuses = $events->pluck('status');
+            $nokartu = $events->pluck('daftar_anggota');
+        
+            foreach ($nokartu as $card){
+                $sscard[] = json_decode($card);
+            }
 
-        foreach ($statuses as $status){
-            $ss_status[] = json_decode($status);
+            foreach ($statuses as $status){
+                $ss_status[] = json_decode($status);
+            }
+            for($i=0; $i <= $idacara - 1; $i++){
+                $results[] = array_combine($sscard[$i], $ss_status[$i]);
+            }
+            $stat = array_combine($idevent, $results);
         }
-        for($i=0; $i <= $idacara - 1; $i++){
-            $results[] = array_combine($sscard[$i], $ss_status[$i]);
-        }
-        $stat = array_combine($idevent, $results);
-
         // $result=array(); 
         // foreach($getcard as $key=>$value ){ 
         //   $val=$getstatus[$key]; 
