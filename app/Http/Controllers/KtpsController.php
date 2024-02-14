@@ -260,7 +260,7 @@ class KtpsController extends Controller
             ->orderBy('tgl_acara', 'DESC');
         }
 
-        if($events == null){
+        if($events == null || count($events->get()) == 0){
             $getevents = null;
             $idevent = null;
             $idacara = null;
@@ -270,17 +270,7 @@ class KtpsController extends Controller
             $ss_status = null;
             $results = null;
             $stat = null;
-        }
-        elseif(count($events->get()) == 0){
-            $getevents = null;
-            $idevent = null;
-            $idacara = null;
-            $statuses = null;
-            $nokartu = null;
-            $sscard = null;
-            $ss_status = null;
-            $results = null;
-            $stat = null;
+        
         }else{
             $getevents = $events->paginate(3);
             $idevent = $events->pluck('id_acara')->toArray();
