@@ -259,7 +259,19 @@ class KtpsController extends Controller
             ->select('daftar_anggota', 'id_acara', 'nama_acara', 'status', 'tgl_acara', 'lokasi_acara')
             ->orderBy('tgl_acara', 'DESC');
         }
+
         if($events == null){
+            $getevents = null;
+            $idevent = null;
+            $idacara = null;
+            $statuses = null;
+            $nokartu = null;
+            $sscard = null;
+            $ss_status = null;
+            $results = null;
+            $stat = null;
+        }
+        elseif(count($events->get()) == 0){
             $getevents = null;
             $idevent = null;
             $idacara = null;
