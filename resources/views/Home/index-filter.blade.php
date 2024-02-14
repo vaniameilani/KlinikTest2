@@ -188,7 +188,7 @@
                         <div class="table-body">
                             <!-- NIK -->
                             <div class="table-body-cell">
-                                <a href="" class="btn button-ghost body-name-link b-medium">{{ $row->nik }}</a>
+                                <a href="/detail-anggota/{{ $row->nik }}" class="btn button-ghost body-name-link b-medium">{{ $row->nik }}</a>
                             </div>
 
                             <!-- NAMA -->
