@@ -58,58 +58,35 @@
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                             <div class="table">
                                 <div class="table-head">
-                                    <div class="table-header-cell-checkbox">
-                                        <div class="h5 header-name">
-                                            <input disabled class="form-check-input me-1" type="checkbox">
-                                        </div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">Nama</div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">JenisKartu</div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">Nomor Kartu</div>
-                                    </div>
+                                    <input disabled class="form-check-input me-2" type="checkbox">
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
                                 </div>
                             </div>      
-                            <div class="table" id="checkboxresult">
-                            </div>
+                            <div class="table" id="checkboxresult"></div>
+                        </div>
                         
-
                         <!-- Tambah Anggota -->
                         <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                             <div class="table">
                                 <div class="table-head">
-                                    <div class="table-header-cell-checkbox">
-                                        <div class="h5 header-name">
-                                            <input disabled class="form-check-input me-1" type="checkbox">
-                                        </div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">Nama</div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">JenisKartu</div>
-                                    </div>
-                                    <div class="table-header-cell">
-                                        <div class="h5 header-name">Nomor Kartu</div>
-                                    </div>
+                                    <input disabled class="form-check-input me-2" type="checkbox">
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
                                 </div>
                             </div>   
-                                <div class="table" id="resultsearch">
-                                    <!-- Checkbox -->
-                                </div>
+                            <div class="table" id="resultsearch">
+                                <!-- Checkbox -->
+                            </div>
                         </div>
-                    
-
-                    <!-- Pemisah : Line -->
-                    <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
                 </div>
+                <!-- Pemisah : Line -->
+                <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
                 <!-- Button Section -->
-                <div class="button-section mt-4">
+                <div class="button-section">
                     <button type="submit" class="btn button-fill button-set-fill">
                         <div class="b-bold name" style="color: white;">Tambah</div>
                     </button>
@@ -174,7 +151,7 @@
                         $('#resultsearch').html('');
 
                         $.each( res, function(create, value){
-                            tableRow = '<div class="table-body"><div class="table-body-cell-checkbox"><input class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" id="'+value.no_kartu+'"></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+                            tableRow = '<div class="table-body"><div class="d-flex"><input class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" id="'+value.no_kartu+'"></div><div class="body-name"><div class="body-name b-regular">'+value.nama+'</div></div><div class="body-name"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="body-name"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
 
                         $('#resultsearch').append(tableRow);
                         
@@ -185,7 +162,7 @@
                         $(function(){
                             $('#'+value.no_kartu+'').click(function() {
                                 if($(this).is(':checked')){
-                                    addRow = '<div class="table-body" id="cb'+value.no_kartu+'"><div class="table-body-cell-checkbox"><input onclick="return false;" class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" name="daftar_anggota[]" id="cbs'+value.no_kartu+'" checked></div><div class="table-body-cell"><div class="body-name b-regular">'+value.nama+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="table-body-cell"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+                                    addRow = '<div class="table-body" id="cb'+value.no_kartu+'"><div class="d-flex"><input onclick="return false;" class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" name="daftar_anggota[]" id="cbs'+value.no_kartu+'" checked></div><div class="body-name"><div class="body-name b-regular">'+value.nama+'</div></div><div class="body-name"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="body-name"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
                                     $('#checkboxresult').append(addRow);
                                 }else{
                                     $('#cb'+value.no_kartu+'').remove();

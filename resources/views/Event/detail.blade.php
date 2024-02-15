@@ -64,7 +64,8 @@
                         <form method="POST" action="/detail-acara/{{$event->id_acara}}/absen" style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
                             @method('PUT')
                             @csrf
-                            <button type="submit" class="btn button-fill button-set-fill">
+                            <!-- button-set-fil -->
+                            <button type="submit" class="btn button-borderline px-3">
                                 <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Simpan Status Kehadiran</div>
                             </button>
                         </div>
@@ -167,3 +168,6 @@
 
     
 </main>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+

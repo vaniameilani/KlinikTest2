@@ -181,9 +181,11 @@
                             <div class="h5 header-name d-flex align-items-center pt-2">Alamat</div>
                             <div class="h5 header-name d-flex align-items-center pt-2">No HP</div>
                         </div>
-                        @if ($datanull == '')
+                        <!-- @if ($datanull == null)
+                        <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Belum ada anggota yang terdaftar</div>
+                        @elseif ($datanull == " ")
                         <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Tidak ada data yang sesuai dengan filter</div>
-                        @else
+                        @else -->
                         @foreach ($datanull as $row)
                         <div class="table-body">
                             <!-- NIK -->
@@ -243,7 +245,7 @@
                                     @endforeach  
                                 </div>  
                             </div>
-                            @endif
+                            <!-- @endif -->
 
                             <!-- NOMOR HP -->
                             @if ($row->no_hp == "")

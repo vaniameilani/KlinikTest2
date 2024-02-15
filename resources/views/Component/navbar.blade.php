@@ -17,17 +17,56 @@
     <body>
         <header>       
             <div style="width: 100%; padding-left: 176px; padding-right: 176px; padding-top: 16px; padding-bottom: 16px; background: white; box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25); justify-content: space-between; align-items: center; display: inline-flex">
-                <a href="/" class="nav nav-link">
+                <!-- <a href="/" class="nav nav-link">
                     <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Yayasan Raycare Nusantara</div>
-                </a>
-                <div style="flex: 1 1 0; justify-content: center; align-items: center; display: flex">
+                </a> -->
+                <div style="flex: 1 1 0; justify-content: start; align-items: center; display: flex">
+                    <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Yayasan Raycare Nusantara</div>
                     <a href="/" class="menu nav-link">Dashboard</a>
                     <a href="/acara" class="menu nav-link">Acara</a>
                 </div>
-                <!-- <div class="btn body-medium" style="color:#394E91; padding: 16px; border-radius: 10px; justify-content: center; align-items: center; display: inline-flex">Logout</div> -->
-                <a href='/logout' class="btn button-ghost" style="padding: 16px; border-radius: 10px; justify-content: center; align-items: center; display: flex" href="/login" role="button">
-                    <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Logout</div>
-                </a>
+                <div class="dropdown text-end">
+                    <a href="#" class="btn d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+                <!-- <div style="flex: 1 1 0; justify-content: end; align-items: center; display: flex; gap: 8px;">
+                    <a href='/logout' class="button-fill btn-logout">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g filter="url(#filter0_d_425_430)">
+                                <path d="M3.33333 3.33333H7.33333C7.7 3.33333 8 3.03333 8 2.66667C8 2.3 7.7 2 7.33333 2H3.33333C2.6 2 2 2.6 2 3.33333V12.6667C2 13.4 2.6 14 3.33333 14H7.33333C7.7 14 8 13.7 8 13.3333C8 12.9667 7.7 12.6667 7.33333 12.6667H3.33333V3.33333Z" fill="white"/>
+                                <path d="M13.7667 7.76669L11.9067 5.90669C11.8603 5.85906 11.8008 5.82635 11.7357 5.81274C11.6706 5.79913 11.603 5.80525 11.5414 5.8303C11.4799 5.85536 11.4272 5.89822 11.3901 5.9534C11.353 6.00857 11.3333 6.07355 11.3333 6.14003V7.33336H6.66667C6.3 7.33336 6 7.63336 6 8.00003C6 8.36669 6.3 8.66669 6.66667 8.66669H11.3333V9.86003C11.3333 10.16 11.6933 10.3067 11.9 10.0934L13.76 8.23336C13.8933 8.10669 13.8933 7.89336 13.7667 7.76669Z" fill="white"/>
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_425_430" x="-4" y="0" width="24" height="24" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                    <feOffset dy="4"/>
+                                    <feGaussianBlur stdDeviation="2"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_425_430"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_425_430" result="shape"/>
+                                </filter>
+                            </defs>
+                        </svg>
+                        <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Register</div>
+                    </a>
+                    <a href='/logout' class="button-ghost btn-logout">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.33333 3.33333H7.33333C7.7 3.33333 8 3.03333 8 2.66667C8 2.3 7.7 2 7.33333 2H3.33333C2.6 2 2 2.6 2 3.33333V12.6667C2 13.4 2.6 14 3.33333 14H7.33333C7.7 14 8 13.7 8 13.3333C8 12.9667 7.7 12.6667 7.33333 12.6667H3.33333V3.33333Z" fill="#394E91"/>
+                            <path d="M13.7667 7.76669L11.9067 5.90669C11.8603 5.85906 11.8008 5.82635 11.7357 5.81274C11.6706 5.79913 11.603 5.80525 11.5414 5.8303C11.4799 5.85536 11.4272 5.89822 11.3901 5.9534C11.353 6.00857 11.3333 6.07355 11.3333 6.14003V7.33336H6.66667C6.3 7.33336 6 7.63336 6 8.00003C6 8.36669 6.3 8.66669 6.66667 8.66669H11.3333V9.86003C11.3333 10.16 11.6933 10.3067 11.9 10.0934L13.76 8.23336C13.8933 8.10669 13.8933 7.89336 13.7667 7.76669Z" fill="#394E91"/>
+                        </svg>
+                        <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Logout</div>
+                    </a>
+                </div> -->
             </div>
         </header>
         
