@@ -649,12 +649,19 @@ a.btn-add {
     display: flex;
     align-self: stretch;
     flex-direction: column;
-    grid-template-columns: repeat(3, 1fr);
-    /* grid-auto-rows: 100px; */
+    padding-left: 40px;
+    padding-right: 40px;
     gap: 24px;
 }
 
-a.card-event-list {
+.card-event-list {
+    display: flex;
+    align-self: stretch;
+    flex-direction: column;
+    gap: 16px;
+}
+
+a.card-event-contain {
     padding: 16px;
     border-radius: 10px;
     border: 1px #DADDE5 solid;
@@ -666,7 +673,7 @@ a.card-event-list {
     text-decoration-line: none;
 }
 
-a.card-event-list:hover {
+a.card-event-contain:hover {
     background: #E8EAF2;
 }
 
