@@ -72,7 +72,7 @@
                                 <div style="text-align: justify; color: white; font-size: 16px; font-family:'Inter', Sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">Masuk</div>
                             </button>
                         </form>
-                        <small style="align-self: stretch; justify-content: center; font-family:'Inter', Sans-serif; align-items: center; display: flex;gap: 4px;">Belum punya akun? <a href="/register">Register Disini!</a></small>
+                        <!-- <small style="align-self: stretch; justify-content: center; font-family:'Inter', Sans-serif; align-items: center; display: flex;gap: 4px;">Belum punya akun? <a href="/register">Register Disini!</a></small> -->
                     </div>  
                 </div>
                               

@@ -9,7 +9,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
         <!-- css -->
-        <link rel="stylesheet" href="css/login.css">
+        <!-- <link rel="stylesheet" href="css/login.css"> -->
+        <link rel="stylesheet" href="{{ asset('/styles.css') }}">
 
         <style>
             body {  
@@ -78,7 +79,9 @@
                                     <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Daftar</div>
                                 </button>
                             </form>
-                            <small style="align-self: stretch; justify-content: center; align-items: center; font-family:'Inter', Sans-serif; display: flex;gap: 4px;">Sudah punya akun? <a href="/login">Masuk</a></small>
+                            <a href="/" role="button" class="body-name-link b-medium" style="font-family: 'Inter', sans-serif;">Kembali ke Dashboard</a>
+                            <!-- <a href="/" class="btn button-underline" style="color: #394E91; text-decoration-line: none; align-self: stretch; justify-content: center; align-items: center; font-family:'Inter', Sans-serif; display: flex;">Kembali Ke Dashboard</a> -->
+                            <!-- <small style="align-self: stretch; justify-content: center; align-items: center; font-family:'Inter', Sans-serif; display: flex;gap: 4px;">Sudah punya akun? <a href="/login">Masuk</a></small> -->
                         </div>  
                     </div>
                 </div>

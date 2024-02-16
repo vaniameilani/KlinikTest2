@@ -556,34 +556,22 @@
                     </div>
                     @else
                     <div style="align-self: stretch; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
-                        <div style="align-self: stretch; padding-left: 20px; padding-right: 20px; padding-top: 16px; padding-bottom: 16px; background: #E8EAF2; border-top-left-radius: 5px; border-top-right-radius: 5px; justify-content: flex-start; align-items: center; display: inline-flex">
-                            <div style="flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Nomor Kartu</div>
-                            </div>
-                            <div style="flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Jenis Kartu</div>
-                            </div>
-                            <div style="flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Tanggal Diupgrade</div>
-                            </div>
-                            <div style="flex: 1 1 0; align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
-                                <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Alasan Diupgrade</div>
-                            </div>
+                        <div class="table-head">
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Tanggal Diupgrade</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Alasan Diupgrade</div>
                         </div>
                         @foreach ($changelc as $row)
-                        <div style="align-self: stretch; padding-left: 20px; padding-right: 20px; padding-top: 16px; padding-bottom: 16px; border-bottom: 1px rgba(217, 217, 217, 0.50) solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                            <div style="flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->no_kartu}}</div>
-                            </div>
-                            <div style="flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->jenis_kartu}}</div>
-                            </div>
-                            <div style="flex: 1 1 0; align-self: stretch; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->tanggal_upgrade}}</div>
-                            </div>
-                            <div style="flex: 1 1 0; align-self: stretch; background: linear-gradient(0deg,  0%,  100%), linear-gradient(0deg, white 0%, white 100%); flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
-                                <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $row->alasan_upgrade}}</div>
-                            </div>
+                        <div class="table-body">
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->no_kartu }}</div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->jenis_kartu }}</div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->tanggal_upgrade }}</div>
+                            @if ($row->alasan_upgrade == null)
+                            <div class="body-name">-</div>
+                            @else
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->alasan_upgrade }}</div>
+                            @endif
                         </div>
                         @endforeach
                     </div>
@@ -601,35 +589,32 @@
                     @else
                     <div class="table">
                         <div class="table-head">
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Nama Acara</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Tanggal Acara</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Lokasi Acara</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Kehadiran</div>
-                            </div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama Acara</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Tanggal Acara</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Lokasi Acara</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Kehadiran</div>
                         </div>
+
                         @foreach ($getevents as $event)
                         <div class="table-body">
                             <!-- Nama Acara -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">{{ $event->nama_acara }}</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $event->nama_acara }}</div>
+
                             <!-- Tanggal Acara -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">{{ $event->tgl_acara }}</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $event->tgl_acara }}</div>
+
                             <!-- Lokasi Acara -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">{{ $event->lokasi_acara }}</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $event->lokasi_acara }}</div>
+                            
                             <!-- Status -->
-                            <div class="table-body-cell">
+                            <div class="body-name b-regular">
+                                @if ($stat[$event->id_acara][$lc[0]->no_kartu] == null)
+                                Kehadiran belum direkap
+                                @else
+                                {{ $stat[$event->id_acara][$lc[0]->no_kartu] }}
+                                @endif
+                            </div>
+                            <!-- <div class="table-body-cell">
                                 <div class="body-name b-regular">
                                     @if ($stat[$event->id_acara][$lc[0]->no_kartu] == null)
                                     Kehadiran belum direkap
@@ -637,7 +622,7 @@
                                     {{ $stat[$event->id_acara][$lc[0]->no_kartu] }}
                                     @endif
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         @endforeach
                     @endif
@@ -647,10 +632,7 @@
                     @endif
                     </div>
                 </div>
-            </div>  
-
-        
-            <!-- BPJS -->
+            </div> 
             <div style="align-self: stretch; padding: 24px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                 <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                     <div style="width: 337px; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">BPJS</div>
@@ -707,8 +689,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- INFORMASI LAINNYA -->
             <div style="align-self: stretch; padding: 24px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                 <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
                     <div style="flex: 1 1 0; text-align: justify; color: #394E91; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Informasi Lainnya</div>
@@ -775,107 +755,146 @@
                     </div>
                 </div>
             </div>
-            <!-- DAFTAR KK -->
-            <div style="width: 100%; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; gap: 24px; display: inline-flex">
-                <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
-                    <div style="justify-content: center; align-items: center; display: flex">
-                        <div style="text-align: justify; color: #1D1B20; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Daftar Keluarga</div>
+        </div>
+        
+        <!-- DAFTAR KK -->
+        <div style="width: 100%; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; gap: 24px; display: inline-flex">
+            <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
+                <div style="justify-content: center; align-items: center; display: flex">
+                    <div style="text-align: justify; color: #1D1B20; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 33.60px; word-wrap: break-word">Daftar Keluarga</div>
+                </div>
+                @if ($listkk->count() == 0)
+                @else
+                <a class="btn button-fill" href="/tambah-anggota-kk/{{ $kk[0]->kk }}" role="button" style="padding: 12px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
+                    <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota Keluarga</div>
+                </a>
+                @endif
+            </div>
+            <div class="table">
+                <div class="table-head">
+                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">NIK</div>
+                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Kartu Keluarga</div>
+                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">BPJS</div>
+                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">LC</div>
+                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Aksi</div>
+                </div>
+                @if ($listdata->count() == 0)
+                <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Belum ada data</div>
+                @else
+                @foreach ($listdata as $row)
+                <div class="table-body">
+                    <!-- nik -->
+                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->nik }}</div>
+
+                    <!-- nama -->
+                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->nama }}</div>
+
+                    <!-- kk -->
+                    @if ($row->kk == "")
+                    <div class="body-name table-body-btn empty-bg-cell">
+                        <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                        </svg>
+                        <a href="/{{ $row->id_kk }}/tambah-kk" class="btn-add" role="button">
+                            <div class="fs-6 fw-bolder lh-sm" style="font-family: 'Inter', sans-serif;">tambah data</div>
+                        </a>
                     </div>
-                    @if ($listkk->count() == 0)
                     @else
-                    <a class="btn button-fill" href="/tambah-anggota-kk/{{ $kk[0]->kk }}" role="button" style="padding: 12px 16px; border-radius: 10px; border: 1px #394E91 solid; justify-content: center; align-items: center; display: flex">
-                        <div style="text-align: justify; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota Keluarga</div>
+                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->kk }}</div>
+                    @endif
+
+                    <!-- bpjs -->
+                    @if ($row->no_bpjs == "")
+                    <div class="body-name table-body-btn empty-bg-cell">
+                        <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                        </svg>
+                        <a href="/{{ $row->id_bpjs }}/tambah-bpjs" class="btn-add" role="button">
+                            <div class="fs-6 fw-bolder lh-sm" style="font-family: 'Inter', sans-serif;">tambah data</div>
+                        </a>
+                    </div>
+                    @else
+                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->no_bpjs }}</div>
+                    @endif
+
+                    <!-- lc -->
+                    @if ($row->no_kartu == "")
+                    <div class="body-name table-body-btn">
+                        <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                        </svg>
+                        <a href="/{{ $row->id_lc }}/tambah-lc" class="btn-add" role="button">
+                            <div class="fs-6 fw-bolder lh-sm" style="font-family: 'Inter', sans-serif;">tambah data</div>
+                        </a>
+                    </div>
+                    @else
+                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->no_kartu }}</div>
+                    @endif
+
+                    <!-- aksi -->
+                    <div class="body-name action">
+                        <a href="/detail-anggota/{{ $row->nik }}" class="button-fill btn-action" role="button">
+                            <div class="fs-6 fw-bold lh-sm" style="font-family: 'Inter', sans-serif;">Detail</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- <div class="table-body">
+                    <div class="table-body-cell">
+                        <div class="body-name b-regular">{{ $row->nik }}</div>
+                    </div>
+
+                    <div class="table-body-cell">
+                        <div class="body-name b-regular">{{ $row->nama }}</div>
+                    </div>
+
+                    @if ($row->kk == "")
+                    <a href="/{{ $row->id_kk }}/tambah-kk" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                        </svg>
+                        <div class="label body-name-btn d-flex align-items-center">tambah data</div>
                     </a>
-                    @endif
-                </div>
-                <div class="table">
-                    <div class="table-head">
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">NIK</div>
-                        </div>
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">Nama</div>
-                        </div>
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">KK</div>
-                        </div>
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">BPJS</div>
-                        </div>
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">LC</div>
-                        </div>
-                        <div class="table-header-cell table-header-btn">
-                            <div class="h5 header-name">Aksi</div>
-                        </div>
-                    </div>
-                    @if ($listdata->count() == 0)
-                    <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Belum ada data</div>
                     @else
-                    @foreach ($listdata as $row)
-                    <div class="table-body">
-                        <!-- NIK -->
-                        <div class="table-body-cell">
-                            <div class="body-name b-regular">{{ $row->nik }}</div>
-                        </div>
-
-                        <!-- NAMA -->
-                        <div class="table-body-cell">
-                            <div class="body-name b-regular">{{ $row->nama }}</div>
-                        </div>
-
-                        <!-- KK -->
-                        @if ($row->kk == "")
-                        <a href="/{{ $row->id_kk }}/tambah-kk" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
-                            </svg>
-                            <div class="label body-name-btn d-flex align-items-center">tambah data</div>
-                        </a>
-                        @else
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->kk }}</div>
-                        </div>
-                        @endif
-
-                        <!-- BPJS -->
-                        @if ($row->no_bpjs == "")
-                        <a href="{{$bpjs[0]->id_bpjs}}/edit/bpjs" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
-                            </svg>
-                            <div class="label body-name-btn d-flex align-items-center">tambah data</div>
-                        </a>
-                        @else
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->no_bpjs }}</div>
-                        </div>
-                        @endif
-
-                        <!-- LC -->
-                        @if ($row->no_kartu == "")
-                        <a href="/{{ $row->id_lc }}/tambah-lc" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
-                            </svg>
-                            <div class="label body-name-btn d-flex align-items-center">tambah data</div>
-                        </a>
-                        @else
-                        <div class="table-body-cell">
-                            <div class="b-regular body-name">{{ $row->no_kartu }}</div>
-                        </div>
-                        @endif
-
-                        <!-- AKSI -->
-                        <div class="table-body-cell ps-4">
-                            <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn button-ghost body-btn-detail">
-                                <div class="b-bold header-name">Detail</div>
-                            </a>
-                        </div>
+                    <div class="table-body-cell">
+                        <div class="b-regular body-name">{{ $row->kk }}</div>
                     </div>
-                    @endforeach
                     @endif
-                </div>
+
+                    @if ($row->no_bpjs == "")
+                    <a href="{{$bpjs[0]->id_bpjs}}/edit/bpjs" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                        </svg>
+                        <div class="label body-name-btn d-flex align-items-center">tambah data</div>
+                    </a>
+                    @else
+                    <div class="table-body-cell">
+                        <div class="b-regular body-name">{{ $row->no_bpjs }}</div>
+                    </div>
+                    @endif
+
+                    @if ($row->no_kartu == "")
+                    <a href="/{{ $row->id_lc }}/tambah-lc" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                        </svg>
+                        <div class="label body-name-btn d-flex align-items-center">tambah data</div>
+                    </a>
+                    @else
+                    <div class="table-body-cell">
+                        <div class="b-regular body-name">{{ $row->no_kartu }}</div>
+                    </div>
+                    @endif
+
+                    <div class="table-body-cell ps-4">
+                        <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn button-ghost body-btn-detail">
+                            <div class="b-bold header-name">Detail</div>
+                        </a>
+                    </div>
+                </div> -->
+                @endforeach
+                @endif
             </div>
         </div>
     </div>

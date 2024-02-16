@@ -26,8 +26,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function() {
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'authenticate']);
-    Route::get('/register', [RegisterController::class, 'register']);
-    Route::post('/register', [RegisterController::class, 'store']);
 });
 
 // MAIN
@@ -35,6 +33,8 @@ Route::middleware('auth')->group(function() {
     // HOME ----------------------------------------------------------------------------------------------------------
     Route::get('/', [KtpsController::class, 'index'])->name('home');
     // bawah -> halaman daftar anggota yang belum lengkap
+    Route::get('/register', [RegisterController::class, 'register']);
+    Route::post('/register', [RegisterController::class, 'store']);
     Route::get('/nulldata', [KtpsController::class, 'indexnull']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 

@@ -99,7 +99,7 @@
                         <div style="text-align: justify; color: #394E91; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Reset</div>
                     </a>
                     <button class="btn button-fill" type="submit" style="padding: 16px 24px; border-radius: 10px; justify-content: center; align-items: center; display: flex;">
-                        <div class="b-bold self-stretch" style="word-wrap: break-word;">Tampilkan Data</div>
+                        <div class="b-bold self-stretch" style="word-wrap: break-word; color: white;">Tampilkan Data</div>
                     </button>
                 </div>
             </form>
@@ -174,59 +174,63 @@
 
                     <div class="table">
                         <div class="table-head">
-                            <div class="h5 header-name d-flex align-items-center pt-2">NIK</div>
-                            <div class="h5 header-name d-flex align-items-center pt-2">Nama</div>
-                            <div class="h5 header-name d-flex align-items-center pt-2">LC</div>
-                            <div class="h5 header-name d-flex align-items-center pt-2">Faskes/Jenis Kartu BPJS</div>
-                            <div class="h5 header-name d-flex align-items-center pt-2">Alamat</div>
-                            <div class="h5 header-name d-flex align-items-center pt-2">No HP</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">NIK</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">LC</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Faskes/Jenis Kartu BPJS</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Alamat</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">No HP</div>
                         </div>
-                        <!-- @if ($datanull == null)
+                        @if ($datanull == null)
                         <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Belum ada anggota yang terdaftar</div>
                         @elseif ($datanull == " ")
                         <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Tidak ada data yang sesuai dengan filter</div>
-                        @else -->
+                        @else
                         @foreach ($datanull as $row)
                         <div class="table-body">
                             <!-- NIK -->
-                            <div class="table-body-cell">
-                                <a href="/detail-anggota/{{ $row->nik }}" class="btn button-ghost body-name-link b-medium">{{ $row->nik }}</a>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">
+                                <a href="/detail-anggota/{{ $row->nik }}" role="button" class="fs-6 fw-bolder lh-sm btn-add body-name-link" style="font-family: 'Inter', sans-serif;">{{ $row->nik }}</a>
                             </div>
 
                             <!-- NAMA -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">{{ $row->nama }}</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->nama }}</div>
 
                             <!-- LC -->
                             @if ($row->no_kartu == "")
-                            <div class="table-body-cell">
-                                <div class="b-regular body-name">-</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name">-</div>
                             @else
-                            <div class="table-body-cell">
-                                <div class="b-regular body-name">{{ $row->no_kartu }}</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->no_kartu }}</div>
                             @endif
 
                             <!-- BPJS -->
                             @if ($row->jenis_bpjs == "")
-                            <div class="table-body-cell">
-                                <div class="b-regular body-name">-</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name">-</div>
                             @else
-                            <div class="table-body-cell">
-                                <div class="b-regular body-name">{{ $row->jenis_bpjs }}</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->jenis_bpjs }}</div>
                             @endif
 
                             <!-- ALAMAT -->
                             @if ($row->kecamatan == "")
-                            <div class="table-body-cell">
-                                <div class="b-regular body-name">-</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name">-</div>
                             @else
-                            <div class="table-body-cell">
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">
+                                {{ $row->kecamatan }}, {{ $row->desa_kel }} <br>
+                                {{ $row->alamat }} <br>
+                                @foreach ($kecbelitung as $belitung)
+                                    @foreach ($belitung1 as $bel1) @if($row->kecamatan == $belitung->name && $row->desa_kel == $bel1)Dapil Belitung 1 @endif @endforeach  
+                                    @foreach ($belitung2 as $bel2) @if($row->kecamatan == $belitung->name && $row->desa_kel == $bel2)Dapil Belitung 2 @endif @endforeach  
+                                    @foreach ($belitung3 as $bel3) @if($row->kecamatan == $belitung->name && $row->desa_kel == $bel3)Dapil Belitung 3 @endif @endforeach  
+                                    @foreach ($belitung4 as $bel4) @if($row->kecamatan == $belitung->name && $row->desa_kel == $bel4)Dapil Belitung 4 @endif @endforeach  
+                                @endforeach
+                                @foreach ($kecbeltim as $beltim)
+                                    @foreach ($beltim1 as $bel_tim1) @if($row->kecamatan == $beltim->name && $row->desa_kel == $bel_tim1)Dapil Belitung Timur 1 @endif @endforeach  
+                                    @foreach ($beltim2 as $bel_tim2) @if($row->kecamatan == $beltim->name && $row->desa_kel == $bel_tim2)Dapil Belitung Timur 2 @endif @endforeach  
+                                    @foreach ($beltim3 as $bel_tim3) @if($row->kecamatan == $beltim->name && $row->desa_kel == $bel_tim3)Dapil Belitung Timur 3 @endif @endforeach  
+                                @endforeach
+                            </div>
+                            
+                            <!-- <div class="table-body-cell">
                                 <div class="b-regular body-name">{{ $row->kecamatan }}, {{ $row->desa_kel }}</div>
                                 <div class="b-regular body-name">{{ $row->alamat }}</div>
                                 <div class="b-regular body-name">
@@ -244,18 +248,14 @@
 
                                     @endforeach  
                                 </div>  
-                            </div>
-                            <!-- @endif -->
+                            </div> -->
+                            @endif
 
                             <!-- NOMOR HP -->
                             @if ($row->no_hp == "")
-                            <div class="table-body-cell">
-                                <div class="b-regular body-name">-</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name">-</div>
                             @else
-                            <div class="table-body-cell">
-                                <div class="b-regular body-name">{{ $row->no_hp }}</div>
-                            </div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->no_hp }}</div>
                             @endif
                         </div>
                         @endforeach

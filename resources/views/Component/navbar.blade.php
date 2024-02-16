@@ -20,21 +20,22 @@
                 <!-- <a href="/" class="nav nav-link">
                     <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Yayasan Raycare Nusantara</div>
                 </a> -->
-                <div style="flex: 1 1 0; justify-content: start; align-items: center; display: flex">
-                    <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Yayasan Raycare Nusantara</div>
+                <!-- <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Yayasan Raycare Nusantara</div> -->
+                <div style="flex: 1 1 0;  align-items: center; display: flex">
                     <a href="/" class="menu nav-link">Dashboard</a>
                     <a href="/acara" class="menu nav-link">Acara</a>
                 </div>
-                <div class="dropdown text-end">
+                <div class="text-end">
                     <a href="#" class="btn d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <!-- <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> -->
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.0002 3.33331C10.8002 3.33331 3.3335 10.8 3.3335 20C3.3335 29.2 10.8002 36.6666 20.0002 36.6666C29.2002 36.6666 36.6668 29.2 36.6668 20C36.6668 10.8 29.2002 3.33331 20.0002 3.33331ZM20.0002 9.99998C23.2168 9.99998 25.8335 12.6166 25.8335 15.8333C25.8335 19.05 23.2168 21.6666 20.0002 21.6666C16.7835 21.6666 14.1668 19.05 14.1668 15.8333C14.1668 12.6166 16.7835 9.99998 20.0002 9.99998ZM20.0002 33.3333C16.6168 33.3333 12.6168 31.9666 9.76683 28.5333C12.6862 26.2428 16.2895 24.998 20.0002 24.998C23.7108 24.998 27.3142 26.2428 30.2335 28.5333C27.3835 31.9666 23.3835 33.3333 20.0002 33.3333Z" fill="#394E91"/>
+                        </svg>
                     </a>
                     <ul class="dropdown-menu text-small">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="/register">Daftar Akun Baru</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        <!-- <li><hr class="dropdown-divider"></li> -->
                     </ul>
                 </div>
                 <!-- <div style="flex: 1 1 0; justify-content: end; align-items: center; display: flex; gap: 8px;">

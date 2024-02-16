@@ -41,17 +41,17 @@
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
                     <div style="text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Informasi lainnya</div>
                     <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
-                        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex; gap: 8px;">
+                        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex; gap: 4px;">
                             <div style="justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                 <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Tanggal Acara</div>
                             </div>
-                            <div style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $event->tgl_acara }}</div>
+                            <div class="b-medium" style="text-align: justify; color: #1D1B20; word-wrap: break-word">{{ $event->tgl_acara }}</div>
                         </div>
-                        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex; gap: 8px;">
+                        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex; gap: 4px;">
                             <div style="justify-content: flex-start; align-items: flex-start; display: inline-flex">
                                 <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">Lokasi Acara</div>
                             </div>
-                            <div style="text-align: start; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $event->lokasi_acara }}</div>
+                            <div class="b-medium" style="text-align: start; color: #1D1B20; word-wrap: break-word">{{ $event->lokasi_acara }}</div>
                             <br>
                         </div>
                     </div>
@@ -72,55 +72,60 @@
 
                     <div class="table">
                         <div class="table-head">
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Nama</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Jenis Kartu</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Nomor Kartu</div>
-                            </div>
-                            <div class="table-header-cell ps-2">
-                                <div class="h5 header-name">Aksi</div>
-                            </div>
-                            <div class="table-header-cell">
-                                <div class="h5 header-name">Status</div>
-                            </div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Aksi</div>
+                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Status</div>
                         </div>
 
                         @foreach ($datas as $data)
                         
                         <div class="table-body">
-                             <!-- Nama Anggota -->
-                             <div class="table-body-cell">
+                            <!-- Nama Anggota -->
+                            @if ($data[0]->nama == 0)
+                                <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                            @else
+                                <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->nama }}</div>
+                            @endif
+                             <!-- <div class="table-body-cell">
                                 @if ($data[0]->nama == 0)
-                                    <div>-</div>
+                                    <div class="fs-6 fw-normal lh-sm body-name">-</div>
                                 @else
-                                    <div class="body-name b-regular">{{ $data[0]->nama }}</div>
+                                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->nama }}</div>
                                 @endif
-                            </div>
+                            </div> -->
 
                             <!-- Jenis Kartu -->
-                            <div class="table-body-cell">
+                            @if ($data[0]->jenis_kartu == 0)
+                                <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                            @else
+                                <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->jenis_kartu }}</div>
+                            @endif
+                            <!-- <div class="table-body-cell">
                                 @if ($data[0]->jenis_kartu == 0)
-                                    <div>-</div>
+                                    <div class="fs-6 fw-normal lh-sm body-name">-</div>
                                 @else
-                                    <div class="body-name b-regular">{{ $data[0]->jenis_kartu }}</div>
+                                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->jenis_kartu }}</div>
                                 @endif
-                            </div>
+                            </div> -->
 
                             <!-- Nomor Kartu -->
-                            <div class="table-body-cell">
+                            @if ($data[0]->no_kartu == 0)
+                                <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                            @else
+                                <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->no_kartu }}</div>
+                            @endif
+                            <!-- <div class="table-body-cell">
                                 @if ($data[0]->no_kartu == 0)
-                                    <div>-</div>
+                                    <div class="fs-6 fw-normal lh-sm body-name">-</div>
                                 @else
-                                    <div class="body-name b-regular">{{ $data[0]->no_kartu }}</div>
+                                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->no_kartu }}</div>
                                 @endif
-                            </div>
+                            </div> -->
 
                             <!-- Aksi Button -->
-                            <div class="d-flex align-items-center px-2 pe-2" style="flex: 1 0 0;">
+                            <div class="body-name">
                                 <div class="d-flex flex-column">
                                     <div class="d-flex flex-row gap-2">
                                     @if ($status == null)
@@ -143,16 +148,14 @@
                             </div>
 
                             <!-- Status -->
-                            <div class="table-body-cell">
-                                <div class="body-name b-regular">
-                                    @if ($status == null)
-                                    -
-                                    @elseif($status[$data[0]->no_kartu] == null)
-                                    Kehadiran belum direkap
-                                    @else
-                                    {{$status[$data[0]->no_kartu]}}
-                                    @endif
-                                </div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">
+                                @if ($status == null)
+                                -
+                                @elseif($status[$data[0]->no_kartu] == null)
+                                Kehadiran belum direkap
+                                @else
+                                {{$status[$data[0]->no_kartu]}}
+                                @endif
                             </div>
                         
                         
@@ -170,4 +173,3 @@
 </main>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
-

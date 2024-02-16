@@ -19,9 +19,9 @@
     </div>
 
     <!-- FORM -->
-    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex; border: 1px #DADDE5 solid;">
+    <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; border: 1px #DADDE5 solid;">
         <div style="align-self: stretch; padding-top: 40px; padding-bottom: 24px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
-            <form method="POST" action="/save-acara" style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+            <form method="POST" action="/save-acara" style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex; gap: 24px;">
                 <!-- @method('PUT') -->
                 @csrf
                 <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 40px; display: flex">
@@ -53,35 +53,40 @@
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback"> {{ $message }} </div>
                             @enderror
                         </div>
+                    </div>
                         <!-- List Anggota -->
                         <!-- <label for="list_anggota" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">List Anggota</label> -->
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                        <a class="btn button-fill" data-bs-target="#addmember" data-bs-toggle="modal" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" role="button">
-                            <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota</div>
-                        </a>    
+                    <div style="align-self: stretch; padding-left: 40px; padding-right: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+                        <div class="d-flex justify-content-between align-self-stretch align-items-center">
+                            <div class="d-flex flex-column">
+                                <div class="h5 mb-0">Daftar Anggota</div>
+                                <div class="label mb-0" style="color: #9E9E9E;">Tambahkan anggota yayasan yang mengikuti acara ini</div>
+                            </div>
+                            <a class="button-fill btn-action" data-bs-target="#addmember" data-bs-toggle="modal" role="button">
+                                <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota</div>
+                            </a> 
+                        </div>   
                         <div class="table">
-                                <div class="table-head">
-                                    <input disabled class="form-check-input me-2" type="checkbox">
-                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
-                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
-                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
-                                </div>
-                            </div>      
-                            <div class="table" id="checkboxresult"></div>
+                            <div class="table-head">
+                                <input disabled class="form-check-input me-2" type="checkbox">
+                                <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                                <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                                <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
+                            </div>  
+                            <div id="checkboxresult"></div>
                         </div>
                         
                         <!-- Tambah Anggota -->
                         <div class="modal fade bd-example-modal" id="addmember" aria-hidden="true" aria-labelledby="addmember" tabindex="-1">
                             <div class="modal-dialog modal-xl">
                                 <div class="modal-content">
-                                    <div class="modal-header">
+                                    <div class="modal-header" style="padding-left: 32px; padding-right: 32px;">
                                         <h1 class="modal-title fs-5 ps-3" id="addmember">Tambah anggota yang mengikuti acara</h1>
                                         <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">
-                                    <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC">
+                                    <div class="modal-body" style="padding-left: 40px; padding-right: 40px; gap: 24px;">
                                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                            <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC">
                                             <div class="table">
                                                 <div class="table-head">
                                                     <input disabled class="form-check-input me-2" type="checkbox">
@@ -98,6 +103,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div> 
                 </div>
                 <!-- Pemisah : Line -->
                 <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>

@@ -20,40 +20,37 @@
             <div style="align-self: stretch; padding-left: 40px; padding-right: 40px; padding-top: 32px; padding-bottom: 32px; background: white; border-radius: 10px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: center; align-items: center; gap: 24px; display: flex">
                 <div id="myDIV" class="table">
                     <div class="table-head">
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">NIK</div>
-                        </div>
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">Nama</div>
-                        </div>
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">KK</div>
-                        </div>
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">BPJS</div>
-                        </div>
-                        <div class="table-header-cell">
-                            <div class="h5 header-name">LC</div>
-                        </div>
-                        <div class="table-header-cell table-header-btn">
-                            <div class="h5 header-name">Aksi</div>
-                        </div>
+                        <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">NIK</div>
+                        <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                        <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Kartu Keluarga</div>
+                        <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">BPJS</div>
+                        <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">LC</div>
+                        <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Aksi</div>
                     </div>
 
                     @foreach ($datanull as $row)
                     <div class="table-body">
-                        <!-- NIK -->
-                        <div class="table-body-cell">
-                            <div class="body-name b-regular">{{ $row->nik }}</div>
-                        </div>
+                        <!-- nik -->
+                        <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->nik }}</div>
 
-                        <!-- NAMA -->
-                        <div class="table-body-cell">
-                            <div class="body-name b-regular">{{ $row->nama }}</div>
-                        </div>
+                        <!-- nama -->
+                        <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->nama }}</div>
 
-                        <!-- KK -->
+                        <!-- kk -->
                         @if ($row->kk == "")
+                        <div class="body-name table-body-btn empty-bg-cell"">
+                            <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                            </svg>
+                            <a href="/{{ $row->id_kk }}/tambah-kk" class="btn-add" role="button">
+                                <div class="fs-6 fw-bolder lh-sm" style="font-family: 'Inter', sans-serif;">tambah data</div>
+                            </a>
+                        </div>
+                        @else
+                        <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->kk }}</div>
+                        @endif
+
+                        <!-- @if ($row->kk == "")
                         <a href="/{{ $row->id_kk }}/tambah-data/kk" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
@@ -64,10 +61,23 @@
                         <div class="table-body-cell">
                             <div class="b-regular body-name">{{ $row->kk }}</div>
                         </div>
+                        @endif -->
+
+                        <!-- bpjs -->
+                        @if ($row->no_bpjs == "")
+                        <div class="body-name table-body-btn empty-bg-cell"">
+                            <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                            </svg>
+                            <a href="/{{ $row->id_bpjs }}/tambah-bpjs" class="btn-add" role="button">
+                                <div class="fs-6 fw-bolder lh-sm" style="font-family: 'Inter', sans-serif;">tambah data</div>
+                            </a>
+                        </div>
+                        @else
+                        <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->no_bpjs }}</div>
                         @endif
 
-                        <!-- BPJS -->
-                        @if ($row->no_bpjs == "")
+                        <!-- @if ($row->no_bpjs == "")
                         <a href="/{{$row->id_bpjs}}/tambah-data/bpjs" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
@@ -78,10 +88,23 @@
                         <div class="table-body-cell">
                             <div class="b-regular body-name">{{ $row->no_bpjs }}</div>
                         </div>
-                        @endif
+                        @endif -->
 
                         <!-- LC -->
                         @if ($row->no_kartu == "")
+                        <div class="body-name table-body-btn">
+                            <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
+                            </svg>
+                            <a href="/{{ $row->id_lc }}/tambah-lc" class="btn-add" role="button">
+                                <div class="fs-6 fw-bolder lh-sm" style="font-family: 'Inter', sans-serif;">tambah data</div>
+                            </a>
+                        </div>
+                        @else
+                        <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->no_kartu }}</div>
+                        @endif
+
+                        <!-- @if ($row->no_kartu == "")
                         <a href="/{{ $row->id_lc }}/tambah-data/lc" class="btn add-btn table-body-btn empty-bg-cell d-flex align-items-center" role="button">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18.334 13H13.334V18C13.334 18.55 12.884 19 12.334 19C11.784 19 11.334 18.55 11.334 18V13H6.33398C5.78398 13 5.33398 12.55 5.33398 12C5.33398 11.45 5.78398 11 6.33398 11H11.334V6C11.334 5.45 11.784 5 12.334 5C12.884 5 13.334 5.45 13.334 6V11H18.334C18.884 11 19.334 11.45 19.334 12C19.334 12.55 18.884 13 18.334 13Z" fill="#394E91"/>
@@ -92,12 +115,12 @@
                         <div class="table-body-cell">
                             <div class="b-regular body-name">{{ $row->no_kartu }}</div>
                         </div>
-                        @endif
+                        @endif -->
 
                         <!-- AKSI -->
-                        <div class="table-body-cell ps-4">
-                            <a href="/detail-anggota/{{ $row->nik }}" role="button" class="btn button-ghost body-btn-detail">
-                                <div class="b-bold header-name">Detail</div>
+                        <div class="body-name action">
+                            <a href="/detail-anggota/{{ $row->nik }}" class="button-fill btn-action" role="button">
+                                <div class="fs-6 fw-bold lh-sm" style="font-family: 'Inter', sans-serif;">Detail</div>
                             </a>
                         </div>
                     </div>
