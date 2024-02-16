@@ -56,7 +56,11 @@
                         <!-- List Anggota -->
                         <!-- <label for="list_anggota" class="form-label" style="text-align: justify; color: #1D1B20; font-size: 16px; font-family: Inter; font-weight: 500; line-height: 24px; word-wrap: break-word">List Anggota</label> -->
                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <div class="table">
+                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                        <a class="btn button-fill" data-bs-target="#addmember" data-bs-toggle="modal" style="border-radius: 10px; justify-content: center; align-items: center; display: flex" role="button">
+                            <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota</div>
+                        </a>    
+                        <div class="table">
                                 <div class="table-head">
                                     <input disabled class="form-check-input me-2" type="checkbox">
                                     <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
@@ -68,18 +72,40 @@
                         </div>
                         
                         <!-- Tambah Anggota -->
-                        <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <div class="table">
-                                <div class="table-head">
-                                    <input disabled class="form-check-input me-2" type="checkbox">
-                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
-                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
-                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
+                        <div class="modal fade bd-example-modal-lg" id="addmember" aria-hidden="true" aria-labelledby="addmember" tabindex="-1">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5 ps-3" id="addmember">Tambah anggota yang mengikuti acara</h1>
+                                        <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
+                                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                            <div class="table">
+                                                <div class="table-head">
+                                                    <div class="table-header-cell-checkbox">
+                                                        <div class="h5 header-name">
+                                                            <input disabled class="form-check-input me-1" type="checkbox">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-header-cell">
+                                                        <div class="h5 header-name">Nama</div>
+                                                    </div>
+                                                    <div class="table-header-cell">
+                                                        <div class="h5 header-name">JenisKartu</div>
+                                                    </div>
+                                                    <div class="table-header-cell">
+                                                        <div class="h5 header-name">Nomor Kartu</div>
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                                <div class="table" id="resultsearch">
+                                                    <!-- Checkbox -->
+                                                </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>   
-                            <div class="table" id="resultsearch">
-                                <!-- Checkbox -->
                             </div>
                         </div>
                 </div>
@@ -88,7 +114,7 @@
                 <!-- Button Section -->
                 <div class="button-section">
                     <button type="submit" class="btn button-fill button-set-fill">
-                        <div class="b-bold name" style="color: white;">Tambah</div>
+                        <div class="b-bold name" style="color: white;">Tambah Acara</div>
                     </button>
                 </div>
             </form>
