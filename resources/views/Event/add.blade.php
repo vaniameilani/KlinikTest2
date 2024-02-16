@@ -72,37 +72,27 @@
                         </div>
                         
                         <!-- Tambah Anggota -->
-                        <div class="modal fade bd-example-modal-lg" id="addmember" aria-hidden="true" aria-labelledby="addmember" tabindex="-1">
-                            <div class="modal-dialog modal-lg">
+                        <div class="modal fade bd-example-modal" id="addmember" aria-hidden="true" aria-labelledby="addmember" tabindex="-1">
+                            <div class="modal-dialog modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5 ps-3" id="addmember">Tambah anggota yang mengikuti acara</h1>
                                         <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                    <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC atau Nama">
+                                    <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC">
                                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
                                             <div class="table">
                                                 <div class="table-head">
-                                                    <div class="table-header-cell-checkbox">
-                                                        <div class="h5 header-name">
-                                                            <input disabled class="form-check-input me-1" type="checkbox">
-                                                        </div>
-                                                    </div>
-                                                    <div class="table-header-cell">
-                                                        <div class="h5 header-name">Nama</div>
-                                                    </div>
-                                                    <div class="table-header-cell">
-                                                        <div class="h5 header-name">JenisKartu</div>
-                                                    </div>
-                                                    <div class="table-header-cell">
-                                                        <div class="h5 header-name">Nomor Kartu</div>
-                                                    </div>
+                                                    <input disabled class="form-check-input me-2" type="checkbox">
+                                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
                                                 </div>
                                             </div>   
-                                                <div class="table" id="resultsearch">
-                                                    <!-- Checkbox -->
-                                                </div>
+                                            <div class="table" id="resultsearch">
+                                                <!-- Checkbox -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
