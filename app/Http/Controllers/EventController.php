@@ -13,9 +13,16 @@ use App\Support\Collection;
 
 class EventController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::orderByDesc('tgl_acara')->paginate(5);
+        $searchevent = $request->search;
+
+        if ($searchevent == null){
+            $events = Event::orderByDesc('tgl_acara')->paginate(5);
+        }elseif($searchevent != null){
+            $events = Event::orderByDesc('tgl_acara')->where('nama_acara', 'LIKE', '%'.$searchevent.'%')->paginate(5);
+        }
+        
         return view('Event.index', compact('events'));
     }
 

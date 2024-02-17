@@ -181,10 +181,8 @@
                             <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Alamat</div>
                             <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">No HP</div>
                         </div>
-                        @if ($datanull == null)
-                        <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Belum ada anggota yang terdaftar</div>
-                        @elseif ($datanull == " ")
-                        <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Tidak ada data yang sesuai dengan filter</div>
+                        @if ($datanull->count() == 0)
+                        <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Tidak ada anggota yang sesuai dengan filter</div>
                         @else
                         @foreach ($datanull as $row)
                         <div class="table-body">

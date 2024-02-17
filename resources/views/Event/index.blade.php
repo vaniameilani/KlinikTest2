@@ -28,12 +28,15 @@
 
                 <!-- list acara -->
                 <div class="card-event">
-                    <form action="/event" method='GET' class="form-search">
+                    <form action="/acara" method='GET' class="form-search">
                         <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nama Acara">
                         <button class="btn button-fill" type="submit" style="padding: 16px 24px; border-radius: 10px; justify-content: center; align-items: center; display: flex">
                             <div class="b-bold self-stretch" style="word-wrap: break-word; color: white; ">Cari Acara</div>
                         </button>
                     </form> 
+                    @if ($events->count() == 0)
+                    <div class="text-center p-3 b-medium self-stretch" style="color:#394E91;">Acara tidak ditemukan</div>
+                    @else
                     <div class="card-event-list">
                         @foreach ($events as $data)
                         <a href="/detail-acara/{{ $data->id_acara }}" role="button" class="card-event-contain">
@@ -58,20 +61,8 @@
                         </a>
                         @endforeach
                     </div>
+                    @endif
                 </div>
-                <!-- <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: grid">
-                    <a class="btn card-event" href="/detail-acara/{{ $data->id_acara }}" style="align-self: stretch; padding: 16px; border-radius: 5px; border: 1px #DADDE5 solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex" role="button">
-                        <div style="align-self: stretch; text-align: justify; color: #1D1B20; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">{{ $data->nama_acara }} | {{count(json_decode($data->daftar_anggota))}} Anggota</div>
-                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                            <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
-                                <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $data->tgl_acara }}</div>
-                            </div>
-                            <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
-                                <div style="text-align: justify; color: #757575; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ $data->lokasi_acara }}</div>
-                            </div>
-                        </div>
-                    </a>
-                </div> -->
             </div>
             {{ $events->links() }}
         </div>
