@@ -104,7 +104,23 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
-        return view('Event.edit', compact('event'));
+        $names = json_decode($event->daftar_anggota);
+        $datas = array();
+        foreach ($names as $ms)
+        {
+            // $ktps[] = DB::table('ktps')
+            // ->where('ktps.nik', '=', $ms)
+            // ->get();
+
+            $datas[] = DB::table('lcs')
+            ->join('ktps', 'lcs.nik_lc', '=', 'ktps.nik')
+            ->select('ktps.nik', 'ktps.nama', 'lcs.no_kartu', 'lcs.jenis_kartu')
+            ->where('lcs.no_kartu', '=', $ms)
+            ->get();
+
+        }
+        
+        return view('Event.edit', compact('event', 'datas'));
     }
 
     public function update(Request $request, $event)
@@ -115,13 +131,28 @@ class EventController extends Controller
             'lokasi_acara' => 'required',
             'daftar_anggota',
         ]);
-
+        if ($request->daftar_anggota != null){
+        $countanggota = count($request->daftar_anggota);
+        for ($i = 1; $i <= $countanggota; $i++){
+            $storestatus [] = null;
+        }
+        $inputstatus = json_encode($storestatus);
+        Event::where('id_acara', $event)
+        ->update([
+            'nama_acara' => $request->nama_acara,
+            'tgl_acara' => $request->tgl_acara,
+            'lokasi_acara' => $request->lokasi_acara,
+            'daftar_anggota' => json_encode($request->daftar_anggota),
+            'status' => $inputstatus
+        ]);
+        }else{
         Event::where('id_acara', $event)
         ->update([
             'nama_acara' => $request->nama_acara,
             'tgl_acara' => $request->tgl_acara,
             'lokasi_acara' => $request->lokasi_acara,
         ]);
+        }
         
         return redirect()->to('detail-acara/'.$event)->with('status', 'Data berhasil diupdate!'); 
     }

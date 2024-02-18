@@ -54,6 +54,68 @@
                             @enderror
                         </div>
                     </div>
+                    <div style="align-self: stretch; padding-left: 40px; padding-right: 40px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+                        <div class="d-flex justify-content-between align-self-stretch align-items-center">
+                            <div class="d-flex flex-column">
+                                <div class="h5 mb-0">Daftar Anggota</div>
+                                <div class="label mb-0" style="color: #9E9E9E;">Tambahkan anggota yayasan yang mengikuti acara ini</div>
+                            </div>
+                            <a class="button-fill btn-action" data-bs-target="#addmember" data-bs-toggle="modal" role="button">
+                                <div style="text-align: justify; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 24px; word-wrap: break-word">Tambah Anggota</div>
+                            </a> 
+                        </div>   
+                        <div class="table">
+                            <div class="table-head">
+                                <input disabled class="form-check-input me-2" type="checkbox">
+                                <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                                <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                                <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
+                            </div>
+                            @foreach ($datas as $data)
+                            <div class="table-body" id="cb{{ $data[0]->no_kartu }}">
+                                <div class="d-flex">
+                                    <input onclick="return false;" class="form-check-input me-1" type="checkbox" value="{{ $data[0]->no_kartu }}" name="daftar_anggota[]" id="cbs{{ $data[0]->no_kartu }}" checked></div>
+                                    <div class="body-name"><div class="body-name b-regular">{{ $data[0]->nama }}</div>
+                                </div>
+                                <div class="body-name">
+                                    <div class="body-name b-regular">{{ $data[0]->jenis_kartu }}</div>
+                                </div>
+                                <div class="body-name">
+                                    <div class="body-name b-regular">{{ $data[0]->no_kartu}}</div>
+                                </div>
+                            </div>
+                            @endforeach    
+                            <div id="checkboxresult"></div>
+                        </div>
+                        
+                        <!-- Tambah Anggota -->
+                        <div class="modal fade bd-example-modal" id="addmember" aria-hidden="true" aria-labelledby="addmember" tabindex="-1">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="padding-left: 32px; padding-right: 32px;">
+                                        <h1 class="modal-title fs-5 ps-3" id="addmember">Tambah anggota yang mengikuti acara</h1>
+                                        <button type="button" class="btn-close pe-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" style="padding-left: 40px; padding-right: 40px; gap: 24px;">
+                                        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+                                            <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC">
+                                            <div class="table">
+                                                <div class="table-head">
+                                                    <input disabled class="form-check-input me-2" type="checkbox">
+                                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
+                                                </div>
+                                            </div>
+                                            <div class="table" id="resultsearch">
+                                                <!-- Checkbox -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Pemisah : Line -->
                     <div style="align-self: stretch; height: 0px; border: 1px #DADDE5 solid"></div>
@@ -101,6 +163,51 @@
                 jQuery('#lokasi_acara').val(spart.join(" "));
                 });
             });
+        </script>
+                 <script type="text/javascript">
+            $('body').on('keyup','#search', function(){
+                var searchQuest = $(this).val();
+
+                $.ajax({
+                    method: 'POST',
+                    url: '{{ route("search") }}',
+                    dataType: 'json',
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                        searchQuest: searchQuest,
+                    },
+                    success: function(res){
+                        var tableRow = '';
+                        var addRow = '';
+                        
+                        $('#resultsearch').html('');
+
+                        $.each( res, function(create, value){
+                            tableRow = '<div class="table-body"><div class="d-flex"><input class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" id="'+value.no_kartu+'"></div><div class="body-name"><div class="body-name b-regular">'+value.nama+'</div></div><div class="body-name"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="body-name"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+
+                        $('#resultsearch').append(tableRow);
+                        
+                        if($('#cbs'+value.no_kartu+'').val() == $('#'+value.no_kartu+'').val())
+                        $('#'+value.no_kartu+'').prop('checked',true)
+                        else
+                        $('#'+value.no_kartu+'').prop('checked',false)
+                        $(function(){
+                            $('#'+value.no_kartu+'').click(function() {
+                                if($(this).is(':checked')){
+                                    addRow = '<div class="table-body" id="cb'+value.no_kartu+'"><div class="d-flex"><input onclick="return false;" class="form-check-input me-1" type="checkbox" value="'+value.no_kartu+'" name="daftar_anggota[]" id="cbs'+value.no_kartu+'" checked></div><div class="body-name"><div class="body-name b-regular">'+value.nama+'</div></div><div class="body-name"><div class="body-name b-regular">'+value.jenis_kartu+'</div></div><div class="body-name"><div class="body-name b-regular">'+value.no_kartu+'</div></div></div>'
+                                    $('#checkboxresult').append(addRow);
+                                }else{
+                                    $('#cb'+value.no_kartu+'').remove();
+                                }
+                            });
+                            });
+                        });
+                        
+
+                    }
+                });
+            });
+
         </script>
         
     </div>
