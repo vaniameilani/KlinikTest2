@@ -28,6 +28,9 @@
                 @elseif (Route::current()->getName() == 'acara')
                     <a href="/" class="menu nav-link">Dashboard</a>
                     <a href="/acara" class="menu nav-link fw-bold">Acara</a>
+                @else
+                    <a href="/" class="menu nav-link">Dashboard</a>
+                    <a href="/acara" class="menu nav-link">Acara</a>
                 @endif
                 </div>
                 <div class="text-end">

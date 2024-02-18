@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="modal-body" style="padding-left: 40px; padding-right: 40px; gap: 24px;">
                                         <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
-                                            <input type="text" class="form-control b-regular input-search" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC">
+                                            <input type="text" class="form-control b-regular input-search" autocomplete="off" value="{{ request('search') }}" name="search" id="search" placeholder="Cari Nomor LC">
                                             <div class="table">
                                                 <div class="table-head">
                                                     <input disabled class="form-check-input me-2" type="checkbox">
