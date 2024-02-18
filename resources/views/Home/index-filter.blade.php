@@ -205,7 +205,7 @@
                             @if ($row->jenis_bpjs == "")
                             <div class="fs-6 fw-normal lh-sm body-name">-</div>
                             @else
-                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->jenis_bpjs }}</div>
+                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $row->jenis_bpjs }} / <br>{{ $row->faskes_bpjs }}</div>
                             @endif
 
                             <!-- ALAMAT -->

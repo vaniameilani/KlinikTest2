@@ -71,11 +71,11 @@ class FilterController extends Controller
 
         if (isset($request->dapil) && $request->dapil != ''){
             $datadapil = $collect
-            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp')
+            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'bpjs.faskes_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp')
             ->whereIn('ktps.desa_kel', $dapil);
         }else{
             $datadapil = $collect
-            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp');
+            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'bpjs.faskes_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp');
         };
         if (isset($request->faskes) && $request->faskes != '' && isset($request->jenis_bpjs) && $request->jenis_bpjs != ''){
             $filterdata =$datadapil
@@ -89,7 +89,7 @@ class FilterController extends Controller
             ->where('bpjs.jenis_bpjs', '=', $request->jenis_bpjs);
         }else{
             $filterdata =$datadapil
-            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp');
+            ->select('ktps.nik', 'ktps.nama', 'ktps.kecamatan', 'ktps.desa_kel', 'ktps.alamat', 'kks.kk', 'bpjs.jenis_bpjs', 'bpjs.nik_bpjs', 'bpjs.faskes_bpjs', 'lcs.no_kartu', 'lcs.id_lc', 'kks.id_kk', 'bpjs.id_bpjs', 'others.no_hp');
         };
 
         if(isset($request->kecamatan) && $request->kecamatan != '' &&  $request->desa_kel == '' && $request->no_tps == ''){

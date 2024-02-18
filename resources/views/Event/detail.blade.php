@@ -70,100 +70,107 @@
                             </button>
                         </div>
 
-                    <div class="table">
-                        <div class="table-head">
-                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
-                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
-                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
-                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Aksi</div>
-                            <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Status</div>
-                        </div>
+                        <div class="event-warning-note">
+                            <div class="alert alert-warning d-flex align-self-stretch flex-column" role="alert">
+                                <div class="h5 alert-heading">Peringatan!</div>
+                                <!-- <hr> -->
+                                <div class="b-regular mb-0">Jika ada anggota yang ingin Anda tambahkan, harap tambahkan anggota tersebut terlebih dahulu sebelum memperbarui status kehadiran semua anggota.</div>
+                            </div>
 
-                        @foreach ($datas as $data)
-                        
-                        <div class="table-body">
-                            <!-- Nama Anggota -->
-                            @if ($data[0]->nama == 0)
-                                <div class="fs-6 fw-normal lh-sm body-name">-</div>
-                            @else
-                                <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->nama }}</div>
-                            @endif
-                             <!-- <div class="table-body-cell">
-                                @if ($data[0]->nama == 0)
-                                    <div class="fs-6 fw-normal lh-sm body-name">-</div>
-                                @else
-                                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->nama }}</div>
-                                @endif
-                            </div> -->
-
-                            <!-- Jenis Kartu -->
-                            @if ($data[0]->jenis_kartu == 0)
-                                <div class="fs-6 fw-normal lh-sm body-name">-</div>
-                            @else
-                                <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->jenis_kartu }}</div>
-                            @endif
-                            <!-- <div class="table-body-cell">
-                                @if ($data[0]->jenis_kartu == 0)
-                                    <div class="fs-6 fw-normal lh-sm body-name">-</div>
-                                @else
-                                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->jenis_kartu }}</div>
-                                @endif
-                            </div> -->
-
-                            <!-- Nomor Kartu -->
-                            @if ($data[0]->no_kartu == 0)
-                                <div class="fs-6 fw-normal lh-sm body-name">-</div>
-                            @else
-                                <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->no_kartu }}</div>
-                            @endif
-                            <!-- <div class="table-body-cell">
-                                @if ($data[0]->no_kartu == 0)
-                                    <div class="fs-6 fw-normal lh-sm body-name">-</div>
-                                @else
-                                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->no_kartu }}</div>
-                                @endif
-                            </div> -->
-
-                            <!-- Aksi Button -->
-                            <div class="body-name">
-                                <div class="d-flex flex-column">
-                                    <div class="d-flex flex-row gap-2">
-                                    @if ($status == null)
-                                        <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" id="Radio1" value="Hadir">
-                                        <label class="form-check-label" for="Radio1"> Hadir </label>
-                                    </div>
-                                    <div class="d-flex flex-row gap-2">
-                                        <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" id="Radio2" value="Tidak Hadir">
-                                        <label class="form-check-label" for="Radio2"> Tidak Hadir </label>
-                                    @else
-                                        <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" {{ ($status[$data[0]->no_kartu]=="Hadir")? "checked" : "" }} id="Radio1" value="Hadir">
-                                        <label class="form-check-label" for="Radio1"> Hadir </label>
-                                    </div>
-                                    <div class="d-flex flex-row gap-2">
-                                        <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" {{ ($status[$data[0]->no_kartu]=="Tidak Hadir")? "checked" : "" }} id="Radio2" value="Tidak Hadir">
-                                        <label class="form-check-label" for="Radio2"> Tidak Hadir </label>
-                                    @endif
-                                    </div>
+                            <div class="table">
+                                <div class="table-head">
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nama</div>
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Jenis Kartu</div>
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Nomor Kartu</div>
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Aksi</div>
+                                    <div class="fs-5 fw-bold lh-sm text-start header-name" style="font-family: 'Inter', sans-serif;">Status</div>
                                 </div>
-                            </div>
 
-                            <!-- Status -->
-                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">
-                                @if ($status == null)
-                                -
-                                @elseif($status[$data[0]->no_kartu] == null)
-                                Kehadiran belum direkap
-                                @else
-                                {{$status[$data[0]->no_kartu]}}
-                                @endif
+                                @foreach ($datas as $data)
+                                
+                                <div class="table-body">
+                                    <!-- Nama Anggota -->
+                                    @if ($data[0]->nama == 0)
+                                        <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                                    @else
+                                        <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->nama }}</div>
+                                    @endif
+                                    <!-- <div class="table-body-cell">
+                                        @if ($data[0]->nama == 0)
+                                            <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                                        @else
+                                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->nama }}</div>
+                                        @endif
+                                    </div> -->
+
+                                    <!-- Jenis Kartu -->
+                                    @if ($data[0]->jenis_kartu == 0)
+                                        <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                                    @else
+                                        <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->jenis_kartu }}</div>
+                                    @endif
+                                    <!-- <div class="table-body-cell">
+                                        @if ($data[0]->jenis_kartu == 0)
+                                            <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                                        @else
+                                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->jenis_kartu }}</div>
+                                        @endif
+                                    </div> -->
+
+                                    <!-- Nomor Kartu -->
+                                    @if ($data[0]->no_kartu == 0)
+                                        <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                                    @else
+                                        <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->no_kartu }}</div>
+                                    @endif
+                                    <!-- <div class="table-body-cell">
+                                        @if ($data[0]->no_kartu == 0)
+                                            <div class="fs-6 fw-normal lh-sm body-name">-</div>
+                                        @else
+                                            <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">{{ $data[0]->no_kartu }}</div>
+                                        @endif
+                                    </div> -->
+
+                                    <!-- Aksi Button -->
+                                    <div class="body-name">
+                                        <div class="d-flex flex-column">
+                                            <div class="d-flex flex-row gap-2">
+                                            @if ($status == null)
+                                                <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" id="Radio1" value="Hadir">
+                                                <label class="form-check-label" for="Radio1"> Hadir </label>
+                                            </div>
+                                            <div class="d-flex flex-row gap-2">
+                                                <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" id="Radio2" value="Tidak Hadir">
+                                                <label class="form-check-label" for="Radio2"> Tidak Hadir </label>
+                                            @else
+                                                <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" {{ ($status[$data[0]->no_kartu]=="Hadir")? "checked" : "" }} id="Radio1" value="Hadir">
+                                                <label class="form-check-label" for="Radio1"> Hadir </label>
+                                            </div>
+                                            <div class="d-flex flex-row gap-2">
+                                                <input class="form-check-input" type="radio" name="radio{{ $data[0]->no_kartu }}" {{ ($status[$data[0]->no_kartu]=="Tidak Hadir")? "checked" : "" }} id="Radio2" value="Tidak Hadir">
+                                                <label class="form-check-label" for="Radio2"> Tidak Hadir </label>
+                                            @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Status -->
+                                    <div class="fs-6 fw-normal lh-sm body-name" style="font-family: 'Inter', sans-serif;">
+                                        @if ($status == null)
+                                        -
+                                        @elseif($status[$data[0]->no_kartu] == null)
+                                        Kehadiran belum direkap
+                                        @else
+                                        {{$status[$data[0]->no_kartu]}}
+                                        @endif
+                                    </div>
+                                
+                                
+                                </div>
+                                @endforeach
                             </div>
-                        
-                        
-                        </div>
-                        @endforeach
-                        
-                        </form>
-                    </div>
+                        </div>  
+                    </form>
                 </div>
             </div>
         </div>
