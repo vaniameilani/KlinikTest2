@@ -113,7 +113,7 @@ Route::middleware('auth')->group(function() {
     // ENDHOME ---------------------------------------------------------------------------------------
 
     // EVENT ------------------------------------------------------------------------------------
-    Route::get('/acara', [EventController::class, 'index']);
+    Route::get('/acara', [EventController::class, 'index'])->name('acara');
     Route::get('/tambah-acara', [EventController::class, 'add']);
     Route::post('/save-acara', [EventController::class, 'store']);
     Route::get('/detail-acara/{event}', [EventController::class, 'show']);

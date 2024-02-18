@@ -22,8 +22,13 @@
                 </a> -->
                 <!-- <div style="text-align: justify; color: #394E91; font-size: 18px; font-family: Inter; font-weight: 700; line-height: 25.20px; word-wrap: break-word">Yayasan Raycare Nusantara</div> -->
                 <div style="flex: 1 1 0;  align-items: center; display: flex">
-                    <a href="/" class="menu nav-link">Dashboard</a>
+                @if (Route::current()->getName() == 'home')
+                    <a href="/" class="menu nav-link fw-bold">Dashboard</a>
                     <a href="/acara" class="menu nav-link">Acara</a>
+                @elseif (Route::current()->getName() == 'acara')
+                    <a href="/" class="menu nav-link">Dashboard</a>
+                    <a href="/acara" class="menu nav-link fw-bold">Acara</a>
+                @endif
                 </div>
                 <div class="text-end">
                     <a href="#" class="btn d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
